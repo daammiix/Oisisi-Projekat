@@ -15,7 +15,7 @@ public class Profesor {
 	private int godineStaza;
 	private ArrayList<Predmet> predmeti;
 	
-	public Profesor() {
+	public Profesor() {	
 		super();
 	}
 
