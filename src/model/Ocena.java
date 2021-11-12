@@ -33,15 +33,10 @@ public class Ocena {
 	public int getOcena() {
 		return ocena;
 	}
-	
-	private void println(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void setOcena(int ocena) {
 		if(ocena < 6 || ocena > 10){
-			println("Ocena nije validna");
+			System.out.println("Ocena nije validna");
 			}else {
 				this.ocena = ocena;
 			}
