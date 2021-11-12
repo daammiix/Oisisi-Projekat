@@ -1,43 +1,45 @@
 package view;
 
 import javax.swing.*;
-import java.awt.Dimension;
+import javax.swing.BoxLayout;
+import java.awt.*;
 
 public class AppToolBar extends JToolBar{
 
 	private static final long serialVersionUID = -7182434949988528780L;
-
+	
 	public AppToolBar() {
 		super(SwingConstants.HORIZONTAL);
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		JButton btnOpen = new JButton();
 		btnOpen.setToolTipText("Open");
 		btnOpen.setIcon(new ImageIcon("image/image_new.png"));
-		add(btnOpen);
+		this.add(btnOpen);
 		
 		addSeparator();
 		
 		JButton btnEdit = new JButton();
 		btnEdit.setToolTipText("Edit");
 		btnEdit.setIcon(new ImageIcon("image/image_edit2.png"));
-		add(btnEdit);
+		this.add(btnEdit);
 		
 		addSeparator();
 		
 		JButton btnDelete = new JButton();
 		btnDelete.setToolTipText("Delete");
 		btnDelete.setIcon(new ImageIcon("image/image_delete.png"));
-		add(btnDelete);
-		
-		addSeparator(new Dimension(1000,10));
-		
-		JTextField tfSearch = new JTextField();
-		add(tfSearch);
+		this.add(btnDelete);
+		this.add(Box.createHorizontalGlue());
+	
+		JTextField tfSearch = new JTextField(15);
+		tfSearch.setMaximumSize(new Dimension(100,30));
+		this.add(tfSearch);
 		
 		JButton btnSearch = new JButton();
 		btnSearch.setToolTipText("Search");
 		btnSearch.setIcon(new ImageIcon("image/image_search.png"));
-		add(btnSearch);
-		
+		this.add(btnSearch);
+
 	}
 }
