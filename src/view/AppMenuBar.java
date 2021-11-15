@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.*;
+import java.io.File;
 
 public class AppMenuBar extends JMenuBar {
 	
@@ -13,9 +13,9 @@ public class AppMenuBar extends JMenuBar {
 		JMenu mEdit = new JMenu(" Edit");
 		JMenu mHelp = new JMenu(" Help");
 		
-		mFile.setIcon(new ImageIcon("image/image_file.png"));
-		mEdit.setIcon(new ImageIcon("image/image_edit.png"));
-		mHelp.setIcon(new ImageIcon("image/image_help.png"));
+		mFile.setIcon(new ImageIcon("image" + File.separator + "image_file.png"));
+		mEdit.setIcon(new ImageIcon("image" + File.separator + "image_edit.png"));
+		mHelp.setIcon(new ImageIcon("image" + File.separator + "image_help.png"));
 		
 		mFile.setToolTipText("Alt + F");
 		mEdit.setToolTipText("Alt + E");
@@ -42,10 +42,10 @@ public class AppMenuBar extends JMenuBar {
 		
 		JMenuItem miClose = new JMenuItem(" Close");
 		
-		miNew.setIcon(new ImageIcon("image/image_new.png"));
-		miSave.setIcon(new ImageIcon("image/image_save.png"));
-		miOpen.setIcon(new ImageIcon("image/image_open.png"));
-		miClose.setIcon(new ImageIcon("image/image_x.png"));
+		miNew.setIcon(new ImageIcon("image" + File.separator + "image_new.png"));
+		miSave.setIcon(new ImageIcon("image" + File.separator + "image_save.png"));
+		miOpen.setIcon(new ImageIcon("image" + File.separator + "image_open.png"));
+		miClose.setIcon(new ImageIcon("image" + File.separator + "image_x.png"));
 		
 
 		mFile.setMnemonic(KeyEvent.VK_F);
@@ -75,8 +75,8 @@ public class AppMenuBar extends JMenuBar {
 		miEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		
-		miEdit.setIcon(new ImageIcon("image/image_edit.png"));
-		miDelete.setIcon(new ImageIcon("image/image_delete.png"));
+		miEdit.setIcon(new ImageIcon("image" + File.separator + "image_edit.png"));
+		miDelete.setIcon(new ImageIcon("image" + File.separator + "image_delete.png"));
 		
 		mEdit.add(miEdit);
 		mEdit.addSeparator();
@@ -89,8 +89,8 @@ public class AppMenuBar extends JMenuBar {
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		
-		miHelp.setIcon(new ImageIcon("image/image_help.png"));
-		miAbout.setIcon(new ImageIcon("image/image_about.png"));
+		miHelp.setIcon(new ImageIcon("image" + File.separator + "image_help.png"));
+		miAbout.setIcon(new ImageIcon("image" + File.separator + "image_about.png"));
 		
 		mHelp.add(miHelp);
 		mHelp.addSeparator();
