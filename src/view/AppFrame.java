@@ -16,6 +16,6 @@ public class AppFrame extends JFrame {
 		this.setSize(width * 3/4, height * 3/4);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		this.setTitle("Studentska služba");
+		this.setTitle("Studentska sluï¿½ba");
 	}
 }

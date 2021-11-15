@@ -16,8 +16,8 @@ public class Student {
 	private int trenutnaGodinaStudija;
 	private Status status;
 	double prosecnaOcena;
-	ArrayList<String> polozeniIspiti;
-	ArrayList<String> nepolozeniIspiti;
+	ArrayList<Ocena> polozeniIspiti;
+	ArrayList<Ocena> nepolozeniIspiti;
 	
 	public Student() {
 		super();
@@ -31,7 +31,7 @@ public class Student {
 
 	public Student(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String email, String brojIndeksa, int godinaUpisa, int trenutnaGodinaStudija, Status status,
-			double prosecnaOcena, ArrayList<String> polozeniIspiti, ArrayList<String> nepolozeniIspiti) {
+			double prosecnaOcena, ArrayList<Ocena> polozeniIspiti, ArrayList<Ocena> nepolozeniIspiti) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
@@ -152,19 +152,19 @@ public class Student {
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
-	public ArrayList<String> getPolozeniIspiti() {
+	public ArrayList<Ocena> getPolozeniIspiti() {
 		return polozeniIspiti;
 	}
 
-	public void setPolozeniIspiti(ArrayList<String> polozeniIspiti) {
+	public void setPolozeniIspiti(ArrayList<Ocena> polozeniIspiti) {
 		this.polozeniIspiti = polozeniIspiti;
 	}
 
-	public ArrayList<String> getNepolozeniIspiti() {
+	public ArrayList<Ocena> getNepolozeniIspiti() {
 		return nepolozeniIspiti;
 	}
 
-	public void setNepolozeniIspiti(ArrayList<String> nepolozeniIspiti) {
+	public void setNepolozeniIspiti(ArrayList<Ocena> nepolozeniIspiti) {
 		this.nepolozeniIspiti = nepolozeniIspiti;
 	}
 	

@@ -1,6 +1,5 @@
 package app;
 
-//import controller.*;
 import model.*;
 import view.*;
 import java.awt.*;
