@@ -118,7 +118,7 @@ public class AppCentralPanel extends JTabbedPane {
 				String ime = s.getIme();
 				String prezime = s.getPrezime();
 				int godStudija = s.getTrenutnaGodinaStudija();
-				Status status = s.getStatus();
+				Student.Status status = s.getStatus();
 				double prosek = s.getProsecnaOcena();
 			
 				Object[] data = {indeks, ime, prezime, godStudija, status, prosek};
