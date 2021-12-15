@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.io.File;
 
@@ -47,19 +48,31 @@ public class AppMenuBar extends JMenuBar {
 		miOpen.setIcon(new ImageIcon("image" + File.separator + "image_open.png"));
 		miClose.setIcon(new ImageIcon("image" + File.separator + "image_x.png"));
 		
+		miStudenti.setIcon(new ImageIcon("image" + File.separator + "image_student.png"));
+		miPredmeti.setIcon(new ImageIcon("image" + File.separator + "image_predmet.png"));
+		miProfesori.setIcon(new ImageIcon("image" + File.separator + "image_profesor.png"));
+		miKatedre.setIcon(new ImageIcon("image" + File.separator + "image_katedra.png"));
 
 		mFile.setMnemonic(KeyEvent.VK_F);
 		mEdit.setMnemonic(KeyEvent.VK_E);
 		mHelp.setMnemonic(KeyEvent.VK_H);
 		miOpen.setMnemonic(KeyEvent.VK_O);
+		
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		miSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		miNew.setMnemonic(KeyEvent.VK_N);
+		miSave.setMnemonic(KeyEvent.VK_S);
+		miClose.setMnemonic(KeyEvent.VK_C);
 		
 		miStudenti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.SHIFT_MASK));
 		miPredmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.SHIFT_MASK));
 		miProfesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.SHIFT_MASK));
 		miKatedre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.SHIFT_MASK));
+		miStudenti.setMnemonic(KeyEvent.VK_S);
+		miPredmeti.setMnemonic(KeyEvent.VK_P);
+		miProfesori.setMnemonic(KeyEvent.VK_R);
+		miKatedre.setMnemonic(KeyEvent.VK_K);
 		
 		mFile.add(miNew);
 		mFile.addSeparator();
@@ -74,6 +87,8 @@ public class AppMenuBar extends JMenuBar {
 		
 		miEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		miEdit.setMnemonic(KeyEvent.VK_E);
+		miDelete.setMnemonic(KeyEvent.VK_D);
 		
 		miEdit.setIcon(new ImageIcon("image" + File.separator + "image_edit.png"));
 		miDelete.setIcon(new ImageIcon("image" + File.separator + "image_delete.png"));
@@ -88,6 +103,8 @@ public class AppMenuBar extends JMenuBar {
 		
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		miHelp.setMnemonic(KeyEvent.VK_H);
+		miAbout.setMnemonic(KeyEvent.VK_A);
 		
 		miHelp.setIcon(new ImageIcon("image" + File.separator + "image_help.png"));
 		miAbout.setIcon(new ImageIcon("image" + File.separator + "image_about.png"));
