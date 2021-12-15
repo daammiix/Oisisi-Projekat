@@ -5,18 +5,30 @@ import java.util.ArrayList;
 enum Semestar{ L, Z; }
 
 public class Predmet {
-	private int sifraPredmeta;
+	private String sifraPredmeta;
 	private String nazivPredmeta;
 	private Semestar semestar;
 	private int godinaStudija;
-	private String predmetniProfesor;
+	private Profesor predmetniProfesor;
 	private int espb;
 	private ArrayList<Student> studentiPolozili;
 	private ArrayList<Student> studentiPali;
 	
+	public Predmet(String sifra, String naziv, int espb, int god, String semestar) {
+		this.sifraPredmeta = sifra;
+		this.nazivPredmeta = naziv;
+		this.espb = espb;
+		this.godinaStudija = god;
+		if(semestar.equals("Letnji"))
+			this.semestar = Semestar.L;
+		else if(semestar.equals("Zimski"))
+			this.semestar = Semestar.Z;
+		studentiPolozili = new ArrayList<Student>();
+		studentiPali = new ArrayList<Student>();
+	}
 	
-	public Predmet(int sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija,
-			String predmetniProfesor, int espb, ArrayList<Student> studentiPolozili, ArrayList<Student> studentiPali) {
+	public Predmet(String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija,
+			Profesor predmetniProfesor, int espb, ArrayList<Student> studentiPolozili, ArrayList<Student> studentiPali) {
 		super();
 		this.sifraPredmeta = sifraPredmeta;
 		this.nazivPredmeta = nazivPredmeta;
@@ -29,12 +41,12 @@ public class Predmet {
 	}
 
 
-	public int getSifraPredmeta() {
+	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}
 
 
-	public void setSifraPredmeta(int sifraPredmeta) {
+	public void setSifraPredmeta(String sifraPredmeta) {
 		this.sifraPredmeta = sifraPredmeta;
 	}
 
@@ -49,13 +61,19 @@ public class Predmet {
 	}
 
 
-	public Semestar getSemestar() {
-		return semestar;
+	public String getSemestar() {
+		if(this.semestar == Semestar.L)
+			return "Letnji";
+		else
+			return "Zimski";
 	}
 
 
-	public void setSemestar(Semestar semestar) {
-		this.semestar = semestar;
+	public void setSemestar(String semestar) {
+		if(semestar.equals("Letnji"))
+			this.semestar = Semestar.L;
+		else
+			this.semestar = Semestar.Z;
 	}
 
 
@@ -69,12 +87,12 @@ public class Predmet {
 	}
 
 
-	public String getPredmetniProfesor() {
+	public Profesor getPredmetniProfesor() {
 		return predmetniProfesor;
 	}
 
 
-	public void setPredmetniProfesor(String predmetniProfesor) {
+	public void setPredmetniProfesor(Profesor predmetniProfesor) {
 		this.predmetniProfesor = predmetniProfesor;
 	}
 

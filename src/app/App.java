@@ -2,37 +2,37 @@ package app;
 
 import model.*;
 import view.*;
-import java.awt.*;
+import java.text.ParseException;
+
+import controller.AppController;
 
 public class App {
-	private AppFrame frame;
-	private AppMenuBar menuBar;
-	private AppToolBar toolBar;
-	private AppCentralPanel centralPanel;
-	private AppStatusBar statusBar;
+	private AppView view;
+	private AppData data;
+	private AppController controller;
 	
 	public static void main(String[] args) {
 		App app = new App();
 		app.start();
 	}
+	
 	// za pokretanje i testiranje aplikacije
 	public void start() {
-		frame = new AppFrame();
-		menuBar = new AppMenuBar();
-		toolBar = new AppToolBar();
-		centralPanel = new AppCentralPanel();
-		statusBar = new AppStatusBar();
+		data = AppData.getInstance();
+		view = AppView.getInstance();
+		controller = AppController.getInstance();
 		
-		frame.setVisible(true);
-		
-		frame.setJMenuBar(menuBar);
-		
-		frame.add(toolBar, BorderLayout.NORTH);
-		
-		frame.add(centralPanel, BorderLayout.CENTER);
-		
-		frame.add(statusBar, BorderLayout.SOUTH);
-		
-		
+		initState();
+	}
+	
+	private void initState() {
+		try{
+			data.makeTestData();
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+		view.refreshTableStudenti();
+		view.refreshTableProfesori();
+		view.refreshTablePredmeti();
 	}
 }
