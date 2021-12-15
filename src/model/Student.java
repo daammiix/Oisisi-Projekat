@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Student {
+	public static enum Status {S, B};
+	
 	private String prezime;
 	private String ime;
 	private Date datumRodjenja;
