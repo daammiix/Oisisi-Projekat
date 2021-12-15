@@ -1,4 +1,4 @@
-package model;
+	package model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,23 +7,50 @@ public class Profesor {
 	private String prezime;
 	private String ime;
 	private Date datumRodjenja;
-	private String adresaStanovanja;
+	private Adresa adresaStanovanja;
 	private String kontaktTelefon;
 	private String email;
-	private String adresaKancelarije;
+	private Adresa adresaKancelarije;
 	private String brojLicneKarte;
-	private String Zvanje;
+	private String zvanje;
 	private int godineStaza;
 	private ArrayList<Predmet> predmeti;
 	
 	public Profesor() {	
 		super();
 	}
-
 	
+	public Profesor(String ime, String prezime, String zvanje, String email) {
+		this.ime = ime;
+		this.prezime = prezime;
+		this.zvanje = zvanje;
+		this.email = email; 
+		this.datumRodjenja = new Date(0);
+		this.adresaStanovanja = new Adresa();
+		this.kontaktTelefon = "";
+		this.adresaKancelarije = new Adresa();
+		this.brojLicneKarte = "";
+		this.godineStaza = 0;
+		predmeti = new ArrayList<Predmet>();
+	}
 	
-	public Profesor(String prezime, String ime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String adresaKancelarije, String brojLicneKarte, String zvanje, int godineStaza,
+	public Profesor(String ime, String prezime, Date datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
+			String email, Adresa adresaKancelarije, String brojLicneKarte, String zvanje, int godineStaza) {
+		super();
+		this.prezime = prezime;
+		this.ime = ime;
+		this.datumRodjenja = datumRodjenja;
+		this.adresaStanovanja = adresaStanovanja;
+		this.kontaktTelefon = kontaktTelefon;
+		this.email = email;
+		this.adresaKancelarije = adresaKancelarije;
+		this.brojLicneKarte = brojLicneKarte;
+		this.zvanje = zvanje;
+		this.godineStaza = godineStaza;
+	}
+	
+	public Profesor(String prezime, String ime, Date datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
+			String email, Adresa adresaKancelarije, String brojLicneKarte, String zvanje, int godineStaza,
 			ArrayList<Predmet> predmeti) {
 		super();
 		this.prezime = prezime;
@@ -34,7 +61,7 @@ public class Profesor {
 		this.email = email;
 		this.adresaKancelarije = adresaKancelarije;
 		this.brojLicneKarte = brojLicneKarte;
-		Zvanje = zvanje;
+		this.zvanje = zvanje;
 		this.godineStaza = godineStaza;
 		this.predmeti = predmeti;
 	}
@@ -71,11 +98,11 @@ public class Profesor {
 		this.datumRodjenja = datumRodjenja;
 	}
 
-	public String getAdresaStanovanja() {
+	public Adresa getAdresaStanovanja() {
 		return adresaStanovanja;
 	}
 
-	public void setAdresaStanovanja(String adresaStanovanja) {
+	public void setAdresaStanovanja(Adresa adresaStanovanja) {
 		this.adresaStanovanja = adresaStanovanja;
 	}
 
@@ -95,11 +122,11 @@ public class Profesor {
 		this.email = email;
 	}
 
-	public String getAdresaKancelarije() {
+	public Adresa getAdresaKancelarije() {
 		return adresaKancelarije;
 	}
 
-	public void setAdresaKancelarije(String adresaKancelarije) {
+	public void setAdresaKancelarije(Adresa adresaKancelarije) {
 		this.adresaKancelarije = adresaKancelarije;
 	}
 
@@ -112,11 +139,11 @@ public class Profesor {
 	}
 
 	public String getZvanje() {
-		return Zvanje;
+		return zvanje;
 	}
 
 	public void setZvanje(String zvanje) {
-		Zvanje = zvanje;
+		this.zvanje = zvanje;
 	}
 
 	public int getGodineStaza() {
