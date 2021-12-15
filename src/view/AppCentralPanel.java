@@ -3,6 +3,8 @@ package view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import model.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -48,6 +50,20 @@ public class AppCentralPanel extends JTabbedPane {
 		lStudenti.setPreferredSize(new Dimension(50, 20));
 		
 		this.setTabComponentAt(0, lStudenti);	// da nazivi tabova budu veci
+
+		ChangeListener m;
+		
+		
+		/*centralPanel.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent event) {
+				JTabbedPane centralPanel = (JTabbedPane)event.getSource();
+				int state = centralPanel.getSelectedIndex();
+				AppStatusBar appStatusBar = new AppStatusBar();
+				appStatusBar.setName(state);
+			}
+		});*/
+
 	}
 	
 	// vraca naslov selektovanog taba
