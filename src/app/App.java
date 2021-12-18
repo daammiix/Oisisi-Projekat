@@ -31,8 +31,8 @@ public class App {
 		} catch(ParseException e) {
 			e.printStackTrace();
 		}
-		view.refreshTableStudenti();
-		view.refreshTableProfesori();
-		view.refreshTablePredmeti();
+		view.initTableStudenti();
+		view.initTableProfesori();
+		view.initTablePredmeti();
 	}
 }

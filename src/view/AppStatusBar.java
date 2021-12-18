@@ -14,14 +14,13 @@ public class AppStatusBar extends JPanel {
 
 	private static final long serialVersionUID = 2402354191772986941L;
 
-	JLabel label2 = new JLabel();
+	JLabel label2;
 	
 	public AppStatusBar() {
 		this.setLayout(new BorderLayout());
 		
 		JLabel label1 = new JLabel();
 		label2 = new JLabel();
-		label2.setText("Studentska služba"); 
 
 	    DateFormat dateFormat = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
 
@@ -31,7 +30,6 @@ public class AppStatusBar extends JPanel {
 	            Calendar now = Calendar.getInstance();
 	            String formatDateTime = dateFormat.format(now.getTime()); 
 	            label1.setText(formatDateTime); 
-	            //label2.setText("Studentska služba - " + state);
 				
 			}
 	    }).start();
@@ -40,11 +38,9 @@ public class AppStatusBar extends JPanel {
 	    this.add(label2, BorderLayout.WEST);
   
 	}
-	
-	/*public void setName(int state)
-	{
-		label2.setText("Studentska služba - " + state);
-	}*/
 
+	public void setNaziv(String title, String selectedTabTitle) {
+		label2.setText("Studentska sluzba - " + selectedTabTitle);
+	}
 
 }

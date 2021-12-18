@@ -51,18 +51,6 @@ public class AppCentralPanel extends JTabbedPane {
 		
 		this.setTabComponentAt(0, lStudenti);	// da nazivi tabova budu veci
 
-		ChangeListener m;
-		
-		
-		/*centralPanel.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent event) {
-				JTabbedPane centralPanel = (JTabbedPane)event.getSource();
-				int state = centralPanel.getSelectedIndex();
-				AppStatusBar appStatusBar = new AppStatusBar();
-				appStatusBar.setName(state);
-			}
-		});*/
 
 	}
 	
@@ -228,5 +216,17 @@ public class AppCentralPanel extends JTabbedPane {
 
 		public static long getSerialversionuid() {
 			return serialVersionUID;
+		}
+		
+		public int getIndexStudent() {
+			return tStudenti.getSelectedRow();
+		}
+		
+		public int getIndexProfesori() {
+			return tProfesori.getSelectedRow();
+		}
+		
+		public int getIndexPredmeti() {
+			return tPredmeti.getSelectedRow();
 		}
 }

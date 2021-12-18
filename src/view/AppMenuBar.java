@@ -64,7 +64,7 @@ public class AppMenuBar extends JMenuBar {
 		mOpen.addSeparator();
 		mOpen.add(miKatedre);
 		
-		JMenuItem miClose = new JMenuItem(" Close");
+		miClose = new JMenuItem(" Close");
 		
 		miNew.setIcon(new ImageIcon("image" + File.separator + "image_new.png"));
 		miSave.setIcon(new ImageIcon("image" + File.separator + "image_save.png"));
@@ -106,8 +106,8 @@ public class AppMenuBar extends JMenuBar {
 		mFile.addSeparator();
 		mFile.add(miClose);
 		
-		JMenuItem miEdit = new JMenuItem(" Edit");
-		JMenuItem miDelete = new JMenuItem(" Delete");
+		miEdit = new JMenuItem(" Edit");
+		miDelete = new JMenuItem(" Delete");
 		
 		miEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
@@ -122,8 +122,8 @@ public class AppMenuBar extends JMenuBar {
 		mEdit.add(miDelete);
 		mEdit.addSeparator();
 		
-		JMenuItem miHelp = new JMenuItem(" Help");
-		JMenuItem miAbout = new JMenuItem(" About");
+		miHelp = new JMenuItem(" Help");
+		miAbout = new JMenuItem(" About");
 		
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));

@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.*;
-import javax.swing.BoxLayout;
 import java.awt.*;
 
 public class AppToolBar extends JToolBar{
@@ -32,7 +31,7 @@ public class AppToolBar extends JToolBar{
 		this.add(btnOpen);
 		
 		addSeparator();
-		
+
 		btnEdit = new JButton();
 		btnEdit.setToolTipText("Edit");
 		btnEdit.setIcon(new ImageIcon("image/image_edit2.png"));

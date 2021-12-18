@@ -2,11 +2,15 @@ package view;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
+
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.AppData;
 import view.addDialogs.*;
+import view.changeDialogs.*;
+import view.deleteDialogs.*;
 
 public class AppView {
 	private static AppView instance = null;
@@ -17,6 +21,8 @@ public class AppView {
 		return instance;
 	}
 	
+	private static AppData appData = AppData.getInstance();
+	
 	private static AppData data = AppData.getInstance();
 	private AppFrame frame;
 	private AppCentralPanel centralPanel;
@@ -26,6 +32,13 @@ public class AppView {
 	private AddStudentDialog addStudentDialog;
 	private AddProfesorDialog addProfesorDialog;
 	private AddPredmetDialog addPredmetDialog;
+	private ChangeStudentDialog changeStudentDialog;
+	private ChangeProfesorDialog changeProfesorDialog;
+	private ChangePredmetDialog changePredmetDialog;
+	private DeleteStudentDialog deleteStudentDialog;
+	private DeleteProfesorDialog deleteProfesorDialog;
+	private DeletePredmetDialog deletePredmetDialog;
+	private NotSelectedDialog notSelectedDialog;
 	
 	private AppView() {
 		frame = AppFrame.getInstance();
@@ -36,6 +49,15 @@ public class AppView {
 		addStudentDialog = new AddStudentDialog(frame, "Dodavanje studenta", true);
 		addProfesorDialog = new AddProfesorDialog(frame, "Dodavanje profesora", true);
 		addPredmetDialog = new AddPredmetDialog(frame, "Dodavanje predmeta", true);
+		changeStudentDialog = new ChangeStudentDialog(frame, "Izmena studenta", true);
+		changeProfesorDialog = new ChangeProfesorDialog(frame, "Izmena profesora", true);
+		changePredmetDialog = new ChangePredmetDialog(frame, "Izmena predmeta", true);
+		deleteStudentDialog = new DeleteStudentDialog(frame, "Brisanje studenta", true);
+		deleteProfesorDialog = new DeleteProfesorDialog(frame, "Brisanje profesora", true);
+		deletePredmetDialog = new DeletePredmetDialog(frame, "Brisanje predmeta", true);
+		notSelectedDialog = new NotSelectedDialog(frame, "Greska prilikom selektovanja", true);
+		
+		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
 		frame.setJMenuBar(menuBar);
 		
@@ -48,17 +70,21 @@ public class AppView {
 		frame.setVisible(true);
 	}
 	
-	public void refreshTableStudenti() {
+	public void tabChangedListener(ChangeListener cl) {
+		centralPanel.addChangeListener(cl);
+	}
+	
+	public void initTableStudenti() {
 		centralPanel.clearTableStudenti();
 		centralPanel.updateStudenti(data.getStudenti());
 	}
 	
-	public void refreshTableProfesori() {
+	public void initTableProfesori() {
 		centralPanel.clearTableProfesori();
 		centralPanel.updateProfesori(data.getProfesori());
 	}
 	
-	public void refreshTablePredmeti() {
+	public void initTablePredmeti() {
 		centralPanel.clearTablePredmeti();
 		centralPanel.updatePredmeti(data.getPredmeti());
 	}
@@ -66,6 +92,16 @@ public class AppView {
 	public void addAddEntityListener(ActionListener al) {
 		toolBar.getBtnOpen().addActionListener(al);
 		menuBar.getMiNew().addActionListener(al);
+	}
+	
+	public void addChangeEntityListener(ActionListener cal) {
+		toolBar.getBtnEdit().addActionListener(cal);
+		menuBar.getMiEdit().addActionListener(cal);
+	}
+	
+	public void addDeleteEntityListener(ActionListener dal) {
+		toolBar.getBtnDelete().addActionListener(dal);
+		menuBar.getMiDelete().addActionListener(dal);
 	}
 	
 	public boolean isTextFieldValid(JTextField tf, String pattern) {
@@ -111,4 +147,80 @@ public class AppView {
 		return addPredmetDialog;
 	}
 	
+	public ChangeStudentDialog getChangeStudentDialog() {
+		return changeStudentDialog;
+	}
+
+	public ChangeProfesorDialog getChangeProfesorDialog() {
+		return changeProfesorDialog;
+	}
+
+	public ChangePredmetDialog getChangePredmetDialog() {
+		return changePredmetDialog;
+	}
+	
+	public JDialog getChangeStudentDialogOrNotSelected() {
+		if (AppCentralPanel.getInstance().getIndexStudent() >= 0) {
+			return changeStudentDialog;
+		} else {
+			return notSelectedDialog;
+		}
+	}
+	
+	public JDialog getChangeProfesorDialogOrNotSelected() {
+		if (AppCentralPanel.getInstance().getIndexProfesori() >= 0) {
+			return changeProfesorDialog;
+		} else {
+			return notSelectedDialog;
+		}
+	}
+	
+	public JDialog getChangePredmetDialogOrNotSelected() {
+		if (AppCentralPanel.getInstance().getIndexPredmeti() >= 0) {
+			return changePredmetDialog;
+		} else {
+			return notSelectedDialog;
+		}
+	}
+	
+	public JDialog getDeleteStudentDialogOrNotSelected() {
+		if (AppCentralPanel.getInstance().getIndexStudent() >= 0) {
+			return deleteStudentDialog;
+		} else {
+			return notSelectedDialog;
+		}
+	}
+	
+	public JDialog getDeleteProfesorDialogOrNotSelected() {
+		if (AppCentralPanel.getInstance().getIndexProfesori() >= 0) {
+			return deleteProfesorDialog;
+		} else {
+			return notSelectedDialog;
+		}
+	}
+	
+	public JDialog getDeletePredmetDialogOrNotSelected() {
+		if (AppCentralPanel.getInstance().getIndexPredmeti() >= 0) {
+			return deletePredmetDialog;
+		} else {
+			return notSelectedDialog;
+		}
+	}
+	
+	public DeleteStudentDialog getDeleteStudentDialog() {
+		return deleteStudentDialog;
+	}
+
+	public DeleteProfesorDialog getDeleteProfesorDialog() {
+		return deleteProfesorDialog;
+	}
+
+	public DeletePredmetDialog getDeletePredmetDialog() {
+		return deletePredmetDialog;
+	}
+	
+	public NotSelectedDialog getNotSelectedDialog() {
+		return notSelectedDialog;
+	}
+
 }
