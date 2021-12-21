@@ -27,21 +27,16 @@ private AppView view;
 			case "Student":
 				{
 					view.getChangeStudentDialog().setVisible(false);
-					view.getChangeStudentDialog().getPanelInformacije().clearTextFields();
-					view.getChangeStudentDialog().getPanelInformacije().refreshComboBoxes();
 					break;
 				}
 			case "Profesor":
 				{
 					view.getChangeProfesorDialog().setVisible(false);
-					view.getChangeProfesorDialog().getPanelInformacije().clearTextFields();
 					break;
 				}
 			case "Predmet":
 				{
 					view.getChangePredmetDialog().setVisible(false);
-					view.getChangePredmetDialog().getPanelInformacije().clearTextFields();
-					view.getChangePredmetDialog().getPanelInformacije().refreshComboBoxes();
 					break;
 				}
 		}

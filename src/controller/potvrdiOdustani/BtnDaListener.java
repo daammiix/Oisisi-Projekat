@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import model.AppData;
+import model.Predmet;
+import model.Profesor;
 import model.Student;
 import util.Util;
 import view.*;
@@ -68,23 +70,29 @@ public class BtnDaListener implements MouseListener {
 	}
 	
 	private void deleteStudent() {
-		JDialog dialog = view.getDeleteStudentDialogOrNotSelected();
+		DeleteStudentDialog dialog = view.getDeleteStudentDialog();
 		int index = AppCentralPanel.getInstance().getIndexStudent();
-		AppCentralPanel.getInstance().deleteStudent(index);
+		Student student = AppData.getInstance().getStudenti().get(index);
+		AppData.getInstance().deleteStudent(student);
+		view.initTableStudenti();
 		dialog.setVisible(false);
 	}
 	
 	private void deleteProfesor() {
 		DeleteProfesorDialog dialog = view.getDeleteProfesorDialog();
 		int index = AppCentralPanel.getInstance().getIndexProfesori();
-		AppCentralPanel.getInstance().deleteProfesor(index);
+		Profesor profesor = AppData.getInstance().getProfesori().get(index);
+		AppData.getInstance().deleteProfesor(profesor);
+		view.initTableProfesori();
 		dialog.setVisible(false);
 	}
 	
 	private void deletePredmet() {
 		DeletePredmetDialog dialog = view.getDeletePredmetDialog();
 		int index = AppCentralPanel.getInstance().getIndexPredmeti();
-		AppCentralPanel.getInstance().deletePredmet(index);
+		Predmet predmet = AppData.getInstance().getPredmeti().get(index);
+		AppData.getInstance().deletePredmet(predmet);
+		view.initTablePredmeti();
 		dialog.setVisible(false);
 	}
 

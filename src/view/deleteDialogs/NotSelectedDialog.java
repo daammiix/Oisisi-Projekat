@@ -27,22 +27,22 @@ public class NotSelectedDialog extends JDialog {
 	public NotSelectedDialog(AppFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		
-		this.setSize(parent.getWidth() / 3, parent.getHeight() - 500);
+		this.setSize(parent.getWidth() / 3, parent.getHeight() / 3);
 		
 		panel1 =  new JPanel();
 		panel2 =  new JPanel();
-		label = new JLabel("<html><p>Morate oznaciti korisnika u tabeli</p></html>", SwingConstants.CENTER);
+		label = new JLabel("<html><p>Morate oznaciti entitet u tabeli</p></html>", SwingConstants.CENTER);
 		btn = new JButton("OK");
 		
-		btn.setPreferredSize(new Dimension(40, 40));
-		label.setFont(new Font("Calibri", Font.PLAIN, 25));
+		btn.setPreferredSize(new Dimension(30, 30));
+		label.setFont(new Font("Calibri", Font.PLAIN, 20));
 		
 		panel1.add(label);
 		panel2.add(btn);
 
-		panel1.setBorder(BorderFactory.createEmptyBorder(80, 40, 80, 10));
-		panel2.setBorder(BorderFactory.createEmptyBorder(10, 150, 40, 150));
-		panel2.setLayout(new GridLayout(1, 2, 60, 0));
+		panel2.setBorder(BorderFactory.createEmptyBorder(20, 90, 15, 90));
+		panel1.setLayout(new GridLayout(1, 1, 0, 0));
+		panel2.setLayout(new GridLayout(1, 1, 0, 0));
 		
 		
 		this.add(panel1, BorderLayout.CENTER);

@@ -176,7 +176,8 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 		   !view.isTextFieldValid(textFields.get(6), Util.adressPattern) ||
 		   !view.isTextFieldValid(textFields.get(7), Util.numberPattern) ||
 		   !view.isTextFieldValid(textFields.get(8), Util.stringPattern) || 
-		   !view.isTextFieldValid(textFields.get(9), Util.numberPattern))
+		   !view.isTextFieldValid(textFields.get(9), Util.numberPattern) ||
+		   !data.isBrLicKarProfesoraUnique(textFields.get(7).getText()))
 			return false;
 		else
 			return true;

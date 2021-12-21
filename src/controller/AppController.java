@@ -9,9 +9,16 @@ import javax.swing.event.ChangeListener;
 
 import controller.potvrdiOdustani.*;
 import model.AppData;
+import model.Profesor;
+import model.Student;
+import view.AppCentralPanel;
 import view.AppView;
+import view.changeDialogs.ChangePredmetDialog;
+import view.changeDialogs.ChangeProfesorDialog;
+import view.changeDialogs.ChangeStudentDialog;
 import view.deleteDialogs.DeleteStudentDialog;
 import view.deleteDialogs.NotSelectedDialog;
+
 
 public class AppController {
 	private static AppController instance = null;
@@ -80,24 +87,49 @@ public class AppController {
 				switch(appView.getCentralPanel().getSelectedTabTitle()) {
 					case "Studenti":
 						{
-							JDialog dialog = appView.getChangeStudentDialogOrNotSelected();
-							dialog.setLocationRelativeTo(appView.getFrame());
-							dialog.setVisible(true);
+							int selectedRow = AppCentralPanel.getInstance().getIndexStudent();
+							ChangeStudentDialog dialog1 =appView.getChangeStudentDialog();
+							NotSelectedDialog dialog2 = appView.getNotSelectedDialog();
+							if(selectedRow >= 0) {
+								Student selectedStudent = appData.getStudenti().get(selectedRow);
+								dialog1.setLocationRelativeTo(appView.getFrame());
+								appView.getChangeStudentDialog().fillInStudent(selectedStudent);
+								dialog1.setVisible(true);
+							}else {
+								dialog2.setLocationRelativeTo(appView.getFrame());
+								dialog2.setVisible(true);
+							}
 							break;					
 						}
 					case "Profesori":
 						{
-							JDialog dialog = appView.getChangeProfesorDialogOrNotSelected();
-							dialog.setLocationRelativeTo(appView.getFrame());
-							dialog.setVisible(true);
+							int selectedRow = AppCentralPanel.getInstance().getIndexProfesori();
+							ChangeProfesorDialog dialog1 =appView.getChangeProfesorDialog();
+							NotSelectedDialog dialog2 = appView.getNotSelectedDialog();
+							if(selectedRow >= 0) {
+								Profesor selectedProfesor = appData.getProfesori().get(selectedRow);
+								dialog1.setLocationRelativeTo(appView.getFrame());
+								appView.getChangeProfesorDialog().fillInProfesor(selectedProfesor);
+								dialog1.setVisible(true);
+							} else {
+								dialog2.setLocationRelativeTo(appView.getFrame());
+								dialog2.setVisible(true);
+							}
 							break;	
 						}
 					case "Predmeti":
 						{
-							JDialog dialog = appView.getChangePredmetDialogOrNotSelected();
-							dialog.setLocationRelativeTo(appView.getFrame());
-							dialog.setVisible(true);
-							break;	
+							int selectedRow = AppCentralPanel.getInstance().getIndexPredmeti();
+							ChangePredmetDialog dialog1 =appView.getChangePredmetDialog();
+							NotSelectedDialog dialog2 = appView.getNotSelectedDialog();
+							if(selectedRow >= 0) {
+								dialog1.setLocationRelativeTo(appView.getFrame());
+								appView.getChangePredmetDialog().fillInPredmet(appData.getPredmeti().get(selectedRow));
+								dialog1.setVisible(true);
+							} else {
+								dialog2.setLocationRelativeTo(appView.getFrame());
+								dialog2.setVisible(true);
+							}
 						}
 				}
 			}
@@ -145,7 +177,7 @@ public class AppController {
 		BtnOdustaniChangeDialog bocd = new BtnOdustaniChangeDialog(appView);
 		appView.getChangeStudentDialog().getPanelInformacije().addBtnOdustaniListener(bocd);
 		appView.getChangeProfesorDialog().getPanelInformacije().addBtnOdustaniListener(bocd);
-		appView.getChangePredmetDialog().getPanelInformacije().addBtnOdustaniListener(bocd);
+		appView.getChangePredmetDialog().addBtnOdustaniDialog(bocd);
 		
 	}
 	
@@ -161,7 +193,7 @@ public class AppController {
 		BtnPotvrdiChangeDialog bpcd = new BtnPotvrdiChangeDialog(appView, appData);
 		appView.getChangeStudentDialog().getPanelInformacije().addBtnPotvrdiListener(bpcd, bpcd);
 		appView.getChangeProfesorDialog().getPanelInformacije().addBtnPotvrdiListener(bpcd, bpcd);
-		appView.getChangePredmetDialog().getPanelInformacije().addBtnPotvrdiListener(bpcd, bpcd);
+		appView.getChangePredmetDialog().addBtnPotvrdiListener(bpcd, bpcd);
 		
 	}
 	

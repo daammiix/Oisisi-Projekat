@@ -3,11 +3,14 @@ package model;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import util.Util;
+import view.AppCentralPanel;
+import view.AppView;
 
 public class AppData {
 	
@@ -55,7 +58,7 @@ public class AppData {
 				"minicm100@gmail.com", "sw-25-2014", 2018, 4, Student.Status.B);
 		Student s4 = new Student("Petar", "Petrovic", Util.formatter.parse("10.05.2000."),  
 					new Adresa("Kosovska", "110", "Krusevac", "Srbija"), "+38165559558", 
-					"petrovicp11@gmail.com", "sw65-2019", 2019, 3, Student.Status.B);
+					"petrovicp11@gmail.com", "sw-65-2019", 2019, 3, Student.Status.B);
 		
 		Profesor p1 = new Profesor("Darko", "Darkovic", "Profesor", "darkod25@uns.ac.rs");
 		Profesor p2 = new Profesor("Mirko", "Milutinovic", Util.formatter.parse("1.1.1975."), 
@@ -123,6 +126,79 @@ public class AppData {
 		predmeti.add(p);
 	}
 	
+	public void changeStudent(int idx, ArrayList<JTextField> textFields, ArrayList<JComboBox<String>> comboBoxes) {
+		Student student = studenti.get(idx);
+		String ime = unpackStringTextField(textFields.get(0));
+		String prezime = unpackStringTextField(textFields.get(1));
+		Date datumRodjenja = unpackDateTextField(textFields.get(2));
+		Adresa adresa = unpackAdressTextField(textFields.get(3));
+		String kontaktTelefon = unpackStringTextField(textFields.get(4));
+		String email = unpackStringTextField(textFields.get(5));
+		String brIndeksa = unpackStringTextField(textFields.get(6));
+		int godUpisa = unpackIntTextField(textFields.get(7));
+		int trenutnaGodStud = unpackComboBoxGodStud(comboBoxes.get(0));
+		String statusStr = (String)comboBoxes.get(1).getSelectedItem();
+		Student.Status status = Student.Status.B;
+		if(statusStr == "Samofinansiranje")
+			status = Student.Status.S;
+		
+		student.setIme(ime);
+		student.setPrezime(prezime);
+		student.setDatumRodjenja(datumRodjenja);
+		student.setPrezime(prezime);
+		student.setAdresaStanovanja(adresa);
+		student.setKontaktTelefon(kontaktTelefon);
+		student.setEmail(email);
+		student.setBrojIndeksa(brIndeksa);
+		student.setGodinaUpisa(godUpisa);
+		student.setTrenutnaGodinaStudija(trenutnaGodStud);
+		student.setStatus(status);
+		
+
+	}
+	
+	public void changeProfesor(int idx, ArrayList<JTextField> textFields) {
+		Profesor profesor = profesori.get(idx);
+		
+		String ime = unpackStringTextField(textFields.get(0));
+		String prezime = unpackStringTextField(textFields.get(1));
+		Date datum = unpackDateTextField(textFields.get(2));
+		Adresa adresaS = unpackAdressTextField(textFields.get(3));
+		String brTel = unpackStringTextField(textFields.get(4));
+		String email = unpackStringTextField(textFields.get(5));
+		Adresa adresaK = unpackAdressTextField(textFields.get(6));
+		String brLicKar = unpackStringTextField(textFields.get(7));
+		String zvanje = unpackStringTextField(textFields.get(8));
+		int godStaza = unpackIntTextField(textFields.get(9));
+		
+		profesor.setIme(ime);
+		profesor.setPrezime(prezime);
+		profesor.setDatumRodjenja(datum);
+		profesor.setAdresaStanovanja(adresaS);
+		profesor.setKontaktTelefon(brTel);
+		profesor.setEmail(email);
+		profesor.setAdresaKancelarije(adresaK);
+		profesor.setBrojLicneKarte(brLicKar);
+		profesor.setZvanje(zvanje);
+		profesor.setGodineStaza(godStaza);
+	}
+	
+	public void changePredmet(int idx, ArrayList<JTextField> textFields, JComboBox<Integer> cbGodine, JComboBox<String> cbSemestar) {
+		Predmet predmet = predmeti.get(idx);
+		
+		String sifra = unpackStringTextField(textFields.get(0));
+		String naziv = unpackStringTextField(textFields.get(1));
+		int godina = (Integer)cbGodine.getSelectedItem();
+		String semestar = (String)cbSemestar.getSelectedItem();
+		int espb = unpackIntTextField(textFields.get(2));
+		
+		predmet.setSifraPredmeta(sifra);
+		predmet.setNazivPredmeta(naziv);
+		predmet.setGodinaStudija(godina);
+		predmet.setSemestar(semestar);
+		predmet.setEspb(espb);
+	}
+	
 	public String unpackStringTextField(JTextField tf) {
 		return tf.getText().trim();
 	}
@@ -164,6 +240,32 @@ public class AppData {
 		return true;
 	}
 	
+	public boolean isIndexStudentaChanged(String index) {
+		int idx = AppCentralPanel.getInstance().getIndexStudent();
+		Student student = getStudenti().get(idx);
+		String indexStudenta = student.getBrojIndeksa();
+		if(index.equals(indexStudenta)) {
+			return true;
+		} else return isIndexStudentaUnique(index);
+	}
+	
+	public boolean isBrLicKarProfesoraUnique(String brLicKar) {
+		for(Profesor p : profesori)
+			if(brLicKar.equals(p.getBrojLicneKarte()))
+				return false;
+		
+		return true;
+	}
+	
+	public boolean isBrLicKarProfesoraChanged(String brLicKar) {
+		int index = AppCentralPanel.getInstance().getIndexProfesori();
+		Profesor profesor = getProfesori().get(index);
+		String brLicKarProfesora = profesor.getBrojLicneKarte();
+		if(brLicKar.equals(brLicKarProfesora)) {
+			return true;
+		} else return isBrLicKarProfesoraUnique(brLicKar);
+	}
+	
 	public boolean isSifraPredmetaUnique(String sifra) {
 		for(Predmet p : predmeti)
 			if(sifra.equals(p.getSifraPredmeta()))
@@ -174,11 +276,62 @@ public class AppData {
 	}
 	
 	public boolean isNazivPredmetaUnique(String naziv) {
-		for(Predmet p : predmeti) 
+		for(Predmet p : predmeti) {
 			if(naziv.equals(p.getNazivPredmeta()))
 				return false;
+		}
 		
 		return true;
+	}
+	
+	public boolean isSifraPredmetaChanged(String sifra) {
+		int index = AppCentralPanel.getInstance().getIndexPredmeti();
+		Predmet predmet = getPredmeti().get(index);
+		String sifraPredmeta = predmet.getSifraPredmeta();
+		if(sifra.equals(sifraPredmeta)) {
+			return true;
+		} else return isSifraPredmetaUnique(sifra);
+	}
+	
+	public boolean isNazivPredmetaChanged(String naziv)
+	{
+		int index = AppCentralPanel.getInstance().getIndexPredmeti();
+		Predmet predmet = getPredmeti().get(index);
+		String nazivPredmeta = predmet.getNazivPredmeta();
+		if(naziv.equals(nazivPredmeta)) {
+			return true;
+		} else return isNazivPredmetaUnique(naziv);
+		
+	}
+	
+	public void deleteStudent(Student student)
+	{
+		for (Iterator<Student> iterator = studenti.iterator(); iterator.hasNext(); ) {
+			Student value = iterator.next();
+		    if (value.equals(student)) {
+		        iterator.remove();
+		    }
+		}
+	}
+	
+	public void deleteProfesor(Profesor profesor)
+	{
+		for (Iterator<Profesor> iterator = profesori.iterator(); iterator.hasNext(); ) {
+			Profesor value = iterator.next();
+		    if (value.equals(profesor)) {
+		        iterator.remove();
+		    }
+		}
+	}
+	
+	public void deletePredmet(Predmet predmet)
+	{
+		for (Iterator<Predmet> iterator = predmeti.iterator(); iterator.hasNext(); ) {
+			Predmet value = iterator.next();
+		    if (value.equals(predmet)) {
+		        iterator.remove();
+		    }
+		}
 	}
 
 	public ArrayList<Student> getStudenti() {
@@ -204,5 +357,6 @@ public class AppData {
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
+
 	
 }
