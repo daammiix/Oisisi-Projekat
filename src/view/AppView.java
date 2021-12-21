@@ -159,30 +159,6 @@ public class AppView {
 		return changePredmetDialog;
 	}
 	
-	public JDialog getChangeStudentDialogOrNotSelected() {
-		if (AppCentralPanel.getInstance().getIndexStudent() >= 0) {
-			return changeStudentDialog;
-		} else {
-			return notSelectedDialog;
-		}
-	}
-	
-	public JDialog getChangeProfesorDialogOrNotSelected() {
-		if (AppCentralPanel.getInstance().getIndexProfesori() >= 0) {
-			return changeProfesorDialog;
-		} else {
-			return notSelectedDialog;
-		}
-	}
-	
-	public JDialog getChangePredmetDialogOrNotSelected() {
-		if (AppCentralPanel.getInstance().getIndexPredmeti() >= 0) {
-			return changePredmetDialog;
-		} else {
-			return notSelectedDialog;
-		}
-	}
-	
 	public JDialog getDeleteStudentDialogOrNotSelected() {
 		if (AppCentralPanel.getInstance().getIndexStudent() >= 0) {
 			return deleteStudentDialog;
