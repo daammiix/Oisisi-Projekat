@@ -1,51 +1,59 @@
 package model;
 
 import java.util.ArrayList;
-
-enum Status{ S, B; }
+import java.util.Date;
 
 public class Student {
+	public static enum Status {S, B};
+	
 	private String prezime;
 	private String ime;
-	private String datumRodjenja;
-	private String adresaStanovanja;
+	private Date datumRodjenja;
+	private Adresa adresaStanovanja;
 	private String kontaktTelefon;
 	private String email;
 	private String brojIndeksa;
 	private int godinaUpisa;
 	private int trenutnaGodinaStudija;
 	private Status status;
-	double prosecnaOcena;
-	ArrayList<Ocena> polozeniIspiti;
-	ArrayList<Ocena> nepolozeniIspiti;
+	private double prosecnaOcena;
+	private ArrayList<Ocena> polozeniIspiti;
+	private ArrayList<Ocena> nepolozeniIspiti;
 	
 	public Student() {
 		super();
 	}
 	
-	public Student(String prezime, String ime, String datumRodjenja) {
-		this.prezime = prezime;
+	public Student(String brojIndeksa, String ime, String prezime, int godStudija, Status status, double prosek) {
+		this.brojIndeksa = brojIndeksa;
 		this.ime = ime;
-		this.datumRodjenja = datumRodjenja;
+		this.prezime = prezime;
+		this.trenutnaGodinaStudija = godStudija;
+		this.status = status;
+		this.prosecnaOcena = prosek;
+		this.datumRodjenja = new Date(0);
+		this.adresaStanovanja = new Adresa();
+		this.kontaktTelefon = "";
+		this.email = "";
+		this.godinaUpisa = 0;
+		this.polozeniIspiti = new ArrayList<Ocena>();
+		this.nepolozeniIspiti = new ArrayList<Ocena>();
 	}
 
-	public Student(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String brojIndeksa, int godinaUpisa, int trenutnaGodinaStudija, Status status,
-			double prosecnaOcena, ArrayList<Ocena> polozeniIspiti, ArrayList<Ocena> nepolozeniIspiti) {
-		super();
-		this.prezime = prezime;
+	public Student(String ime, String prezime, Date datumRodjenja, Adresa a, String br, String email, String 				brInd, int godUpisa, int trenutnaGod, Status status) {
 		this.ime = ime;
+		this.prezime = prezime;
 		this.datumRodjenja = datumRodjenja;
-		this.adresaStanovanja = adresaStanovanja;
-		this.kontaktTelefon = kontaktTelefon;
+		this.adresaStanovanja = a;
+		this.kontaktTelefon = br;
 		this.email = email;
-		this.brojIndeksa = brojIndeksa;
-		this.godinaUpisa = godinaUpisa;
-		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
+		this.brojIndeksa = brInd;
+		this.godinaUpisa = godUpisa;
+		this.trenutnaGodinaStudija = trenutnaGod;
 		this.status = status;
-		this.prosecnaOcena = prosecnaOcena;
-		this.polozeniIspiti = polozeniIspiti;
-		this.nepolozeniIspiti = nepolozeniIspiti;
+		this.prosecnaOcena = 0;
+		polozeniIspiti = new ArrayList<Ocena>();
+		nepolozeniIspiti = new ArrayList<Ocena>();
 	}
 	
 	public Student(Student s1) {
@@ -80,19 +88,19 @@ public class Student {
 		this.ime = ime;
 	}
 
-	public String getDatumRodjenja() {
+	public Date getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(Date datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 
-	public String getAdresaStanovanja() {
+	public Adresa getAdresaStanovanja() {
 		return adresaStanovanja;
 	}
 
-	public void setAdresaStanovanja(String adresaStanovanja) {
+	public void setAdresaStanovanja(Adresa adresaStanovanja) {
 		this.adresaStanovanja = adresaStanovanja;
 	}
 
