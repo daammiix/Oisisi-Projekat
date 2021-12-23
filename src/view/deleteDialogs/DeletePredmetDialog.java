@@ -28,7 +28,7 @@ public class DeletePredmetDialog extends JDialog {
 		super(parent, title, modal);
 		
 
-		this.setSize(parent.getWidth() / 3, parent.getHeight() - 500);
+		this.setSize(parent.getWidth() / 3, parent.getHeight() / 3);
 		
 		panel1 =  new JPanel();
 		panel2 = new JPanel();
@@ -42,9 +42,9 @@ public class DeletePredmetDialog extends JDialog {
 		panel1.add(label);
 		panel2.add(btnDa);
 		panel2.add(btnNe);
-		panel1.setBorder(BorderFactory.createEmptyBorder(80, 40, 80, 10));
-		panel2.setBorder(BorderFactory.createEmptyBorder(10, 90, 40, 90));
-		panel2.setLayout(new GridLayout(1, 2, 60, 0));
+		panel1.setBorder(BorderFactory.createEmptyBorder(20, 90, 15, 90));
+		panel2.setBorder(BorderFactory.createEmptyBorder(20, 90, 15, 90));
+		panel2.setLayout(new GridLayout(1, 2, 30, 0));
 		
 		
 		this.add(panel1, BorderLayout.CENTER);
