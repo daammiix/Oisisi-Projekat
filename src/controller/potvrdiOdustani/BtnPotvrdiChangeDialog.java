@@ -170,8 +170,8 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		   !view.isTextFieldValid(textFields.get(3), Util.adressPattern) ||
 		   !view.isTextFieldValid(textFields.get(4), Util.numTelPattern) ||
 		   !view.isTextFieldValid(textFields.get(5), Util.emailPattern) ||
-		   !view.isTextFieldValid(textFields.get(6), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(7), Util.numberPattern) ||
+		   !view.isTextFieldValid(textFields.get(6), Util.brIndeksaPattern) ||
+		   !view.isTextFieldValid(textFields.get(7), Util.godUpisaPattern) ||
 		   !data.isIndexStudentaChanged(textFields.get(6).getText()))
 			return false;
 		else
@@ -186,9 +186,9 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		   !view.isTextFieldValid(textFields.get(4), Util.numTelPattern) ||
 		   !view.isTextFieldValid(textFields.get(5), Util.emailPattern) ||
 		   !view.isTextFieldValid(textFields.get(6), Util.adressPattern) ||
-		   !view.isTextFieldValid(textFields.get(7), Util.numberPattern) ||
+		   !view.isTextFieldValid(textFields.get(7), Util.brLicKartePattern) ||
 		   !view.isTextFieldValid(textFields.get(8), Util.stringPattern) || 
-		   !view.isTextFieldValid(textFields.get(9), Util.numberPattern) ||
+		   !view.isTextFieldValid(textFields.get(9), Util.brGodStazaPattern) ||
 		   !data.isBrLicKarProfesoraChanged(textFields.get(7).getText()))
 			return false;
 		else
@@ -196,8 +196,8 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 	}
 	
 	private boolean checkPredmetTextFields(ArrayList<JTextField> textFields) {
-		if(!view.isTextFieldValid(textFields.get(0), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(1), Util.stringPattern) ||
+		if(!view.isTextFieldValid(textFields.get(0), Util.textPattern) ||
+		   !view.isTextFieldValid(textFields.get(1), Util.textPattern) ||
 		   !view.isTextFieldValid(textFields.get(2), Util.numberPattern) ||
 		   !data.isSifraPredmetaChanged(textFields.get(0).getText()) ||
 		   !data.isNazivPredmetaChanged(textFields.get(1).getText()))

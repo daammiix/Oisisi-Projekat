@@ -90,43 +90,13 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 	public void mouseEntered(MouseEvent e) {
 		JButton btn = (JButton) e.getSource();
 		btn.setBackground(Util.buttonEnteredColor);
-		ArrayList<JTextField> textFields;
-		switch(btn.getActionCommand()) {
-			case "Student":
-			{
-				textFields = view.getAddStudentDialog().getPanelInformacije().getTextFields();
-				if(!checkStudentTextFields(textFields))
-					btn.setEnabled(false);
-				else
-					btn.setEnabled(true);
-				break;
-			}
-			case "Profesor":
-			{
-				textFields = view.getAddProfesorDialog().getPanelInformacije().getTextFields();
-				if(!checkProfesorTextFields(textFields))
-					btn.setEnabled(false);
-				else
-					btn.setEnabled(true);
-				break;
-			}
-			case "Predmet":
-			{
-				textFields = view.getAddPredmetDialog().getPanelInformacije().getTextFields();
-				if(!checkPredmetTextFields(textFields))
-					btn.setEnabled(false);
-				else
-					btn.setEnabled(true);
-				break;
-			}
-		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		JButton btn = (JButton) e.getSource();
 		btn.setBackground(null);
-		btn.setEnabled(true);
+		//btn.setEnabled(true);
 	}
 
 	@Override
@@ -149,49 +119,6 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 					break;
 				}
 		}
-	}
-	
-	private boolean checkStudentTextFields(ArrayList<JTextField> textFields) {
-		if(!view.isTextFieldValid(textFields.get(0), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(1), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(2), Util.datePattern) ||
-		   !view.isTextFieldValid(textFields.get(3), Util.adressPattern) ||
-		   !view.isTextFieldValid(textFields.get(4), Util.numTelPattern) ||
-		   !view.isTextFieldValid(textFields.get(5), Util.emailPattern) ||
-		   !view.isTextFieldValid(textFields.get(6), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(7), Util.numberPattern) || 
-		   !data.isIndexStudentaUnique(textFields.get(6).getText()))
-			return false;
-		else
-			return true;
-	}
-	
-	private boolean checkProfesorTextFields(ArrayList<JTextField> textFields) {
-		if(!view.isTextFieldValid(textFields.get(0), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(1), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(2), Util.datePattern) ||
-		   !view.isTextFieldValid(textFields.get(3), Util.adressPattern) ||
-		   !view.isTextFieldValid(textFields.get(4), Util.numTelPattern) ||
-		   !view.isTextFieldValid(textFields.get(5), Util.emailPattern) ||
-		   !view.isTextFieldValid(textFields.get(6), Util.adressPattern) ||
-		   !view.isTextFieldValid(textFields.get(7), Util.numberPattern) ||
-		   !view.isTextFieldValid(textFields.get(8), Util.stringPattern) || 
-		   !view.isTextFieldValid(textFields.get(9), Util.numberPattern) ||
-		   !data.isBrLicKarProfesoraUnique(textFields.get(7).getText()))
-			return false;
-		else
-			return true;
-	}
-	
-	private boolean checkPredmetTextFields(ArrayList<JTextField> textFields) {
-		if(!view.isTextFieldValid(textFields.get(0), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(1), Util.stringPattern) ||
-		   !view.isTextFieldValid(textFields.get(2), Util.numberPattern) ||
-		   !data.isSifraPredmetaUnique(textFields.get(0).getText()) ||
-		   !data.isNazivPredmetaUnique(textFields.get(1).getText()))
-			return false;
-		else
-			return true;
 	}
 	
 	private void newStudent() {

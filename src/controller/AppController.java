@@ -7,6 +7,9 @@ import javax.swing.JDialog;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import controller.documentsListeners.DocumentListenerPredmet;
+import controller.documentsListeners.DocumentListenerProfesor;
+import controller.documentsListeners.DocumentListenerStudent;
 import controller.potvrdiOdustani.*;
 import model.AppData;
 import model.Profesor;
@@ -43,6 +46,7 @@ public class AppController {
 		this.addBtnOkListener();
 		this.addBtnPotvrdiChangeListener();
 		this.addBtnOdustaniChangeDialog();
+		this.addDocumentListeners();
 	}
 	
 	public void tabChangedListener() {
@@ -62,18 +66,29 @@ public class AppController {
 					case "Studenti":
 						{
 							appView.getAddStudentDialog().setLocationRelativeTo(appView.getFrame());
+							appView.getAddStudentDialog().getPanelInformacije().getBtnPotvrdi().setEnabled(false);
+							appView.getAddStudentDialog().getPanelInformacije().clearTextFields();
+							appView.getAddStudentDialog().getPanelInformacije().refreshComboBoxes();
+							appView.getAddStudentDialog().getPanelInformacije().getTextFields().get(0).requestFocus();
 							appView.getAddStudentDialog().setVisible(true);
 							break;
 						}
 					case "Profesori":
 						{
 							appView.getAddProfesorDialog().setLocationRelativeTo(appView.getFrame());
+							appView.getAddProfesorDialog().getPanelInformacije().getBtnPotvrdi().setEnabled(false);
+							appView.getAddProfesorDialog().getPanelInformacije().clearTextFields();
+							appView.getAddProfesorDialog().getPanelInformacije().getTextFields().get(0).requestFocus();
 							appView.getAddProfesorDialog().setVisible(true);
 							break;
 						}
 					case "Predmeti":
 						{
 							appView.getAddPredmetDialog().setLocationRelativeTo(appView.getFrame());
+							appView.getAddPredmetDialog().getPanelInformacije().getBtnPotvrdi().setEnabled(false);
+							appView.getAddPredmetDialog().getPanelInformacije().clearTextFields();
+							appView.getAddPredmetDialog().getPanelInformacije().refreshComboBoxes();
+							appView.getAddPredmetDialog().getPanelInformacije().getTextFields().get(0).requestFocus();
 							appView.getAddPredmetDialog().setVisible(true);
 							break;
 						}
@@ -180,7 +195,7 @@ public class AppController {
 		appView.getChangePredmetDialog().addBtnOdustaniDialog(bocd);
 		
 	}
-	
+
 	private void addPotvrdiBtnListener() {
 		PotvrdiBtnListener pbl = new PotvrdiBtnListener(appView, appData);
 		appView.getAddStudentDialog().getPanelInformacije().addBtnPotvrdiListener(pbl, pbl);
@@ -214,6 +229,15 @@ public class AppController {
 	private void addBtnOkListener() {
 		BtnOkListener bol = new BtnOkListener(appView);
 		appView.getNotSelectedDialog().addBtnOkListener(bol);
+	}
+	
+	private void addDocumentListeners() {
+		DocumentListenerStudent dls = new DocumentListenerStudent();
+		DocumentListenerProfesor dlp = new DocumentListenerProfesor();
+		DocumentListenerPredmet dlpr = new DocumentListenerPredmet();
+		appView.getAddStudentDialog().getPanelInformacije().connectDocumentListener(dls);
+		appView.getAddProfesorDialog().getPanelInformacije().connectDocumentListener(dlp);
+		appView.getAddPredmetDialog().getPanelInformacije().connectDocumentListener(dlpr);
 	}
 	
 }

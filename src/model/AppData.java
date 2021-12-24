@@ -63,7 +63,7 @@ public class AppData {
 		Profesor p1 = new Profesor("Darko", "Darkovic", "Profesor", "darkod25@uns.ac.rs");
 		Profesor p2 = new Profesor("Mirko", "Milutinovic", Util.formatter.parse("1.1.1975."), 
 				new Adresa("Bruski Put", "BB", "Brus", "Srbija"), "+3816625361441", "mirko.milutin@uns.ac.rs", 
-				new Adresa("Dusanovacka", "25", "Novi Sad", "Srbija"), "0101975781022", "Docent", 15);
+				new Adresa("Dusanovacka", "25", "Novi Sad", "Srbija"), "010197578", "Docent", 15);
 		
 		Predmet pr1 = new Predmet("MA2", "Matematička Analiza 1", 9, 1, "Zimski");
 		Predmet pr2 = new Predmet("SE3", "OISISI", 6, 3, "Zimski");

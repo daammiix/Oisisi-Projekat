@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.event.DocumentListener;
 
 public class PanelInformacije extends JPanel{
 	private static final long serialVersionUID = -4852175226460687460L;
@@ -49,6 +50,11 @@ public class PanelInformacije extends JPanel{
 	public void clearTextFields() {
 		for(JTextField tf : textFields)
 			tf.setText("");
+	}
+	
+	public void connectDocumentListener(DocumentListener dl) {
+		for(JTextField tf : textFields)
+			tf.getDocument().addDocumentListener(dl);
 	}
 	
 	// getters and setters
