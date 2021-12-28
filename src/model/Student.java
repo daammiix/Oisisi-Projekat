@@ -71,6 +71,12 @@ public class Student {
 		this.polozeniIspiti = s1.polozeniIspiti;
 		this.nepolozeniIspiti = s1.nepolozeniIspiti;
 	}
+	
+	public void addNepolozenIspit(Ocena o) {
+		this.nepolozeniIspiti.add(o);
+	}
+	
+	// getters and setters
 
 	public String getPrezime() {
 		return prezime;
