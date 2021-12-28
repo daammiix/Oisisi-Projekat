@@ -44,6 +44,11 @@ public class OdustaniBtnListener implements MouseListener {
 					view.getAddPredmetDialog().getPanelInformacije().refreshComboBoxes();
 					break;
 				}
+			case "Polaganje":
+			{
+				view.getPolaganjeDialog().setVisible(false);
+				break;
+			}
 		}
 		
 	}
