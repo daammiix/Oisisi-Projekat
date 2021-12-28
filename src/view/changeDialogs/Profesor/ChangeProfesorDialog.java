@@ -1,25 +1,25 @@
-package view.changeDialogs;
+package view.changeDialogs.Profesor;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Date;
-
-import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
+import javax.swing.*;
 import model.Adresa;
 import model.Profesor;
 import util.Util;
 import view.AppFrame;
+import view.changeDialogs.ChangeDialog;
 
 public class ChangeProfesorDialog extends ChangeDialog {
-
+	private JTabbedPane tabbedPane;
+	private Predmeti predmeti;
 	private static final long serialVersionUID = -2979043114439733749L;
 
 	public ChangeProfesorDialog(AppFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
+		tabbedPane = new JTabbedPane();
+		predmeti = new Predmeti();
 		
 		panelInformacije.getCentralPanel().setLayout(new GridLayout(10, 2, 0, 20));
 		
@@ -35,11 +35,14 @@ public class ChangeProfesorDialog extends ChangeDialog {
 		panelInformacije.addPairLabelTextField("Broj godina staza*");
 		
 		panelInformacije.getCentralPanel().setBorder(BorderFactory.createEmptyBorder(20, 90, 15, 90));
-		this.add(panelInformacije.getCentralPanel(), BorderLayout.CENTER);
 		
 		panelInformacije.getBtnPotvrdi().setActionCommand("Profesor");
 		panelInformacije.getBtnOdustani().setActionCommand("Profesor");
 		
+		tabbedPane.add("Informacije", panelInformacije.getCentralPanel());
+		tabbedPane.add("Predmeti", predmeti);
+		tabbedPane.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+		this.add(BorderLayout.CENTER, tabbedPane);
 	}
 	
 	public void fillInProfesor(Profesor profesor) {
@@ -68,5 +71,15 @@ public class ChangeProfesorDialog extends ChangeDialog {
 		textFields.get(7).setText(brLicKar);
 		textFields.get(8).setText(zvanje);
 		textFields.get(9).setText(Integer.toString(brGodStaza));
+	}
+	
+	// getters and setters
+	
+	public JTabbedPane getTabbedPane() {
+		return tabbedPane;
+	}
+	
+	public Predmeti getPredmeti() {
+		return predmeti;
 	}
 }

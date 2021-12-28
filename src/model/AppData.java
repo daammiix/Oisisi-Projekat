@@ -85,10 +85,17 @@ public class AppData {
 		s3.addPolozenIspit(o3);
 		s3.addNepolozenIspit(nepolozena1);
 		s3.addNepolozenIspit(nepolozena2);
+		s3.setProsecnaOcena(8.0);
 		
 		s4.addPolozenIspit(o4);
 		s4.addPolozenIspit(o5);
 		s4.addPolozenIspit(o6);
+		s4.setProsecnaOcena(7.67);
+		
+		p1.addPredmet(pr1);
+		p1.addPredmet(pr2);
+		
+		p2.addPredmet(pr3);
 		
 		studenti.add(s1);
 		studenti.add(s2);

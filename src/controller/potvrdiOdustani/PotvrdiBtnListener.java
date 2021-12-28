@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import model.AppData;
+import model.Student;
 import util.Util;
 import view.*;
 import view.addDialogs.*;
@@ -151,6 +152,9 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 						.getSelectedRow();
 				int selectedStudent = view.getCentralPanel().gettStudenti().getSelectedRow();
 				poloziPredmet(selectedPredmet, selectedStudent);
+				Student s = data.getStudenti().get(selectedStudent);
+				AppView.getInstance().getCentralPanel().gettmodelStudenti().setValueAt(s.getProsecnaOcena(), 
+						selectedStudent, 5);
 				break;
 			}
 		}
