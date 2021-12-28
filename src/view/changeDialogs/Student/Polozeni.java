@@ -62,8 +62,9 @@ public class Polozeni extends JPanel {
 		this.setBorder(BorderFactory.createEmptyBorder(20, 35, 40, 35));
 	}
 	
-	public void setProsecnaOcena(String po) {
+	public void setProsecnaOcena(String po, Student s) {
 		prosecnaOcena.setText("Prosečna ocena: " + po);
+		s.setProsecnaOcena(Double.parseDouble(po));
 	}
 	
 	public void setUkupnoEspb(String espb) {
@@ -87,11 +88,13 @@ public class Polozeni extends JPanel {
 			sum += ocena;
 		}
 		if(s.getPolozeniIspiti().size() == 0) {
-			setProsecnaOcena("0");
+			setProsecnaOcena("0", s);
 			setUkupnoEspb("0");
 			return;
 		}
-		setProsecnaOcena(String.format("%.2f", sum / s.getPolozeniIspiti().size()));
+		s.setProsecnaOcena(sum / s.getPolozeniIspiti().size());
+		
+		setProsecnaOcena(String.format("%.2f", sum / s.getPolozeniIspiti().size()), s);
 		setUkupnoEspb(String.format("%d", uEspb));
 	}
 	

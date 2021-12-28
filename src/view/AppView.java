@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import model.AppData;
 import view.addDialogs.*;
 import view.changeDialogs.*;
+import view.changeDialogs.Profesor.ChangeProfesorDialog;
 import view.changeDialogs.Student.ChangeStudentDialog;
 import view.deleteDialogs.*;
 import view.polaganjeDialog.PolaganjeDialog;
