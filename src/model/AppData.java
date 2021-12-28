@@ -58,7 +58,7 @@ public class AppData {
 				"minicm100@gmail.com", "sw-25-2014", 2018, 4, Student.Status.B);
 		Student s4 = new Student("Petar", "Petrovic", Util.formatter.parse("10.05.2000."),  
 					new Adresa("Kosovska", "110", "Krusevac", "Srbija"), "+38165559558", 
-					"petrovicp11@gmail.com", "sw65-2019", 2019, 3, Student.Status.B);
+					"petrovicp11@gmail.com", "sw-65-2019", 2019, 3, Student.Status.B);
 		
 		Profesor p1 = new Profesor("Darko", "Darkovic", "Profesor", "darkod25@uns.ac.rs");
 		Profesor p2 = new Profesor("Mirko", "Milutinovic", Util.formatter.parse("1.1.1975."), 
@@ -78,8 +78,18 @@ public class AppData {
 		Ocena nepolozena1 = new Ocena(s3, pr1, 5, new Date(0));
 		Ocena nepolozena2 = new Ocena(s3, pr2, 5, new Date(0));
 		
+		Ocena o4 = new Ocena(s4, pr1, 10, Util.formatter.parse("19.05.2021."));
+		Ocena o5 = new Ocena(s4, pr2, 7, Util.formatter.parse("22.07.2021."));
+		Ocena o6 = new Ocena(s4, pr3, 6, Util.formatter.parse("30.11.2021."));
+		
+		s3.addPolozenIspit(o2);
+		s3.addPolozenIspit(o3);
 		s3.addNepolozenIspit(nepolozena1);
 		s3.addNepolozenIspit(nepolozena2);
+		
+		s4.addPolozenIspit(o4);
+		s4.addPolozenIspit(o5);
+		s4.addPolozenIspit(o6);
 		
 		studenti.add(s1);
 		studenti.add(s2);

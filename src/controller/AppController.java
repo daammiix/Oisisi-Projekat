@@ -109,6 +109,7 @@ public class AppController {
 								Student selectedStudent = appData.getStudenti().get(selectedRow);
 								dialog1.setLocationRelativeTo(appView.getFrame());
 								appView.getChangeStudentDialog().fillInStudent(selectedStudent);
+								dialog1.getPanelPolozeni().refreshInfo(selectedStudent);
 								dialog1.getPanelNepolozeni().refreshInfo(selectedStudent);
 								dialog1.getTabbedPane().setSelectedIndex(0);
 								dialog1.setVisible(true);
