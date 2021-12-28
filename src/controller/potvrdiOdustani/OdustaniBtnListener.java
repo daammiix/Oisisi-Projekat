@@ -45,10 +45,14 @@ public class OdustaniBtnListener implements MouseListener {
 					break;
 				}
 			case "Polaganje":
-			{
-				view.getPolaganjeDialog().setVisible(false);
-				break;
-			}
+				{
+					view.getPolaganjeDialog().setVisible(false);
+					break;
+				}
+			case "Odustani od dodavanja predmeta":
+				{
+					view.getDodavanjePredmetaProfesoruDialog().setVisible(false);
+				}
 		}
 		
 	}

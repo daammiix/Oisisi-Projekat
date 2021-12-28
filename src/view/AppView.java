@@ -13,6 +13,7 @@ import view.changeDialogs.*;
 import view.changeDialogs.Profesor.ChangeProfesorDialog;
 import view.changeDialogs.Student.ChangeStudentDialog;
 import view.deleteDialogs.*;
+import view.dodavanjePredmetaProfesoruDialog.DodavanjePredmetaProfesoruDailog;
 import view.polaganjeDialog.PolaganjeDialog;
 
 public class AppView {
@@ -42,6 +43,7 @@ public class AppView {
 	private NotSelectedDialog notSelectedDialog;
 	private DaNeDialog ponistavanjeOceneDialog;
 	private PolaganjeDialog polaganjeDialog;
+	private DodavanjePredmetaProfesoruDailog dodavanjePredmetaProfesoruDialog;
 	
 	private AppView() {
 		frame = AppFrame.getInstance();
@@ -62,6 +64,8 @@ public class AppView {
 		ponistavanjeOceneDialog = new DaNeDialog(changeStudentDialog, "Poništavanje ocene", true, 
 				"Da li ste sigurni da želite da poništite ocenu?");
 		polaganjeDialog = new PolaganjeDialog(changeStudentDialog, "Unos ocene", true);
+		dodavanjePredmetaProfesoruDialog = new DodavanjePredmetaProfesoruDailog(changeProfesorDialog, 
+				"Dodaj predmet", true);
 		
 		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
@@ -211,6 +215,10 @@ public class AppView {
 	
 	public PolaganjeDialog getPolaganjeDialog() {
 		return this.polaganjeDialog;
+	}
+	
+	public DodavanjePredmetaProfesoruDailog getDodavanjePredmetaProfesoruDialog() {
+		return this.dodavanjePredmetaProfesoruDialog;
 	}
 
 }
