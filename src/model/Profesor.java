@@ -47,6 +47,7 @@ public class Profesor {
 		this.brojLicneKarte = brojLicneKarte;
 		this.zvanje = zvanje;
 		this.godineStaza = godineStaza;
+		predmeti = new ArrayList<Predmet>();
 	}
 	
 	public Profesor(String prezime, String ime, Date datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
@@ -65,7 +66,7 @@ public class Profesor {
 		this.godineStaza = godineStaza;
 		this.predmeti = predmeti;
 	}
-
+	
 
 
 	public Profesor(String prezime, String ime, Date datumRodjenja) {
@@ -73,6 +74,16 @@ public class Profesor {
 		this.ime = ime;
 		this.datumRodjenja = datumRodjenja;
 	}
+	
+	public void addPredmet(Predmet p) {
+		predmeti.add(p);
+	}
+	
+	public void removePredmet(Predmet p) {
+		predmeti.remove(p);
+	}
+	
+	// getters and setters
 
 	public String getPrezime() {
 		return prezime;

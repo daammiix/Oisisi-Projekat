@@ -22,7 +22,7 @@ import model.Student;
 import view.AppCentralPanel;
 import view.AppView;
 import view.changeDialogs.ChangePredmetDialog;
-import view.changeDialogs.ChangeProfesorDialog;
+import view.changeDialogs.Profesor.ChangeProfesorDialog;
 import view.changeDialogs.Student.ChangeStudentDialog;
 import view.deleteDialogs.DeleteStudentDialog;
 import view.deleteDialogs.NotSelectedDialog;
@@ -135,6 +135,8 @@ public class AppController {
 								Profesor selectedProfesor = appData.getProfesori().get(selectedRow);
 								dialog1.setLocationRelativeTo(appView.getFrame());
 								appView.getChangeProfesorDialog().fillInProfesor(selectedProfesor);
+								dialog1.getPredmeti().refreshInfo(selectedProfesor);
+								dialog1.getTabbedPane().setSelectedIndex(0);
 								dialog1.setVisible(true);
 							} else {
 								dialog2.setLocationRelativeTo(appView.getFrame());
