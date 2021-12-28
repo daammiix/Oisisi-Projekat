@@ -14,6 +14,7 @@ import model.Student;
 import util.Util;
 import view.*;
 import view.changeDialogs.*;
+import view.changeDialogs.Student.ChangeStudentDialog;
 import view.deleteDialogs.DeletePredmetDialog;
 import view.deleteDialogs.DeleteProfesorDialog;
 import view.panelInformacije.PanelInformacijeWithComboBoxes;

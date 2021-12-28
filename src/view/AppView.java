@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import model.AppData;
 import view.addDialogs.*;
 import view.changeDialogs.*;
+import view.changeDialogs.Student.ChangeStudentDialog;
 import view.deleteDialogs.*;
 
 public class AppView {
