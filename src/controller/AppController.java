@@ -13,6 +13,7 @@ import controller.daNeOk.BtnOkListener;
 import controller.documentsListeners.DocumentListenerPredmet;
 import controller.documentsListeners.DocumentListenerProfesor;
 import controller.documentsListeners.DocumentListenerStudent;
+import controller.dodavanjePredmetaProfesoru.DodajPredmetBtnListener;
 import controller.polaganjePredmeta.PolaganjePredmetaBtnListener;
 import controller.ponistavanjeOcene.*;
 import controller.potvrdiOdustani.*;
@@ -54,6 +55,7 @@ public class AppController {
 		this.addDocumentListeners();
 		this.addPonistavanjeOceneDialogListeners();
 		this.addPolaganjePredmetaBtnListeners();
+		this.addIzmenaProfesoraPredmetiBtnListeners();
 	}
 	
 	public void tabChangedListener() {
@@ -200,6 +202,8 @@ public class AppController {
 		
 		appView.getPolaganjeDialog().getPanel().addBtnOdustaniListener(obl);
 		
+		appView.getDodavanjePredmetaProfesoruDialog().addBtnOdustaniListener(obl);
+		
 	}
 	
 	private void addBtnOdustaniChangeDialog() {
@@ -217,6 +221,8 @@ public class AppController {
 		appView.getAddPredmetDialog().getPanelInformacije().addBtnPotvrdiListener(pbl, pbl);
 		
 		appView.getPolaganjeDialog().getPanel().addBtnPotvrdiListener(pbl, pbl);
+		
+		appView.getDodavanjePredmetaProfesoruDialog().addBtnPotvrdiListener(pbl, pbl);
 	}
 	
 	private void addBtnPotvrdiChangeListener() {
@@ -263,6 +269,11 @@ public class AppController {
 	private void addPolaganjePredmetaBtnListeners() {
 		appView.getChangeStudentDialog().getPanelNepolozeni().addBtnPolaganjeActionListener(
 			new PolaganjePredmetaBtnListener());
+	}
+	
+	private void addIzmenaProfesoraPredmetiBtnListeners() {
+		appView.getChangeProfesorDialog().getPredmeti().addBtnDodajListener(new DodajPredmetBtnListener());
+		
 	}
 	
 }

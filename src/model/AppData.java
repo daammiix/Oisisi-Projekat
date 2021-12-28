@@ -379,6 +379,16 @@ public class AppData {
 		    }
 		}
 	}
+	
+	public void dodajPredmetProfesoru(Predmet pr, Profesor p) {
+		p.addPredmet(pr);
+	}
+	
+	public void ukloniPredmetProfesoru(Predmet pr, Profesor p) {
+		p.removePredmet(pr);
+	}
+	
+	// getters and setters
 
 	public ArrayList<Student> getStudenti() {
 		return studenti;

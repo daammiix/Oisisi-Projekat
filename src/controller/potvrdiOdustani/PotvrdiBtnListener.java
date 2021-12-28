@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import model.AppData;
+import model.Predmet;
+import model.Profesor;
 import model.Student;
 import util.Util;
 import view.*;
@@ -17,6 +19,7 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 	private String messageProfesor;
 	private String messagePredmet;
 	private String messagePolaganje;
+	private String messageDodavanjePredmetaProfesoru;
 	
 	public PotvrdiBtnListener(AppView view, AppData data) {
 		this.view = view;
@@ -50,6 +53,8 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 				+ "Espb: Broj";
 		
 		messagePolaganje = "Datum: Dan.Mesec.Godina.";
+		
+		messageDodavanjePredmetaProfesoru = "Niste oznacili nijedan predmet!";
 	}	
 
 	@Override
@@ -89,6 +94,13 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 							JOptionPane.ERROR_MESSAGE);
 				break;
 			}
+			case "Potvrdi dodavanje predmeta":
+			{
+				if(!btn.isEnabled())
+					JOptionPane.showMessageDialog(view.getDodavanjePredmetaProfesoruDialog(),
+							messageDodavanjePredmetaProfesoru, "Error!", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
 		}
 	}
 
@@ -112,6 +124,16 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 					btn.setEnabled(true);
 				break;
 			}
+			case "Potvrdi dodavanje predmeta":
+			{
+				int[] selectedPredmeti = view.getDodavanjePredmetaProfesoruDialog().getlPredmeti()
+						.getSelectedIndices();
+				if(selectedPredmeti.length == 0)
+					btn.setEnabled(false);
+				else
+					btn.setEnabled(true);
+				break;
+			}
 		}
 	}
 
@@ -123,6 +145,12 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 			case "Polaganje":
 			{
 				btn.setEnabled(true);
+				break;
+			}
+			case "Potvrdi dodavanje predmeta":
+			{
+				btn.setEnabled(true);
+				break;
 			}
 		}
 	}
@@ -155,6 +183,17 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 				Student s = data.getStudenti().get(selectedStudent);
 				AppView.getInstance().getCentralPanel().gettmodelStudenti().setValueAt(s.getProsecnaOcena(), 
 						selectedStudent, 5);
+				break;
+			}
+			case "Potvrdi dodavanje predmeta":
+			{
+				int[] selectedPredmeti = view.getDodavanjePredmetaProfesoruDialog().getlPredmeti()
+						.getSelectedIndices();
+				int selectedProfesor = view.getCentralPanel().gettProfesori().getSelectedRow();
+				Profesor pSelected = data.getProfesori().get(selectedProfesor);
+				dodajPredmeteProfesoru(selectedPredmeti, selectedProfesor);
+				view.getChangeProfesorDialog().getPredmeti().refreshInfo(pSelected);
+				view.getDodavanjePredmetaProfesoruDialog().setVisible(false);
 				break;
 			}
 		}
@@ -194,6 +233,30 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 		view.getChangeStudentDialog().getPanelPolozeni().refreshInfo(data.getStudenti().get(selectedStudent));
 		view.getChangeStudentDialog().getPanelNepolozeni().refreshInfo(data.getStudenti().get(selectedStudent));
 		view.getPolaganjeDialog().setVisible(false);		
+	}
+	
+	private void dodajPredmeteProfesoru(int[] selectedPredmeti, int selectedProfesor) {
+		Profesor pKojemDodajem = data.getProfesori().get(selectedProfesor);
+		for(int predmet : selectedPredmeti) {
+			String predmetIzListe = view.getDodavanjePredmetaProfesoruDialog().getlModel().getElementAt(predmet);
+			String[] predmetParts = predmetIzListe.trim().split("-");
+			String sfrPredmeta = predmetParts[0].trim();
+			String nazivPredmeta = predmetParts[1].trim();
+			
+			Predmet prZaDodavanje = null;
+			for(Predmet pr : data.getPredmeti()) {
+				if(pr.getSifraPredmeta().equals(sfrPredmeta) && pr.getNazivPredmeta().equals(nazivPredmeta)) {
+					prZaDodavanje = pr;
+					break;
+				}
+			}
+			if(prZaDodavanje != null)
+				data.dodajPredmetProfesoru(prZaDodavanje, pKojemDodajem);
+			else
+				System.out.println("Predmet nije pronadjen!");
+			
+		}
+		
 	}
 
 }
