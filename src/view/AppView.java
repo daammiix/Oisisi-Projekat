@@ -44,6 +44,7 @@ public class AppView {
 	private DaNeDialog ponistavanjeOceneDialog;
 	private PolaganjeDialog polaganjeDialog;
 	private DodavanjePredmetaProfesoruDailog dodavanjePredmetaProfesoruDialog;
+	private DaNeDialog uklanjanjePredmetaProfesoruDialog;
 	
 	private AppView() {
 		frame = AppFrame.getInstance();
@@ -66,6 +67,8 @@ public class AppView {
 		polaganjeDialog = new PolaganjeDialog(changeStudentDialog, "Unos ocene", true);
 		dodavanjePredmetaProfesoruDialog = new DodavanjePredmetaProfesoruDailog(changeProfesorDialog, 
 				"Dodaj predmet", true);
+		uklanjanjePredmetaProfesoruDialog = new DaNeDialog(changeProfesorDialog, "Ukloni predmet", true, 
+				"Da li ste sigurni da želite da uklonite predmet?");
 		
 		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
@@ -219,6 +222,10 @@ public class AppView {
 	
 	public DodavanjePredmetaProfesoruDailog getDodavanjePredmetaProfesoruDialog() {
 		return this.dodavanjePredmetaProfesoruDialog;
+	}
+	
+	public DaNeDialog getUklanjanjePredmetaProfesoruDialog() {
+		return this.uklanjanjePredmetaProfesoruDialog;
 	}
 
 }
