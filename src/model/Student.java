@@ -72,6 +72,10 @@ public class Student {
 		this.nepolozeniIspiti = s1.nepolozeniIspiti;
 	}
 	
+	public void addPolozenIspit(Ocena o) {
+		this.polozeniIspiti.add(o);
+	}
+	
 	public void addNepolozenIspit(Ocena o) {
 		this.nepolozeniIspiti.add(o);
 	}
