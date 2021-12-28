@@ -15,6 +15,7 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 	private String messageStudent;
 	private String messageProfesor;
 	private String messagePredmet;
+	private String messagePolaganje;
 	
 	public PotvrdiBtnListener(AppView view, AppData data) {
 		this.view = view;
@@ -46,6 +47,8 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 				+ "Sifra: Tekst(mora da bude jedinstvena)\n"
 				+ "Naziv: Tekst(mora da bude jedinstven)\n"
 				+ "Espb: Broj";
+		
+		messagePolaganje = "Datum: Dan.Mesec.Godina.";
 	}	
 
 	@Override
@@ -78,6 +81,13 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 				}
 				break;
 			}
+			case "Polaganje":
+			{
+				if(!btn.isEnabled()) 
+					JOptionPane.showMessageDialog(view.getPolaganjeDialog(), messagePolaganje, "Error",
+							JOptionPane.ERROR_MESSAGE);
+				break;
+			}
 		}
 	}
 
@@ -90,13 +100,30 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 	public void mouseEntered(MouseEvent e) {
 		JButton btn = (JButton) e.getSource();
 		btn.setBackground(Util.buttonEnteredColor);
+		ArrayList<JTextField> textFields = null;
+		switch(btn.getActionCommand()) {
+			case "Polaganje":
+			{
+				textFields = view.getPolaganjeDialog().getPanel().getTextFields();
+				if(!view.isTextFieldValid(textFields.get(2), Util.datePattern))
+					btn.setEnabled(false);
+				else
+					btn.setEnabled(true);
+				break;
+			}
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		JButton btn = (JButton) e.getSource();
 		btn.setBackground(null);
-		//btn.setEnabled(true);
+		switch(btn.getActionCommand()) {
+			case "Polaganje":
+			{
+				btn.setEnabled(true);
+			}
+		}
 	}
 
 	@Override
@@ -118,6 +145,14 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 					newPredmet();
 					break;
 				}
+			case "Polaganje":
+			{
+				int selectedPredmet = view.getChangeStudentDialog().getPanelNepolozeni().getTable()
+						.getSelectedRow();
+				int selectedStudent = view.getCentralPanel().gettStudenti().getSelectedRow();
+				poloziPredmet(selectedPredmet, selectedStudent);
+				break;
+			}
 		}
 	}
 	
@@ -147,6 +182,14 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 		view.initTablePredmeti();
 		panel.clearTextFields();	
 		dialog.setVisible(false);
+	}
+	
+	private void poloziPredmet(int selectedPredmet, int selectedStudent) {
+		data.poloziPredmet(selectedPredmet, selectedStudent, view.getPolaganjeDialog().getPanel().getTextFields()
+				.get(2), view.getPolaganjeDialog().getPanel().getComboBoxes().get(0));
+		view.getChangeStudentDialog().getPanelPolozeni().refreshInfo(data.getStudenti().get(selectedStudent));
+		view.getChangeStudentDialog().getPanelNepolozeni().refreshInfo(data.getStudenti().get(selectedStudent));
+		view.getPolaganjeDialog().setVisible(false);		
 	}
 
 }

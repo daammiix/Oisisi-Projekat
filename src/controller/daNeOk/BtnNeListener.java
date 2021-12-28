@@ -1,23 +1,38 @@
-package controller.potvrdiOdustani;
+package controller.daNeOk;
 
 import java.awt.event.*;
 import javax.swing.*;
 import util.Util;
 import view.*;
 
-
-public class BtnOkListener implements MouseListener{
+public class BtnNeListener implements MouseListener {
+private AppView view;
 	
-	private AppView view;
-	
-	public BtnOkListener(AppView view) {
+	public BtnNeListener(AppView view) {
 		this.view = view;
 
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		view.getNotSelectedDialog().setVisible(false);
+		JButton btn = (JButton) e.getSource();
+		switch(btn.getActionCommand()) {
+			case "Student":
+				{
+					view.getDeleteStudentDialog().setVisible(false);
+					break;
+				}
+			case "Profesor":
+				{
+					view.getDeleteProfesorDialog().setVisible(false);
+					break;
+				}
+			case "Predmet":
+				{
+					view.getDeletePredmetDialog().setVisible(false);
+					break;
+				}
+		}
 	}
 
 	@Override

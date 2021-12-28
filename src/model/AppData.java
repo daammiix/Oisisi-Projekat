@@ -338,6 +338,21 @@ public class AppData {
 		}
 	}
 	
+	public void poloziPredmet(int selectedPredmet, int selectedStudent, JTextField date, JComboBox<String> ocena) {
+		Student s = studenti.get(selectedStudent);
+		Ocena o = s.getNepolozeniIspiti().get(selectedPredmet);
+		s.getNepolozeniIspiti().remove(selectedPredmet);
+		
+		// zato sto je u cb-u string
+		o.setOcena(Integer.parseInt((String)ocena.getSelectedItem()));
+		try {
+			o.setDatum(Util.formatter.parse(date.getText()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		s.getPolozeniIspiti().add(o);
+	}
+	
 	public void deleteProfesor(Profesor profesor)
 	{
 		for (Iterator<Profesor> iterator = profesori.iterator(); iterator.hasNext(); ) {

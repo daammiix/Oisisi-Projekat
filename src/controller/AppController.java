@@ -6,9 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import controller.daNeOk.BtnDaListener;
+import controller.daNeOk.BtnNeListener;
+import controller.daNeOk.BtnOkListener;
 import controller.documentsListeners.DocumentListenerPredmet;
 import controller.documentsListeners.DocumentListenerProfesor;
 import controller.documentsListeners.DocumentListenerStudent;
+import controller.polaganjePredmeta.PolaganjePredmetaBtnListener;
 import controller.ponistavanjeOcene.*;
 import controller.potvrdiOdustani.*;
 import model.AppData;
@@ -48,6 +53,7 @@ public class AppController {
 		this.addBtnOdustaniChangeDialog();
 		this.addDocumentListeners();
 		this.addPonistavanjeOceneDialogListeners();
+		this.addPolaganjePredmetaBtnListeners();
 	}
 	
 	public void tabChangedListener() {
@@ -190,6 +196,8 @@ public class AppController {
 		appView.getAddProfesorDialog().getPanelInformacije().addBtnOdustaniListener(obl);
 		appView.getAddPredmetDialog().getPanelInformacije().addBtnOdustaniListener(obl);
 		
+		appView.getPolaganjeDialog().getPanel().addBtnOdustaniListener(obl);
+		
 	}
 	
 	private void addBtnOdustaniChangeDialog() {
@@ -206,6 +214,7 @@ public class AppController {
 		appView.getAddProfesorDialog().getPanelInformacije().addBtnPotvrdiListener(pbl, pbl);
 		appView.getAddPredmetDialog().getPanelInformacije().addBtnPotvrdiListener(pbl, pbl);
 		
+		appView.getPolaganjeDialog().getPanel().addBtnPotvrdiListener(pbl, pbl);
 	}
 	
 	private void addBtnPotvrdiChangeListener() {
@@ -247,6 +256,11 @@ public class AppController {
 	private void addPonistavanjeOceneDialogListeners() {
 		appView.getChangeStudentDialog().getPanelPolozeni().addBtnPonistiActionListener(new PonistiOcenuBtnListener());
 		appView.getPonistavanjeOceneDialog().addBtnsActionListener(new DaNeBtnListenerPonistiOcenu());
+	}
+	
+	private void addPolaganjePredmetaBtnListeners() {
+		appView.getChangeStudentDialog().getPanelNepolozeni().addBtnPolaganjeActionListener(
+			new PolaganjePredmetaBtnListener());
 	}
 	
 }
