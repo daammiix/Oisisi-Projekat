@@ -3,12 +3,18 @@ package util;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 public class Util {
 	
 	public static final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy.");
 	
 	// Colors
 	public static final Color buttonEnteredColor = new Color(174, 214, 241);
+	public static final Color buttonBackgroundColor = new Color(23, 133, 233);
+	public static final Color buttonForegroundColor = new Color(236, 240, 241);
 	
 	// Regex
 	public static final String stringPattern = "[a-zA-Z]+";
@@ -22,4 +28,13 @@ public class Util {
 	public static final String godUpisaPattern = "(19\\d{2})|(20\\d{2})";
 	public static final String brIndeksaPattern = "[a-zA-Z]{2}-\\d{1,3}-\\d{1,4}";
 	public static final String brGodStazaPattern = "[0-9]|([1-9][0-9])";
+	
+	public static JTable createTable(DefaultTableModel model) {
+		JTable ret = new JTable(model);
+		ret.setRowSelectionAllowed(true);
+		ret.setDefaultEditor(Object.class, null);
+		ret.setRowHeight(25);
+		ret.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		return ret;
+	}
 }

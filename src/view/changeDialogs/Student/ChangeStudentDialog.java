@@ -1,4 +1,4 @@
-package view.changeDialogs;
+package view.changeDialogs.Student;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -14,8 +14,13 @@ import model.Adresa;
 import model.Student;
 import util.Util;
 import view.AppFrame;
+import view.changeDialogs.ChangeDialog;
 
 public class ChangeStudentDialog extends ChangeDialog {
+	
+	private JTabbedPane tabbedPane;
+	private Polozeni polozeni;
+	private Nepolozeni nepolozeni;
 
 	private static final long serialVersionUID = 6484156735480732897L;
 
@@ -41,17 +46,17 @@ public class ChangeStudentDialog extends ChangeDialog {
 		panelInformacije.getBtnPotvrdi().setActionCommand("Student");
 		panelInformacije.getBtnOdustani().setActionCommand("Student");
 		
-		JTabbedPane centralPanel = new JTabbedPane();
+		tabbedPane = new JTabbedPane();
 	
-		JPanel panel2 = new JPanel();
-		JPanel panel3 = new JPanel();
+		polozeni = new Polozeni();
+		nepolozeni = new Nepolozeni();
 
-		centralPanel.add("Informacije", panelInformacije.getCentralPanel());
-		centralPanel.add("Polozeni", panel2);
-		centralPanel.add("Nepolozeni", panel3);
+		tabbedPane.add("Informacije", panelInformacije.getCentralPanel());
+		tabbedPane.add("Polozeni", polozeni);
+		tabbedPane.add("Nepolozeni", nepolozeni);
 		
-		centralPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 10, 0));
-		this.add(centralPanel);
+		tabbedPane.setBorder(BorderFactory.createEmptyBorder(15, 0, 10, 0));
+		this.add(tabbedPane);
 	}
 	
 	public void fillInStudent(Student s) {
@@ -88,5 +93,17 @@ public class ChangeStudentDialog extends ChangeDialog {
 		case B: comboBoxes.get(1).setSelectedIndex(0); break;
 		case S: comboBoxes.get(1).setSelectedIndex(1); break;
 		}
+	}
+
+	public JTabbedPane getTabbedPane() {
+		return this.tabbedPane;
+	}
+	
+	public Polozeni getPanelPolozeni() {
+		return this.polozeni;
+	}
+	
+	public Nepolozeni getPanelNepolozeni() {
+		return this.nepolozeni;
 	}
 }

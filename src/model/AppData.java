@@ -58,16 +58,28 @@ public class AppData {
 				"minicm100@gmail.com", "sw-25-2014", 2018, 4, Student.Status.B);
 		Student s4 = new Student("Petar", "Petrovic", Util.formatter.parse("10.05.2000."),  
 					new Adresa("Kosovska", "110", "Krusevac", "Srbija"), "+38165559558", 
-					"petrovicp11@gmail.com", "sw-65-2019", 2019, 3, Student.Status.B);
+					"petrovicp11@gmail.com", "sw65-2019", 2019, 3, Student.Status.B);
 		
 		Profesor p1 = new Profesor("Darko", "Darkovic", "Profesor", "darkod25@uns.ac.rs");
 		Profesor p2 = new Profesor("Mirko", "Milutinovic", Util.formatter.parse("1.1.1975."), 
 				new Adresa("Bruski Put", "BB", "Brus", "Srbija"), "+3816625361441", "mirko.milutin@uns.ac.rs", 
-				new Adresa("Dusanovacka", "25", "Novi Sad", "Srbija"), "010197578", "Docent", 15);
+				new Adresa("Dusanovacka", "25", "Novi Sad", "Srbija"), "0101975781022", "Docent", 15);
+		Profesor p3 = new Profesor("Branko", "Stojkovic", "Profesor", "branskos321@uns.ac.rs");
 		
 		Predmet pr1 = new Predmet("MA2", "Matematička Analiza 1", 9, 1, "Zimski");
 		Predmet pr2 = new Predmet("SE3", "OISISI", 6, 3, "Zimski");
 		Predmet pr3 = new Predmet("PR1", "Objektno programiranje", 8, 2, "Letnji");
+		Predmet pr4 = new Predmet("NANS", "Numericki algoritmi i numericki softver", 6, 3, "Zimski");
+		Predmet pr5 = new Predmet("ICR", "Interakcija covek racunar", 6, 3, "Letnji");
+		
+		Ocena o1 = new Ocena(s3, pr1, 9, Util.formatter.parse("17.01.2021."));
+		Ocena o2 = new Ocena(s3, pr2, 8, Util.formatter.parse("11.02.2021."));
+		Ocena o3 = new Ocena(s3, pr3, 8, Util.formatter.parse("27.01.2021."));
+		Ocena nepolozena1 = new Ocena(s3, pr1, 5, new Date(0));
+		Ocena nepolozena2 = new Ocena(s3, pr2, 5, new Date(0));
+		
+		s3.addNepolozenIspit(nepolozena1);
+		s3.addNepolozenIspit(nepolozena2);
 		
 		studenti.add(s1);
 		studenti.add(s2);
@@ -76,10 +88,13 @@ public class AppData {
 		
 		profesori.add(p1);
 		profesori.add(p2);
+		profesori.add(p3);
 		
 		predmeti.add(pr1);
 		predmeti.add(pr2);
 		predmeti.add(pr3);
+		predmeti.add(pr4);
+		predmeti.add(pr5);
 	}
 	
 	public void createStudentAndAddToStudents(ArrayList<JTextField> textFields, ArrayList<JComboBox<String>> comboBoxes) {
