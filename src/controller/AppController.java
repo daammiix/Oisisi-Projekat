@@ -17,6 +17,8 @@ import controller.dodavanjePredmetaProfesoru.DodajPredmetBtnListener;
 import controller.polaganjePredmeta.PolaganjePredmetaBtnListener;
 import controller.ponistavanjeOcene.*;
 import controller.potvrdiOdustani.*;
+import controller.uklanjanjePredmetaProfesoru.DaNeBtnListenerUkloniPredmet;
+import controller.uklanjanjePredmetaProfesoru.UkloniPredmetBtnListener;
 import model.AppData;
 import model.Profesor;
 import model.Student;
@@ -273,7 +275,8 @@ public class AppController {
 	
 	private void addIzmenaProfesoraPredmetiBtnListeners() {
 		appView.getChangeProfesorDialog().getPredmeti().addBtnDodajListener(new DodajPredmetBtnListener());
-		
+		appView.getChangeProfesorDialog().getPredmeti().addBtnUkloniListener(new UkloniPredmetBtnListener());
+		appView.getUklanjanjePredmetaProfesoruDialog().addBtnsActionListener(new DaNeBtnListenerUkloniPredmet());
 	}
 	
 }
