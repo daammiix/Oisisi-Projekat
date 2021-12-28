@@ -22,8 +22,6 @@ public class AppView {
 		return instance;
 	}
 	
-	private static AppData appData = AppData.getInstance();
-	
 	private static AppData data = AppData.getInstance();
 	private AppFrame frame;
 	private AppCentralPanel centralPanel;
@@ -40,6 +38,7 @@ public class AppView {
 	private DeleteProfesorDialog deleteProfesorDialog;
 	private DeletePredmetDialog deletePredmetDialog;
 	private NotSelectedDialog notSelectedDialog;
+	private DaNeDialog ponistavanjeOceneDialog;
 	
 	private AppView() {
 		frame = AppFrame.getInstance();
@@ -57,6 +56,8 @@ public class AppView {
 		deleteProfesorDialog = new DeleteProfesorDialog(frame, "Brisanje profesora", true);
 		deletePredmetDialog = new DeletePredmetDialog(frame, "Brisanje predmeta", true);
 		notSelectedDialog = new NotSelectedDialog(frame, "Greska prilikom selektovanja", true);
+		ponistavanjeOceneDialog = new DaNeDialog(changeStudentDialog, "Poništavanje ocene", true, 
+				"Da li ste sigurni da želite da poništite ocenu?");
 		
 		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
@@ -198,6 +199,10 @@ public class AppView {
 	
 	public NotSelectedDialog getNotSelectedDialog() {
 		return notSelectedDialog;
+	}
+	
+	public DaNeDialog getPonistavanjeOceneDialog() {
+		return this.ponistavanjeOceneDialog;
 	}
 
 }

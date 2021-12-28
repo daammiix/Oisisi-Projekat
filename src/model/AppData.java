@@ -82,7 +82,6 @@ public class AppData {
 		Ocena o5 = new Ocena(s4, pr2, 7, Util.formatter.parse("22.07.2021."));
 		Ocena o6 = new Ocena(s4, pr3, 6, Util.formatter.parse("30.11.2021."));
 		
-		s3.addPolozenIspit(o2);
 		s3.addPolozenIspit(o3);
 		s3.addNepolozenIspit(nepolozena1);
 		s3.addNepolozenIspit(nepolozena2);
