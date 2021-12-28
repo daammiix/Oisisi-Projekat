@@ -79,6 +79,10 @@ public class Student {
 	public void addNepolozenIspit(Ocena o) {
 		this.nepolozeniIspiti.add(o);
 	}
+
+	public void removePredmetFromPolozeni(int idx) {
+		this.polozeniIspiti.remove(idx);
+	}
 	
 	// getters and setters
 

@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import controller.documentsListeners.DocumentListenerPredmet;
 import controller.documentsListeners.DocumentListenerProfesor;
 import controller.documentsListeners.DocumentListenerStudent;
+import controller.ponistavanjeOcene.*;
 import controller.potvrdiOdustani.*;
 import model.AppData;
 import model.Profesor;
@@ -47,6 +47,7 @@ public class AppController {
 		this.addBtnPotvrdiChangeListener();
 		this.addBtnOdustaniChangeDialog();
 		this.addDocumentListeners();
+		this.addPonistavanjeOceneDialogListeners();
 	}
 	
 	public void tabChangedListener() {
@@ -241,6 +242,11 @@ public class AppController {
 		appView.getAddStudentDialog().getPanelInformacije().connectDocumentListener(dls);
 		appView.getAddProfesorDialog().getPanelInformacije().connectDocumentListener(dlp);
 		appView.getAddPredmetDialog().getPanelInformacije().connectDocumentListener(dlpr);
+	}
+	
+	private void addPonistavanjeOceneDialogListeners() {
+		appView.getChangeStudentDialog().getPanelPolozeni().addBtnPonistiActionListener(new PonistiOcenuBtnListener());
+		appView.getPonistavanjeOceneDialog().addBtnsActionListener(new DaNeBtnListenerPonistiOcenu());
 	}
 	
 }
