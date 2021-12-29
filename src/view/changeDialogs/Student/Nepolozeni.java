@@ -97,7 +97,6 @@ public class Nepolozeni extends JPanel {
 	}
 	
 	public DefaultTableModel getTableModel() {
-		//System.out.println(tableModel);
 		return this.tableModel;
 	}
 }

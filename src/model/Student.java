@@ -84,6 +84,10 @@ public class Student {
 		this.polozeniIspiti.remove(idx);
 	}
 	
+	public void removePredmetFromNepolozeni(int idx) {
+		this.nepolozeniIspiti.remove(idx);
+	}
+	
 	// getters and setters
 
 	public String getPrezime() {
