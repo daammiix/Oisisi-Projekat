@@ -14,6 +14,9 @@ import controller.addStudentOnSubjectListeners.DodajBtnListener;
 import controller.daNeOk.BtnDaListener;
 import controller.daNeOk.BtnNeListener;
 import controller.daNeOk.BtnOkListener;
+import controller.deleteStudentFromSubject.AddBtnDaListener;
+import controller.deleteStudentFromSubject.AddBtnNeListener;
+import controller.deleteStudentFromSubject.AddBtnObrisiListener;
 import controller.documentsListeners.DocumentListenerPredmet;
 import controller.documentsListeners.DocumentListenerProfesor;
 import controller.documentsListeners.DocumentListenerStudent;
@@ -65,6 +68,9 @@ public class AppController {
 		this.addDodajBtnListener();
 		this.addBtnDodajListener();
 		this.addBtnOdustaniListener();
+		this.addBtnObrisiActionListener();
+		this.addDeleteBtnNeListener();
+		this.addDeleteBtnDaListener();
 	}
 	
 	public void tabChangedListener() {
@@ -290,12 +296,6 @@ public class AppController {
 	private void addDodajBtnListener() {
 		appView.getChangeStudentDialog().getPanelNepolozeni().addDodajBtnListener(
 				new DodajBtnListener());
-		/*int selectedRow = AppCentralPanel.getInstance().getIndexStudent();
-		if(selectedRow >= 0) {
-			Student selectedStudent = appData.getStudenti().get(selectedRow);
-			appView.getAddStudentOnSubjectDialog().initTable(selectedStudent);
-		}*/
-		
 	}
 	
 	private void addBtnDodajListener() {
@@ -305,5 +305,18 @@ public class AppController {
 	private void addBtnOdustaniListener() {
 		appView.getAddStudentOnSubjectDialog().addBtnOdustaniListener(new BtnOdustaniListener());
 	}
-
+	
+	private void addBtnObrisiActionListener() {
+		appView.getChangeStudentDialog().getPanelNepolozeni().addBtnObrisiActionListener(new AddBtnObrisiListener());
+	}
+	
+	private void addDeleteBtnNeListener() {
+		AddBtnNeListener abnl = new AddBtnNeListener(appView);
+		appView.getDeleteStudentFromSubject().addDeleteBtnNeListener(abnl);
+	}
+	
+	private void addDeleteBtnDaListener() {
+		AddBtnDaListener abdl = new AddBtnDaListener(appView);
+		appView.getDeleteStudentFromSubject().addDeleteBtnDaListener(abdl);
+	}
 }
