@@ -55,7 +55,7 @@ public class AppData {
 		Student s2 = new Student("ra-102-2016", "Luka", "Lukic", 4, Student.Status.S, 7.80);
 		Student s3 = new Student("Mina", "Minic", Util.formatter.parse("22.2.1999."), 
 				new Adresa("Bruski Put", "BB", "Krusevac", "Srbija"), "+38167787998", 
-				"minicm100@gmail.com", "sw-25-2014", 2018, 4, Student.Status.B);
+				"minicm100@gmail.com", "sw-25-2014", 2018, 3, Student.Status.B);
 		Student s4 = new Student("Petar", "Petrovic", Util.formatter.parse("10.05.2000."),  
 					new Adresa("Kosovska", "110", "Krusevac", "Srbija"), "+38165559558", 
 					"petrovicp11@gmail.com", "sw-65-2019", 2019, 3, Student.Status.B);

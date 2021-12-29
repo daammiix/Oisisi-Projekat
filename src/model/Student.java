@@ -40,7 +40,7 @@ public class Student {
 		this.nepolozeniIspiti = new ArrayList<Ocena>();
 	}
 
-	public Student(String ime, String prezime, Date datumRodjenja, Adresa a, String br, String email, String 				brInd, int godUpisa, int trenutnaGod, Status status) {
+	public Student(String ime, String prezime, Date datumRodjenja, Adresa a, String br, String email, String brInd, int godUpisa, int trenutnaGod, Status status) {
 		this.ime = ime;
 		this.prezime = prezime;
 		this.datumRodjenja = datumRodjenja;
