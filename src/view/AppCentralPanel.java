@@ -69,6 +69,7 @@ public class AppCentralPanel extends JTabbedPane {
 						tStudenti = new JTable(tmodelStudenti); 
 						tStudenti.setName("Studenti");
 						tStudenti.setDefaultEditor(Object.class, null);
+						tStudenti.setAutoCreateRowSorter(true);
 						break;
 					}
 				case "Profesori" : 
@@ -77,6 +78,7 @@ public class AppCentralPanel extends JTabbedPane {
 						tProfesori = new JTable(tmodelProfesori); 
 						tProfesori.setName("Profesori");
 						tProfesori.setDefaultEditor(Object.class, null);
+						tProfesori.setAutoCreateRowSorter(true);
 						break;
 					}
 				case "Predmeti" : 
@@ -85,6 +87,7 @@ public class AppCentralPanel extends JTabbedPane {
 						tPredmeti = new JTable(tmodelPredmeti); 
 						tPredmeti.setName("Predmeti");
 						tPredmeti.setDefaultEditor(Object.class, null);
+						tPredmeti.setAutoCreateRowSorter(true);
 						break;
 					}
 				default : System.out.println("Invalid table name");
