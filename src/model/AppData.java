@@ -413,6 +413,4 @@ public class AppData {
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
-
-	
 }

@@ -88,8 +88,13 @@ public class AddStudentOnSubjectDialog extends JDialog {
 	
 	public void initTable(Student student) {
 		ArrayList<Predmet> predmeti = AppData.getInstance().getPredmeti();
-		ArrayList<Ocena> sviIspiti = student.getPolozeniIspiti();
-		sviIspiti.addAll(student.getNepolozeniIspiti());
+		ArrayList<Ocena> sviIspiti = new ArrayList<Ocena>();
+		for(Ocena o : student.getPolozeniIspiti()) {
+			sviIspiti.add(o);
+		}
+		for(Ocena o : student.getNepolozeniIspiti()) {
+			sviIspiti.add(o);
+		}
 		for(Predmet p : predmeti) {
 			Boolean nasao = false;
 			for(Ocena o : sviIspiti ) {
