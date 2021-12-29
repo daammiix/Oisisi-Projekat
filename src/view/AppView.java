@@ -15,6 +15,7 @@ import view.changeDialogs.Student.ChangeStudentDialog;
 import view.deleteDialogs.*;
 import view.dodavanjePredmetaProfesoruDialog.DodavanjePredmetaProfesoruDailog;
 import view.polaganjeDialog.PolaganjeDialog;
+import view.studentPredmetDialogs.AddStudentOnSubjectDialog;
 
 public class AppView {
 	private static AppView instance = null;
@@ -43,8 +44,11 @@ public class AppView {
 	private NotSelectedDialog notSelectedDialog;
 	private DaNeDialog ponistavanjeOceneDialog;
 	private PolaganjeDialog polaganjeDialog;
+
 	private DodavanjePredmetaProfesoruDailog dodavanjePredmetaProfesoruDialog;
 	private DaNeDialog uklanjanjePredmetaProfesoruDialog;
+
+	private AddStudentOnSubjectDialog addStudentOnSubjectDialog;
 	
 	private AppView() {
 		frame = AppFrame.getInstance();
@@ -70,6 +74,8 @@ public class AppView {
 		uklanjanjePredmetaProfesoruDialog = new DaNeDialog(changeProfesorDialog, "Ukloni predmet", true, 
 				"Da li ste sigurni da želite da uklonite predmet?");
 		
+		addStudentOnSubjectDialog = new AddStudentOnSubjectDialog(frame, "Dodavanje Predmeta", true);
+
 		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
 		frame.setJMenuBar(menuBar);
@@ -220,6 +226,7 @@ public class AppView {
 		return this.polaganjeDialog;
 	}
 	
+
 	public DodavanjePredmetaProfesoruDailog getDodavanjePredmetaProfesoruDialog() {
 		return this.dodavanjePredmetaProfesoruDialog;
 	}
@@ -228,4 +235,8 @@ public class AppView {
 		return this.uklanjanjePredmetaProfesoruDialog;
 	}
 
+	public AddStudentOnSubjectDialog getAddStudentOnSubjectDialog() {
+		return this.addStudentOnSubjectDialog;
+
+	}
 }

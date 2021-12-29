@@ -2,6 +2,8 @@ package view.changeDialogs.Student;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import model.*;
@@ -71,7 +73,6 @@ public class Nepolozeni extends JPanel {
 					p.getSemestar()};
 			tableModel.addRow(data);
 		}
-		
 	}
 	
 	public void clearTable() {
@@ -82,11 +83,21 @@ public class Nepolozeni extends JPanel {
 		btnObrisi.addActionListener(al);
 	}
 	
+	
 	public void addBtnPolaganjeActionListener(ActionListener al) {
 		btnPolaganje.addActionListener(al);
 	}
 	
+	public void addDodajBtnListener(MouseListener al) {
+		btnDodaj.addMouseListener(al);
+	}
+	
 	public JTable getTable() {
 		return this.table;
+	}
+	
+	public DefaultTableModel getTableModel() {
+		//System.out.println(tableModel);
+		return this.tableModel;
 	}
 }

@@ -7,6 +7,10 @@ import javax.swing.JDialog;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import controller.addStudentOnSubjectListeners.BtnDodajListener;
+import controller.addStudentOnSubjectListeners.BtnOdustaniListener;
+import controller.addStudentOnSubjectListeners.DodajBtnListener;
+//import controller.addStudentOnSubjectListeners.ObrisiPredmetaBtnListener;
 import controller.daNeOk.BtnDaListener;
 import controller.daNeOk.BtnNeListener;
 import controller.daNeOk.BtnOkListener;
@@ -58,6 +62,9 @@ public class AppController {
 		this.addPonistavanjeOceneDialogListeners();
 		this.addPolaganjePredmetaBtnListeners();
 		this.addIzmenaProfesoraPredmetiBtnListeners();
+		this.addDodajBtnListener();
+		this.addBtnDodajListener();
+		this.addBtnOdustaniListener();
 	}
 	
 	public void tabChangedListener() {
@@ -119,8 +126,9 @@ public class AppController {
 							if(selectedRow >= 0) {
 								Student selectedStudent = appData.getStudenti().get(selectedRow);
 								dialog1.setLocationRelativeTo(appView.getFrame());
-								appView.getChangeStudentDialog().fillInStudent(selectedStudent);
+								appView.getChangeStudentDialog().getPanelInformacije().fillInStudent(selectedStudent);
 								dialog1.getPanelPolozeni().refreshInfo(selectedStudent);
+								appView.getAddStudentOnSubjectDialog().initTable(selectedStudent);;
 								dialog1.getPanelNepolozeni().refreshInfo(selectedStudent);
 								dialog1.getTabbedPane().setSelectedIndex(0);
 								dialog1.setVisible(true);
@@ -279,4 +287,23 @@ public class AppController {
 		appView.getUklanjanjePredmetaProfesoruDialog().addBtnsActionListener(new DaNeBtnListenerUkloniPredmet());
 	}
 	
+	private void addDodajBtnListener() {
+		appView.getChangeStudentDialog().getPanelNepolozeni().addDodajBtnListener(
+				new DodajBtnListener());
+		/*int selectedRow = AppCentralPanel.getInstance().getIndexStudent();
+		if(selectedRow >= 0) {
+			Student selectedStudent = appData.getStudenti().get(selectedRow);
+			appView.getAddStudentOnSubjectDialog().initTable(selectedStudent);
+		}*/
+		
+	}
+	
+	private void addBtnDodajListener() {
+		appView.getAddStudentOnSubjectDialog().addBtnDodajListener(new BtnDodajListener());
+	}
+	
+	private void addBtnOdustaniListener() {
+		appView.getAddStudentOnSubjectDialog().addBtnOdustaniListener(new BtnOdustaniListener());
+	}
+
 }
