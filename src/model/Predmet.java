@@ -39,12 +39,24 @@ public class Predmet {
 		this.studentiPolozili = studentiPolozili;
 		this.studentiPali = studentiPali;
 	}
-
-
+	
+	public Predmet(String sifra, String naziv, int god, int espb, Profesor predmetniProfesor, String semestar) {
+		this.sifraPredmeta = sifra;
+		this.nazivPredmeta = naziv;
+		this.godinaStudija = god;
+		this.espb = espb;
+		this.predmetniProfesor = predmetniProfesor;
+		if(semestar.equals("Letnji"))
+			this.semestar = Semestar.L;
+		else if(semestar.equals("Zimski"))
+			this.semestar = Semestar.Z;
+		studentiPolozili = new ArrayList<Student>();
+		studentiPali = new ArrayList<Student>();
+	}
+	
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}
-
 
 	public void setSifraPredmeta(String sifraPredmeta) {
 		this.sifraPredmeta = sifraPredmeta;

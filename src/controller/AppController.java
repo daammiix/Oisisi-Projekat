@@ -2,14 +2,20 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JDialog;
+import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import controller.addStudentOnSubjectListeners.BtnDodajListener;
 import controller.addStudentOnSubjectListeners.BtnOdustaniListener;
 import controller.addStudentOnSubjectListeners.DodajBtnListener;
+import controller.changeSubject.BtnMinusListener;
+import controller.changeSubject.BtnOdustaniProfesorListener;
+import controller.changeSubject.BtnPlusListener;
+import controller.changeSubject.BtnPotvrdiProfesoraListener;
 //import controller.addStudentOnSubjectListeners.ObrisiPredmetaBtnListener;
 import controller.daNeOk.BtnDaListener;
 import controller.daNeOk.BtnNeListener;
@@ -71,6 +77,10 @@ public class AppController {
 		this.addBtnObrisiActionListener();
 		this.addDeleteBtnNeListener();
 		this.addDeleteBtnDaListener();
+		this.addMinusBtnListener();
+		this.addPlusBtnListener();
+		this.addOdustaniProfesorBtnListener();
+		this.addBtnPotvrdiProfesoraListener();
 	}
 	
 	public void tabChangedListener() {
@@ -134,7 +144,7 @@ public class AppController {
 								dialog1.setLocationRelativeTo(appView.getFrame());
 								appView.getChangeStudentDialog().getPanelInformacije().fillInStudent(selectedStudent);
 								dialog1.getPanelPolozeni().refreshInfo(selectedStudent);
-								appView.getAddStudentOnSubjectDialog().initTable(selectedStudent);;
+								appView.getAddStudentOnSubjectDialog().initTable(selectedStudent);
 								dialog1.getPanelNepolozeni().refreshInfo(selectedStudent);
 								dialog1.getTabbedPane().setSelectedIndex(0);
 								dialog1.setVisible(true);
@@ -167,9 +177,22 @@ public class AppController {
 							int selectedRow = AppCentralPanel.getInstance().getIndexPredmeti();
 							ChangePredmetDialog dialog1 =appView.getChangePredmetDialog();
 							NotSelectedDialog dialog2 = appView.getNotSelectedDialog();
+							ArrayList<JTextField> textFields = AppView.getInstance().getChangePredmetDialog().getTextFields();
+							textFields = appView.getChangePredmetDialog().getTextFields();
 							if(selectedRow >= 0) {
 								dialog1.setLocationRelativeTo(appView.getFrame());
 								appView.getChangePredmetDialog().fillInPredmet(appData.getPredmeti().get(selectedRow));
+								String textF = textFields.get(3).getText();
+								String text = textF.trim();
+								if(text.equals("")) {
+									appView.getChangePredmetDialog().getBtnMinus().setEnabled(false);
+									appView.getChangePredmetDialog().getBtnPlus().setEnabled(true);
+								} else {
+									appView.getChangePredmetDialog().getBtnMinus().setEnabled(true);
+									appView.getChangePredmetDialog().getBtnPlus().setEnabled(false);
+								}
+								appView.getAddStudentDialog().getPanelInformacije().getBtnPotvrdi().setEnabled(false);
+								appView.getChooseProfessorDialog().initTable();
 								dialog1.setVisible(true);
 							} else {
 								dialog2.setLocationRelativeTo(appView.getFrame());
@@ -318,5 +341,27 @@ public class AppController {
 	private void addDeleteBtnDaListener() {
 		AddBtnDaListener abdl = new AddBtnDaListener(appView);
 		appView.getDeleteStudentFromSubject().addDeleteBtnDaListener(abdl);
+	}
+	
+	private void addMinusBtnListener() {
+		BtnMinusListener bml = new BtnMinusListener(appView);
+		appView.getChangePredmetDialog().addBtnMinusListener(bml);
+	}
+	
+	private void addPlusBtnListener() {
+		BtnPlusListener bpl = new BtnPlusListener(appView);
+		appView.getChangePredmetDialog().addBtnPlusListener(bpl);
+	}
+	
+	private void addOdustaniProfesorBtnListener() {
+		BtnOdustaniProfesorListener bol = new BtnOdustaniProfesorListener(appView);
+		appView.getRemoveProfessorDialog().addOdustaniProfesorBtnListener(bol);
+		appView.getChooseProfessorDialog().addOdustaniProfesorBtnListener(bol);
+	}
+	
+	private void addBtnPotvrdiProfesoraListener() {
+		BtnPotvrdiProfesoraListener bpp = new BtnPotvrdiProfesoraListener(appView, appData);
+		appView.getChooseProfessorDialog().addBtnPotvrdiProfesoraListener(bpp, bpp);
+		appView.getRemoveProfessorDialog().addBtnPotvrdiProfesoraListener(bpp, bpp);
 	}
 }
