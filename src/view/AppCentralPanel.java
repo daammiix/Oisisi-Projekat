@@ -2,6 +2,9 @@ package view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 import model.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -65,7 +68,24 @@ public class AppCentralPanel extends JTabbedPane {
 			switch(name) {
 				case "Studenti" : 
 					{
-						tmodelStudenti = new DefaultTableModel(columnNames, 0); 
+						tmodelStudenti = new DefaultTableModel(columnNames, 0) 
+						{
+							@Override
+				            public Class getColumnClass(int col) {
+								switch(col) {
+								  case 0:
+									  	return TableStudentIndexValue.class;
+								  case 3:
+										return int.class;
+								  case 4:
+									  	return Student.getStatusClass();
+								  case 5:
+									  	return double.class;
+								  default:
+									  return String.class;
+								}
+				            }
+						}; 
 						tStudenti = new JTable(tmodelStudenti); 
 						tStudenti.setName("Studenti");
 						tStudenti.setDefaultEditor(Object.class, null);
@@ -105,7 +125,7 @@ public class AppCentralPanel extends JTabbedPane {
 		
 		// dodavanje studenta u tabelu
 		public void addStudent(Student s) {
-				String indeks = s.getBrojIndeksa();
+				TableStudentIndexValue indeks = new TableStudentIndexValue(s.getBrojIndeksa());
 				String ime = s.getIme();
 				String prezime = s.getPrezime();
 				int godStudija = s.getTrenutnaGodinaStudija();

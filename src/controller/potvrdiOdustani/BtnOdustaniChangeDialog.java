@@ -51,15 +51,14 @@ private AppView view;
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		JButton btn = (JButton) e.getSource();
 		btn.setBackground(Util.buttonEnteredColor);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		JButton btn = (JButton) e.getSource();
 		btn.setBackground(null);
+		btn.setEnabled(true);
 	}
 }

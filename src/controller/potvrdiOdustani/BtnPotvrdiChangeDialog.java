@@ -124,10 +124,13 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 			case "Predmet":
 			{
 				textFields = view.getChangePredmetDialog().getTextFields();
-				if(!checkPredmetTextFields(textFields))
+				if(!checkPredmetTextFields(textFields)) {
 					btn.setEnabled(false);
-				else
+				}
+				else {
 					btn.setEnabled(true);
+				}
+
 				break;
 			}
 		}
@@ -203,9 +206,13 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		   !view.isTextFieldValid(textFields.get(2), Util.numberPattern) ||
 		   !data.isSifraPredmetaChanged(textFields.get(0).getText()) ||
 		   !data.isNazivPredmetaChanged(textFields.get(1).getText()))
+			{
 			return false;
-		else
+			}
+		else {
 			return true;
+		}
+			
 	}
 	
 	private void changeStudent(int selectedStudent) {

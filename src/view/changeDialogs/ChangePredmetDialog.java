@@ -32,6 +32,8 @@ public class ChangePredmetDialog extends JDialog {
 	private JComboBox<String> cbSemestar;
 	private JButton btnPotvrdi;
 	private JButton btnOdustani;
+	private JButton btnPlus;
+	private JButton btnMinus;
 
 	public ChangePredmetDialog(AppFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
@@ -46,6 +48,8 @@ public class ChangePredmetDialog extends JDialog {
 		btnPotvrdi.setActionCommand("Predmet");
 		btnOdustani = new JButton("Odustani");
 		btnOdustani.setActionCommand("Predmet");
+		btnPlus = new JButton("+");
+		btnMinus = new JButton("-");
 		Integer[] godine = {1, 2, 3, 4};
 		cbGodina = new JComboBox<Integer>(godine);
 		String[] semestar = {"Zimski", "Letnji"};
@@ -83,6 +87,10 @@ public class ChangePredmetDialog extends JDialog {
 		Box box4 = createBox3(lSemestar, cbSemestar);
 		Box box5 = createBox(lEspb, tf3);
 		Box box6 = createBox(lProfesor, tf4);
+		box6.add(Box.createHorizontalStrut(15));
+		box6.add(btnPlus);
+		box6.add(Box.createHorizontalStrut(15));
+		box6.add(btnMinus);
 		
 		Box mainBox = Box.createVerticalBox();
 		mainBox.add(box1);
@@ -117,6 +125,14 @@ public class ChangePredmetDialog extends JDialog {
 		btnPotvrdi.addActionListener(al);
 	}
 	
+	public void addBtnPlusListener(MouseListener ml) {
+		btnPlus.addMouseListener(ml);
+	}
+	
+	public void addBtnMinusListener(MouseListener ml) {
+		btnMinus.addMouseListener(ml);
+	}
+	
 	private Box createBox(JLabel label, JTextField tf) {
 		Box box2 = Box.createHorizontalBox();
 		box2.add(label);
@@ -147,6 +163,8 @@ public class ChangePredmetDialog extends JDialog {
 		cbGodina.setSelectedItem(predmet.getGodinaStudija());
 		cbSemestar.setSelectedItem(predmet.getSemestar());
 		textFields.get(2).setText(Integer.toString(predmet.getEspb()));
+		String[] pr = {predmet.getPredmetniProfesor().getIme(), predmet.getPredmetniProfesor().getPrezime()};
+		textFields.get(3).setText(pr[0] + " " + pr[1]);
 	}
 	
 	public JPanel getMainPanel() {
@@ -203,6 +221,22 @@ public class ChangePredmetDialog extends JDialog {
 
 	public void setCbSemestar(JComboBox<String> cbSemestar) {
 		this.cbSemestar = cbSemestar;
+	}
+	
+	public JButton getBtnPlus() {
+		return btnPlus;
+	}
+
+	public void setBtnPlus(JButton btnPlus) {
+		this.btnPlus = btnPlus;
+	}
+
+	public JButton getBtnMinus() {
+		return btnMinus;
+	}
+
+	public void setBtnMinus(JButton btnMinus) {
+		this.btnMinus = btnMinus;
 	}
 
 	public static long getSerialversionuid() {
