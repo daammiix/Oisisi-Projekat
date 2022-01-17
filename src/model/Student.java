@@ -20,6 +20,10 @@ public class Student {
 	private ArrayList<Ocena> polozeniIspiti;
 	private ArrayList<Ocena> nepolozeniIspiti;
 	
+	public static Class<Status> getStatusClass() {
+		return Status.class; 
+	}
+	
 	public Student() {
 		super();
 	}
@@ -51,6 +55,22 @@ public class Student {
 		this.godinaUpisa = godUpisa;
 		this.trenutnaGodinaStudija = trenutnaGod;
 		this.status = status;
+		this.prosecnaOcena = 0;
+		polozeniIspiti = new ArrayList<Ocena>();
+		nepolozeniIspiti = new ArrayList<Ocena>();
+	}
+	
+	public Student(String brInd, String ime, String prezime, int trenutnaGod, Date datumRodjenja, Adresa a, String br, String email, Status status, int godUpisa) {
+		this.brojIndeksa = brInd;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.trenutnaGodinaStudija = trenutnaGod;
+		this.datumRodjenja = datumRodjenja;
+		this.adresaStanovanja = a;
+		this.kontaktTelefon = br;
+		this.email = email;
+		this.status = status;
+		this.godinaUpisa = godUpisa;
 		this.prosecnaOcena = 0;
 		polozeniIspiti = new ArrayList<Ocena>();
 		nepolozeniIspiti = new ArrayList<Ocena>();

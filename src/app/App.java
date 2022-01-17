@@ -12,6 +12,8 @@ public class App {
 	private AppController controller;
 	
 	public static void main(String[] args) {
+		System.setProperty("awt.useSystemAAFontSettings","on");
+		System.setProperty("swing.aatext", "true");
 		App app = new App();
 		app.start();
 	}

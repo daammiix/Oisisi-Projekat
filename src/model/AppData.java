@@ -51,14 +51,16 @@ public class AppData {
 	}
 	
 	public void makeTestData() throws ParseException {
-		Student s1 = new Student("ra-115-2019", "Damjan", "Dimitrijevic", 3, Student.Status.B , 8.67);
-		Student s2 = new Student("ra-102-2016", "Luka", "Lukic", 4, Student.Status.S, 7.80);
+		Student s1 = new Student("ra-15-2019", "Damjan", "Dimitrijevic", 3, Student.Status.B , 7.6);
+		Student s2 = new Student("ra-16-2018", "Luka", "Lukic", 4, Student.Status.S, 7.7);
 		Student s3 = new Student("Mina", "Minic", Util.formatter.parse("22.2.1999."), 
 				new Adresa("Bruski Put", "BB", "Krusevac", "Srbija"), "+38167787998", 
-				"minicm100@gmail.com", "sw-25-2014", 2018, 3, Student.Status.B);
+				"minicm100@gmail.com", "sw-2-2019", 2018, 3, Student.Status.B);
 		Student s4 = new Student("Petar", "Petrovic", Util.formatter.parse("10.05.2000."),  
 					new Adresa("Kosovska", "110", "Krusevac", "Srbija"), "+38165559558", 
 					"petrovicp11@gmail.com", "sw-65-2019", 2019, 3, Student.Status.B);
+		Adresa a1 = new Adresa("Šafarikova", "2", "Novi Sad", "Srbija");
+		Student s5 = new Student("ra-2-2020", "Marko", "Milosevic", 1, Util.formatter.parse("12.03.2001."), a1, "021/333-555", "marko.milosevic@mailinator.com", Student.Status.B, 2020);
 		
 		Profesor p1 = new Profesor("Darko", "Darkovic", "Profesor", "darkod25@uns.ac.rs");
 		Profesor p2 = new Profesor("Mirko", "Milutinovic", Util.formatter.parse("1.1.1975."), 
@@ -66,11 +68,12 @@ public class AppData {
 				new Adresa("Dusanovacka", "25", "Novi Sad", "Srbija"), "0101975781022", "Docent", 15);
 		Profesor p3 = new Profesor("Branko", "Stojkovic", "Profesor", "branskos321@uns.ac.rs");
 		
-		Predmet pr1 = new Predmet("MA2", "Matematička Analiza 1", 9, 1, "Zimski");
-		Predmet pr2 = new Predmet("SE3", "OISISI", 6, 3, "Zimski");
-		Predmet pr3 = new Predmet("PR1", "Objektno programiranje", 8, 2, "Letnji");
-		Predmet pr4 = new Predmet("NANS", "Numericki algoritmi i numericki softver", 6, 3, "Zimski");
-		Predmet pr5 = new Predmet("ICR", "Interakcija covek racunar", 6, 3, "Letnji");
+		Predmet pr1 = new Predmet("MA2", "Matematička Analiza 1", 9, 1, p3, "Zimski");
+		Predmet pr2 = new Predmet("SE3", "OISISI", 6, 3, p3,  "Zimski");
+		Predmet pr3 = new Predmet("PR1", "Objektno programiranje", 8, 2, p3, "Letnji");
+		Predmet pr4 = new Predmet("NANS", "Numericki algoritmi i numericki softver", 6, 3, p2, "Zimski");
+		Predmet pr5 = new Predmet("ICR", "Interakcija covek racunar", 6, 3, p1, "Letnji");
+		Predmet pr8 = new Predmet("p8", "osnove elektortehnike", 1, 11, p3,  "Letnji");
 		
 		Ocena o1 = new Ocena(s3, pr1, 9, Util.formatter.parse("17.01.2021."));
 		Ocena o2 = new Ocena(s3, pr2, 8, Util.formatter.parse("11.02.2021."));
@@ -93,14 +96,16 @@ public class AppData {
 		s4.setProsecnaOcena(7.67);
 		
 		p1.addPredmet(pr1);
+		p1.addPredmet(pr4);
+		p1.addPredmet(pr5);
 		p1.addPredmet(pr2);
-		
 		p2.addPredmet(pr3);
 		
 		studenti.add(s1);
 		studenti.add(s2);
 		studenti.add(s3);
 		studenti.add(s4);
+		studenti.add(s5);
 		
 		profesori.add(p1);
 		profesori.add(p2);
@@ -111,6 +116,7 @@ public class AppData {
 		predmeti.add(pr3);
 		predmeti.add(pr4);
 		predmeti.add(pr5);
+		predmeti.add(pr8);
 	}
 	
 	public void createStudentAndAddToStudents(ArrayList<JTextField> textFields, ArrayList<JComboBox<String>> comboBoxes) {
@@ -222,12 +228,23 @@ public class AppData {
 		int godina = (Integer)cbGodine.getSelectedItem();
 		String semestar = (String)cbSemestar.getSelectedItem();
 		int espb = unpackIntTextField(textFields.get(2));
+		String nazivProfesora = unpackStringTextField(textFields.get(3));
+		
+		String[] pr = nazivProfesora.split(" ");
+		String imeProfesora = pr[0];
+		for(Profesor p : profesori) {
+			if(imeProfesora.equals(p.getIme())) {
+				Profesor profesor = new Profesor(p.getIme(), p.getPrezime(), p.getZvanje(), p.getEmail());
+				predmet.setPredmetniProfesor(profesor);
+			}
+		}
 		
 		predmet.setSifraPredmeta(sifra);
 		predmet.setNazivPredmeta(naziv);
 		predmet.setGodinaStudija(godina);
 		predmet.setSemestar(semestar);
 		predmet.setEspb(espb);
+		
 	}
 	
 	public String unpackStringTextField(JTextField tf) {
@@ -325,7 +342,7 @@ public class AppData {
 	}
 	
 	public boolean isNazivPredmetaChanged(String naziv)
-	{
+	{	
 		int index = AppCentralPanel.getInstance().getIndexPredmeti();
 		Predmet predmet = getPredmeti().get(index);
 		String nazivPredmeta = predmet.getNazivPredmeta();
@@ -334,6 +351,7 @@ public class AppData {
 		} else return isNazivPredmetaUnique(naziv);
 		
 	}
+	
 	
 	public void deleteStudent(Student student)
 	{
@@ -379,6 +397,16 @@ public class AppData {
 		    }
 		}
 	}
+	
+	public void removeProfesorFromPredmet(Predmet predmet) {
+	    for(Predmet p : predmeti) {
+	      if(p.equals(predmet)) {
+	        p.getPredmetniProfesor().setIme("");
+	        p.getPredmetniProfesor().setPrezime("");
+	      }
+	    }
+	    System.out.println(predmet.getPredmetniProfesor().getIme());
+	  }
 	
 	public void dodajPredmetProfesoru(Predmet pr, Profesor p) {
 		p.addPredmet(pr);
