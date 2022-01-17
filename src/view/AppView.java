@@ -5,9 +5,12 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.AppData;
+import model.Predmet;
+import model.Profesor;
 import view.addDialogs.*;
 import view.changeDialogs.*;
 import view.changeDialogs.Profesor.ChangeProfesorDialog;
@@ -46,6 +49,8 @@ public class AppView {
 	private DaNeDialog ponistavanjeOceneDialog;
 	private PolaganjeDialog polaganjeDialog;
 	private DeleteStudentFromSubject deleteStudentFromSubject;
+	private RemoveProfessorDialog removeProfessorDialog;
+	private ChooseProfessorDialog chooseProfessorDialog;
 
 	private DodavanjePredmetaProfesoruDailog dodavanjePredmetaProfesoruDialog;
 	private DaNeDialog uklanjanjePredmetaProfesoruDialog;
@@ -78,6 +83,8 @@ public class AppView {
 		
 		addStudentOnSubjectDialog = new AddStudentOnSubjectDialog(frame, "Dodavanje Predmeta", true);
 		deleteStudentFromSubject = new DeleteStudentFromSubject(frame, "Uklanjanje predmeta", true);
+		removeProfessorDialog = new RemoveProfessorDialog(frame, "Ukloni Profesora", true);
+		chooseProfessorDialog =  new ChooseProfessorDialog(frame, "Odaberi profesora", true);
 		
 		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
@@ -245,5 +252,13 @@ public class AppView {
 	
 	public DeleteStudentFromSubject getDeleteStudentFromSubject() {
 		return this.deleteStudentFromSubject;
+	}
+	
+	public RemoveProfessorDialog getRemoveProfessorDialog() {
+		return this.removeProfessorDialog;
+	}
+	
+	public ChooseProfessorDialog getChooseProfessorDialog() {
+		return this.chooseProfessorDialog;
 	}
 }

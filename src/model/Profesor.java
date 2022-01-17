@@ -75,6 +75,15 @@ public class Profesor {
 		this.datumRodjenja = datumRodjenja;
 	}
 	
+	public void removePredmetFromProfesor(Predmet predmet) {
+		for(Predmet p : predmeti) {
+		      if(p.equals(predmet)) {
+		    	  this.predmeti.remove(p);
+		      }
+		    }
+	}
+
+	
 	public void addPredmet(Predmet p) {
 		predmeti.add(p);
 	}
