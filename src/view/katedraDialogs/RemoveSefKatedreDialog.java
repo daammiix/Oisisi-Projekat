@@ -32,7 +32,7 @@ public class RemoveSefKatedreDialog extends JDialog {
 		
 		panel1 =  new JPanel();
 		panel2 = new JPanel();
-		label = new JLabel("<html><p>Da li ste sigurni?", SwingConstants.CENTER);
+		label = new JLabel("<html><p>Da li ste sigurni?</p></html>", SwingConstants.CENTER);
 		btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setActionCommand("RemoveSef");
 		btnOdustani = new JButton("Odustani");
