@@ -54,6 +54,10 @@ public class Predmet {
 		studentiPali = new ArrayList<Student>();
 	}
 	
+	public void removeProfesorFromPredmet() {
+		this.predmetniProfesor = null;
+	  }
+	
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}

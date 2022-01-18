@@ -17,6 +17,10 @@ import view.changeDialogs.Profesor.ChangeProfesorDialog;
 import view.changeDialogs.Student.ChangeStudentDialog;
 import view.deleteDialogs.*;
 import view.dodavanjePredmetaProfesoruDialog.DodavanjePredmetaProfesoruDailog;
+import view.katedraDialogs.KatedreDialog;
+import view.katedraDialogs.RemoveSefKatedreDialog;
+import view.katedraDialogs.SefKatedreDialog;
+import view.katedraDialogs.TrenutniSefKatedre;
 import view.polaganjeDialog.PolaganjeDialog;
 import view.studentPredmetDialogs.AddStudentOnSubjectDialog;
 import view.studentPredmetDialogs.DeleteStudentFromSubject;
@@ -51,6 +55,10 @@ public class AppView {
 	private DeleteStudentFromSubject deleteStudentFromSubject;
 	private RemoveProfessorDialog removeProfessorDialog;
 	private ChooseProfessorDialog chooseProfessorDialog;
+	private KatedreDialog katedreDialog;
+	private SefKatedreDialog sefKatedreDialog;
+	private TrenutniSefKatedre trenutniSefKatedre;
+	private RemoveSefKatedreDialog removeSefKatedreDialog;
 
 	private DodavanjePredmetaProfesoruDailog dodavanjePredmetaProfesoruDialog;
 	private DaNeDialog uklanjanjePredmetaProfesoruDialog;
@@ -85,6 +93,10 @@ public class AppView {
 		deleteStudentFromSubject = new DeleteStudentFromSubject(frame, "Uklanjanje predmeta", true);
 		removeProfessorDialog = new RemoveProfessorDialog(frame, "Ukloni Profesora", true);
 		chooseProfessorDialog =  new ChooseProfessorDialog(frame, "Odaberi profesora", true);
+		katedreDialog =  new KatedreDialog(frame, "Katedre", true);
+		sefKatedreDialog = new SefKatedreDialog(frame, "Profesori", true);
+		trenutniSefKatedre = new TrenutniSefKatedre(frame, "Trenutni sef katedre", true);
+		removeSefKatedreDialog = new RemoveSefKatedreDialog(frame, "Ukloni sefa katedre", true);
 		
 		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
@@ -131,6 +143,10 @@ public class AppView {
 	public void addDeleteEntityListener(ActionListener dal) {
 		toolBar.getBtnDelete().addActionListener(dal);
 		menuBar.getMiDelete().addActionListener(dal);
+	}
+	
+	public void addKatedraListener(ActionListener dal) {
+		menuBar.getMiKatedre().addActionListener(dal);
 	}
 	
 	public boolean isTextFieldValid(JTextField tf, String pattern) {
@@ -260,5 +276,21 @@ public class AppView {
 	
 	public ChooseProfessorDialog getChooseProfessorDialog() {
 		return this.chooseProfessorDialog;
+	}
+	
+	public KatedreDialog getKatedreDialog() {
+		return this.katedreDialog;
+	}
+	
+	public SefKatedreDialog getSefKatedreDialog() {
+		return this.sefKatedreDialog;
+	}
+	
+	public TrenutniSefKatedre getTrenutniSefKatedre() {
+		return this.trenutniSefKatedre;
+	}
+	
+	public RemoveSefKatedreDialog getRemoveSefKatedreDialog() {
+		return this.removeSefKatedreDialog;
 	}
 }

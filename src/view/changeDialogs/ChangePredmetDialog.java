@@ -163,8 +163,12 @@ public class ChangePredmetDialog extends JDialog {
 		cbGodina.setSelectedItem(predmet.getGodinaStudija());
 		cbSemestar.setSelectedItem(predmet.getSemestar());
 		textFields.get(2).setText(Integer.toString(predmet.getEspb()));
-		String[] pr = {predmet.getPredmetniProfesor().getIme(), predmet.getPredmetniProfesor().getPrezime()};
-		textFields.get(3).setText(pr[0] + " " + pr[1]);
+		if(predmet.getPredmetniProfesor() == null) {
+			textFields.get(3).setText("");
+		} else {
+			String[] pr = {predmet.getPredmetniProfesor().getIme(), predmet.getPredmetniProfesor().getPrezime()};
+			textFields.get(3).setText(pr[0] + " " + pr[1]);
+		}
 	}
 	
 	public JPanel getMainPanel() {

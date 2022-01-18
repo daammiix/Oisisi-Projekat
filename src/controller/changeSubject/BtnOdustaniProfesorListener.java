@@ -27,6 +27,27 @@ private AppView view;
 					view.getChooseProfessorDialog().setVisible(false);
 					break;
 				}
+			case "Katedre":
+				{
+					view.getKatedreDialog().clearTable();
+					view.getKatedreDialog().setVisible(false);
+					break;
+				}
+			case "SefKatedre":
+				{
+					view.getSefKatedreDialog().setVisible(false);
+					break;
+				}
+			case "RemoveSef":
+				{
+					view.getRemoveSefKatedreDialog().setVisible(false);
+					break;
+				}
+			case "TrenutniSefKatedre":
+				{
+					view.getTrenutniSefKatedre().setVisible(false);
+					break;
+				}
 		}
 		
 	}

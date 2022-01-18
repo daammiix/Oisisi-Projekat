@@ -1,4 +1,4 @@
-package controller.changeSubject;
+package controller.katedra;
 
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -6,14 +6,14 @@ import javax.swing.*;
 import util.Util;
 import view.*;
 
-public class BtnPlusListener implements MouseListener{
+public class BtnPlusSefListener implements MouseListener{
 	private AppView view;
 	private String message;
 		
-	public BtnPlusListener(AppView view) {
+	public BtnPlusSefListener(AppView view) {
 		this.view = view;
 		
-		message = "Profesor vec postoji";
+		message = "Sef katedre vec postoji";
 	}
 	
 	@Override
@@ -22,8 +22,8 @@ public class BtnPlusListener implements MouseListener{
 		if(!btn.isEnabled()) {
 			JOptionPane.showMessageDialog(view.getChangeStudentDialog(), message, "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
-			view.getChooseProfessorDialog().setLocationRelativeTo(view.getFrame());
-			view.getChooseProfessorDialog().setVisible(true);
+			view.getSefKatedreDialog().setLocationRelativeTo(view.getFrame());
+			view.getSefKatedreDialog().setVisible(true);
 		}
 	}
 

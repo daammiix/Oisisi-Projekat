@@ -2,9 +2,11 @@ package controller.daNeOk;
 
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.*;
 import model.AppData;
+import model.Ocena;
 import model.Predmet;
 import model.Profesor;
 import model.Student;
@@ -40,6 +42,11 @@ public class BtnDaListener implements MouseListener {
 			case "Predmet":
 				{
 					deletePredmet();
+					ArrayList<Student> studenti = AppData.getInstance().getStudenti();
+					for(Student s : studenti) {
+						AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().refreshInfo(s);
+					}
+
 					break;
 				}
 		}
@@ -91,6 +98,16 @@ public class BtnDaListener implements MouseListener {
 		DeletePredmetDialog dialog = view.getDeletePredmetDialog();
 		int index = AppCentralPanel.getInstance().getIndexPredmeti();
 		Predmet predmet = AppData.getInstance().getPredmeti().get(index);
+		ArrayList<Student> studenti = AppData.getInstance().getStudenti();
+		for(Student s : studenti) {
+			for (Iterator<Ocena> iterator = s.getNepolozeniIspiti().iterator(); iterator.hasNext(); ) {
+				Ocena value = iterator.next();
+				if(value.getPredmet().equals(predmet)) {
+					iterator.remove();
+				}
+
+			}
+		}
 		AppData.getInstance().deletePredmet(predmet);
 		view.initTablePredmeti();
 		dialog.setVisible(false);
