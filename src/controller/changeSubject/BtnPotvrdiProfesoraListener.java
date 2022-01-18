@@ -98,8 +98,6 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 				Katedra katedra = AppData.getInstance().getKatedra().get(selectedRowKatedra);
 				Profesor profesor = katedra.getSefKatedre();
 				katedra.removeSefFromKatedra();
-				AppView.getInstance().getKatedreDialog().clearTable();
-				AppView.getInstance().getKatedreDialog().initTable();
 				TrenutniSefKatedre dialog = AppView.getInstance().getTrenutniSefKatedre();
 				JTextField textField = dialog.getTextField();
 				textField.setText("");
