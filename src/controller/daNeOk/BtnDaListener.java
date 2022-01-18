@@ -109,6 +109,10 @@ public class BtnDaListener implements MouseListener {
 			}
 		}
 		AppData.getInstance().deletePredmet(predmet);
+		for(Student s : studenti) {
+			AppView.getInstance().getAddStudentOnSubjectDialog().clearTable();
+			AppView.getInstance().getAddStudentOnSubjectDialog().initTable(s);
+		}
 		view.initTablePredmeti();
 		dialog.setVisible(false);
 	}
