@@ -17,6 +17,8 @@ import view.changeDialogs.Profesor.ChangeProfesorDialog;
 import view.changeDialogs.Student.ChangeStudentDialog;
 import view.deleteDialogs.*;
 import view.dodavanjePredmetaProfesoruDialog.DodavanjePredmetaProfesoruDailog;
+import view.helpAndAbout.AboutDialog;
+import view.helpAndAbout.HelpDialog;
 import view.katedraDialogs.KatedreDialog;
 import view.katedraDialogs.RemoveSefKatedreDialog;
 import view.katedraDialogs.SefKatedreDialog;
@@ -59,6 +61,8 @@ public class AppView {
 	private SefKatedreDialog sefKatedreDialog;
 	private TrenutniSefKatedre trenutniSefKatedre;
 	private RemoveSefKatedreDialog removeSefKatedreDialog;
+	private AboutDialog aboutDialog;
+	private HelpDialog helpDialog;
 
 	private DodavanjePredmetaProfesoruDailog dodavanjePredmetaProfesoruDialog;
 	private DaNeDialog uklanjanjePredmetaProfesoruDialog;
@@ -97,6 +101,8 @@ public class AppView {
 		sefKatedreDialog = new SefKatedreDialog(frame, "Profesori", true);
 		trenutniSefKatedre = new TrenutniSefKatedre(frame, "Trenutni sef katedre", true);
 		removeSefKatedreDialog = new RemoveSefKatedreDialog(frame, "Ukloni sefa katedre", true);
+		aboutDialog = new AboutDialog(frame, "About", true);
+		helpDialog = new HelpDialog(frame, "About", true);
 		
 		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
@@ -147,6 +153,14 @@ public class AppView {
 	
 	public void addKatedraListener(ActionListener dal) {
 		menuBar.getMiKatedre().addActionListener(dal);
+	}
+	
+	public void addHelpListener(ActionListener dal) {
+		menuBar.getMiHelp().addActionListener(dal);
+	}
+	
+	public void addAboutListener(ActionListener dal) {
+		menuBar.getMiAbout().addActionListener(dal);
 	}
 	
 	public boolean isTextFieldValid(JTextField tf, String pattern) {
@@ -292,5 +306,13 @@ public class AppView {
 	
 	public RemoveSefKatedreDialog getRemoveSefKatedreDialog() {
 		return this.removeSefKatedreDialog;
+	}
+	
+	public AboutDialog getAboutDialog() {
+		return this.aboutDialog;
+	}
+	
+	public HelpDialog getHelpDialog() {
+		return this.helpDialog;
 	}
 }
