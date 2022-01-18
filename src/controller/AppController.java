@@ -27,12 +27,16 @@ import controller.documentsListeners.DocumentListenerPredmet;
 import controller.documentsListeners.DocumentListenerProfesor;
 import controller.documentsListeners.DocumentListenerStudent;
 import controller.dodavanjePredmetaProfesoru.DodajPredmetBtnListener;
+import controller.katedra.BtnIzmeniListener;
+import controller.katedra.BtnMinusSefListener;
+import controller.katedra.BtnPlusSefListener;
 import controller.polaganjePredmeta.PolaganjePredmetaBtnListener;
 import controller.ponistavanjeOcene.*;
 import controller.potvrdiOdustani.*;
 import controller.uklanjanjePredmetaProfesoru.DaNeBtnListenerUkloniPredmet;
 import controller.uklanjanjePredmetaProfesoru.UkloniPredmetBtnListener;
 import model.AppData;
+import model.Katedra;
 import model.Profesor;
 import model.Student;
 import view.AppCentralPanel;
@@ -81,6 +85,9 @@ public class AppController {
 		this.addPlusBtnListener();
 		this.addOdustaniProfesorBtnListener();
 		this.addBtnPotvrdiProfesoraListener();
+		this.addBtnIzmeniKatedruListener();
+		this.addMinusSefBtnListener();
+		this.addPlusSefBtnListener();
 	}
 	
 	public void tabChangedListener() {
@@ -192,6 +199,7 @@ public class AppController {
 									appView.getChangePredmetDialog().getBtnPlus().setEnabled(false);
 								}
 								appView.getAddStudentDialog().getPanelInformacije().getBtnPotvrdi().setEnabled(false);
+								appView.getChooseProfessorDialog().clearTable();;
 								appView.getChooseProfessorDialog().initTable();
 								dialog1.setVisible(true);
 							} else {
@@ -231,7 +239,18 @@ public class AppController {
 				}
 			}
 		});
-	}
+	
+			appView.addKatedraListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ev) {
+					JDialog dialog = appView.getKatedreDialog();
+					appView.getKatedreDialog().initTable();
+					dialog.setLocationRelativeTo(appView.getFrame());
+					dialog.setVisible(true);
+				}
+			});
+	
+}
 	
 	private void addOdustaniBtnListener() {
 		OdustaniBtnListener obl = new OdustaniBtnListener(appView);
@@ -357,11 +376,32 @@ public class AppController {
 		BtnOdustaniProfesorListener bol = new BtnOdustaniProfesorListener(appView);
 		appView.getRemoveProfessorDialog().addOdustaniProfesorBtnListener(bol);
 		appView.getChooseProfessorDialog().addOdustaniProfesorBtnListener(bol);
+		appView.getKatedreDialog().addOdustaniProfesorBtnListener(bol);
+		appView.getSefKatedreDialog().addOdustaniProfesorBtnListener(bol);
+		appView.getRemoveSefKatedreDialog().addOdustaniProfesorBtnListener(bol);
+		appView.getTrenutniSefKatedre().addOdustaniProfesorBtnListener(bol);
 	}
 	
 	private void addBtnPotvrdiProfesoraListener() {
 		BtnPotvrdiProfesoraListener bpp = new BtnPotvrdiProfesoraListener(appView, appData);
 		appView.getChooseProfessorDialog().addBtnPotvrdiProfesoraListener(bpp, bpp);
 		appView.getRemoveProfessorDialog().addBtnPotvrdiProfesoraListener(bpp, bpp);
+		appView.getRemoveSefKatedreDialog().addBtnPotvrdiProfesoraListener(bpp, bpp);
+		appView.getSefKatedreDialog().addBtnPotvrdiProfesoraListener(bpp, bpp);
+	}
+	
+	private void addBtnIzmeniKatedruListener() {
+		BtnIzmeniListener biz = new BtnIzmeniListener(appView, appData);
+		appView.getKatedreDialog().addBtnIzmeniKatedruListener(biz, biz);
+	}
+	
+	private void addMinusSefBtnListener() {
+		BtnMinusSefListener bml = new BtnMinusSefListener(appView);
+		appView.getTrenutniSefKatedre().addMinusSefBtnListener(bml);
+	}
+	
+	private void addPlusSefBtnListener() {
+		BtnPlusSefListener bml = new BtnPlusSefListener(appView);
+		appView.getTrenutniSefKatedre().addPlusSefBtnListener(bml);
 	}
 }

@@ -19,6 +19,7 @@ public class AppData {
 	private ArrayList<Student> studenti;
 	private ArrayList<Profesor> profesori;
 	private ArrayList<Predmet> predmeti;
+	private ArrayList<Katedra> katedra; 
 	
 	public static AppData getInstance() {
 		if(instance == null)
@@ -30,12 +31,14 @@ public class AppData {
 		studenti = new ArrayList<Student>();
 		profesori = new ArrayList<Profesor>();
 		predmeti = new ArrayList<Predmet>();
+		katedra = new ArrayList<Katedra>();
 	}
 	
-	public AppData(ArrayList<Student> studenti, ArrayList<Profesor> profesori, ArrayList<Predmet> predmeti) {
+	public AppData(ArrayList<Student> studenti, ArrayList<Profesor> profesori, ArrayList<Predmet> predmeti, ArrayList<Katedra> katedra) {
 		this.studenti = studenti;
 		this.profesori = profesori;
 		this.predmeti = predmeti;
+		this.katedra = katedra;
 	}
 	
 	public void addStudent(Student s) {
@@ -65,10 +68,10 @@ public class AppData {
 		Profesor p1 = new Profesor("Darko", "Darkovic", "Profesor", "darkod25@uns.ac.rs");
 		Profesor p2 = new Profesor("Mirko", "Milutinovic", Util.formatter.parse("1.1.1975."), 
 				new Adresa("Bruski Put", "BB", "Brus", "Srbija"), "+3816625361441", "mirko.milutin@uns.ac.rs", 
-				new Adresa("Dusanovacka", "25", "Novi Sad", "Srbija"), "0101975781022", "Docent", 15);
+				new Adresa("Dusanovacka", "25", "Novi Sad", "Srbija"), "0101975781022", "redovan profesor", 15);
 		Profesor p3 = new Profesor("Branko", "Stojkovic", "Profesor", "branskos321@uns.ac.rs");
 		
-		Predmet pr1 = new Predmet("MA2", "Matematička Analiza 1", 9, 1, p3, "Zimski");
+		Predmet pr1 = new Predmet("MA2", "Matematička Analiza 1", 9, 1, null, "Zimski");
 		Predmet pr2 = new Predmet("SE3", "OISISI", 6, 3, p3,  "Zimski");
 		Predmet pr3 = new Predmet("PR1", "Objektno programiranje", 8, 2, p3, "Letnji");
 		Predmet pr4 = new Predmet("NANS", "Numericki algoritmi i numericki softver", 6, 3, p2, "Zimski");
@@ -84,6 +87,9 @@ public class AppData {
 		Ocena o4 = new Ocena(s4, pr1, 10, Util.formatter.parse("19.05.2021."));
 		Ocena o5 = new Ocena(s4, pr2, 7, Util.formatter.parse("22.07.2021."));
 		Ocena o6 = new Ocena(s4, pr3, 6, Util.formatter.parse("30.11.2021."));
+		
+		Katedra k1 = new Katedra("e42", "Katedra za matematiku");
+		Katedra k2 = new Katedra("e43", "Katedra za fiziku");
 		
 		s3.addPolozenIspit(o3);
 		s3.addNepolozenIspit(nepolozena1);
@@ -117,6 +123,14 @@ public class AppData {
 		predmeti.add(pr4);
 		predmeti.add(pr5);
 		predmeti.add(pr8);
+		
+		k1.addProfesor(p1);
+		k1.addProfesor(p2);
+		k2.addProfesor(p3);
+		k1.setSefKatedre(p1);
+		
+		katedra.add(k1);
+		katedra.add(k2);
 	}
 	
 	public void createStudentAndAddToStudents(ArrayList<JTextField> textFields, ArrayList<JComboBox<String>> comboBoxes) {
@@ -323,6 +337,21 @@ public class AppData {
 		
 	}
 	
+	/*public void refreshNepolozeniPredmeti() {
+		AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().clearTable();
+		boolean nema = true;
+		for(Student s : studenti) {
+			for(Ocena o : s.getNepolozeniIspiti()) {
+				for(Predmet p: predmeti) {
+					if(o.getPredmet().equals(p)) {
+						
+					}
+				}
+			}
+
+		}
+	}*/
+	
 	public boolean isNazivPredmetaUnique(String naziv) {
 		for(Predmet p : predmeti) {
 			if(naziv.equals(p.getNazivPredmeta()))
@@ -355,7 +384,7 @@ public class AppData {
 	
 	public void deleteStudent(Student student)
 	{
-		for (Iterator<Student> iterator = studenti.iterator(); iterator.hasNext(); ) {
+		for(Iterator<Student> iterator = studenti.iterator(); iterator.hasNext(); ) {
 			Student value = iterator.next();
 		    if (value.equals(student)) {
 		        iterator.remove();
@@ -397,16 +426,7 @@ public class AppData {
 		    }
 		}
 	}
-	
-	public void removeProfesorFromPredmet(Predmet predmet) {
-	    for(Predmet p : predmeti) {
-	      if(p.equals(predmet)) {
-	        p.getPredmetniProfesor().setIme("");
-	        p.getPredmetniProfesor().setPrezime("");
-	      }
-	    }
-	    System.out.println(predmet.getPredmetniProfesor().getIme());
-	  }
+
 	
 	public void dodajPredmetProfesoru(Predmet pr, Profesor p) {
 		p.addPredmet(pr);
@@ -440,5 +460,13 @@ public class AppData {
 
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
+	}
+	
+	public ArrayList<Katedra> getKatedra() {
+		return katedra;
+	}
+
+	public void setKatedra(ArrayList<Katedra> katedra) {
+		this.katedra = katedra;
 	}
 }

@@ -3,12 +3,12 @@ package model;
 import java.util.ArrayList;
 
 public class Katedra {
-	private int sifraKatedre;
+	private String sifraKatedre;
 	private String nazivKatedre;
 	private Profesor sefKatedre;
 	private ArrayList<Profesor> profesori;
 	
-	public Katedra(int sifraKatedre, String nazivKatedre, Profesor sefKatedre, ArrayList<Profesor> profesori) {
+	public Katedra(String sifraKatedre, String nazivKatedre, Profesor sefKatedre, ArrayList<Profesor> profesori) {
 		super();
 		this.sifraKatedre = sifraKatedre;
 		this.nazivKatedre = nazivKatedre;
@@ -16,11 +16,30 @@ public class Katedra {
 		this.profesori = profesori;
 	}
 	
-	public int getSifraKatedre() {
+	public Katedra(String sifraKatedre, String nazivKatedre) {
+		super();
+		this.sifraKatedre = sifraKatedre;
+		this.nazivKatedre = nazivKatedre;
+		this.profesori = new ArrayList<Profesor>();
+	}
+	
+	public void removeSefFromKatedra() {
+		this.sefKatedre = null; 
+	}
+	
+	public void addSefKatedre(Profesor profesor) {
+		this.sefKatedre = profesor;
+	}
+	
+	public void addProfesor(Profesor p) {
+		profesori.add(p);
+	}
+	
+	public String getSifraKatedre() {
 		return sifraKatedre;
 	}
 	
-	public void setSifraKatedre(int sifraKatedre) {
+	public void setSifraKatedre(String sifraKatedre) {
 		this.sifraKatedre = sifraKatedre;
 	}
 	public String getNazivKatedre() {
