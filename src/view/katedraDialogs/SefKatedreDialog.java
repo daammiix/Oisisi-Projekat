@@ -1,4 +1,4 @@
-package view.changeDialogs;
+package view.katedraDialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,28 +18,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.AppData;
-import model.Ocena;
-import model.Predmet;
+import model.Katedra;
 import model.Profesor;
-import model.Student;
 import util.Util;
 import view.AppFrame;
 
-public class ChooseProfessorDialog extends JDialog {
+public class SefKatedreDialog extends JDialog {
 
-	private static final long serialVersionUID = -5963238327765330825L;
+	private static final long serialVersionUID = 7102449982660612509L;
 	
-
 	private JTable table;
 	private DefaultTableModel tableModel;
-	private JButton btnPotvrdi;
+	private JButton btnIzmeni;
 	private JButton btnOdustani;
 	private JPanel panel;
+	private ArrayList<Profesor> dozvoljeniProfesori;
 	
-	public ChooseProfessorDialog(AppFrame parent, String title, boolean modal) {
+	public SefKatedreDialog(AppFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		
-		this.setSize(parent.getWidth() *2 / 5, parent.getHeight() *2 / 5);
+		this.setSize(parent.getWidth() / 2, parent.getHeight() / 2);
 		this.setResizable(false);
 		init();
 	}
@@ -52,17 +50,17 @@ public class ChooseProfessorDialog extends JDialog {
 		
 		JScrollPane sp = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		btnPotvrdi = new JButton("Potvrdi");
-		btnPotvrdi.setActionCommand("Choose");
-		setButton(btnPotvrdi);
-		btnPotvrdi.setPreferredSize(new Dimension(25, 25));
+		btnIzmeni = new JButton("Potvrdi");
+		setButton(btnIzmeni);
+		btnIzmeni.setActionCommand("ChooseSefKatedre");
+		btnIzmeni.setPreferredSize(new Dimension(25, 25));
 		btnOdustani = new JButton("Odustani");
-		btnOdustani.setActionCommand("Choose");
+		btnOdustani.setActionCommand("SefKatedre");
 		setButton(btnOdustani);
 		btnOdustani.setPreferredSize(new Dimension(25, 25));
 		
 		panel = new JPanel();
-		panel.add(btnPotvrdi);
+		panel.add(btnIzmeni);
 		panel.add(btnOdustani);
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
 		panel.setLayout(new GridLayout(1, 2, 15, 0));
@@ -73,35 +71,57 @@ public class ChooseProfessorDialog extends JDialog {
 		this.add(sp, BorderLayout.CENTER);
 	}
 	
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
 	private void setButton(JButton button) {
 		button.setMargin(new Insets(1, 4, 1, 4));
 	}
 	
 	public void addBtnPotvrdiProfesoraListener(MouseListener ml, ActionListener al) {
-		btnPotvrdi.addMouseListener(ml);
-		btnPotvrdi.addActionListener(al);
+		btnIzmeni.addMouseListener(ml);
+		btnIzmeni.addActionListener(al);
 	}
 	
+
 	public void addOdustaniProfesorBtnListener(MouseListener ml) {
 		btnOdustani.addMouseListener(ml);
 	}
 	
 	public void initTable() {
-		ArrayList<Profesor> profesori = new ArrayList<Profesor>();
-		for(Profesor p : AppData.getInstance().getProfesori()) {
-			profesori.add(p);
-		}
+		ArrayList<Profesor> profesori = AppData.getInstance().getProfesori();
+		dozvoljeniProfesori = new ArrayList<Profesor>();
 		for(Profesor p : profesori) {
-			Object[] data = {p.getIme() + " " + p.getPrezime()};
-			tableModel.addRow(data);
+			if(p.getZvanje().equalsIgnoreCase("redovan profesor") || p.getZvanje().equalsIgnoreCase("vanredan profesor") && p.getGodineStaza()>=5) {
+				Object[] data = {p.getIme() + " " + p.getPrezime()};
+				tableModel.addRow(data);
+				dozvoljeniProfesori.add(p);
+			}
 		}
+	}
+	
+	public void clearTable() {
+		tableModel.setRowCount(0);
 	}
 	
 	public JTable getTable() {
 		return this.table;
 	}
 	
-	public void clearTable() {
-		tableModel.setRowCount(0);
+	public DefaultTableModel getTableModel() {
+		return this.tableModel;
+	}
+	
+	public ArrayList<Profesor> getDozvoljeniProfesori() {
+		return dozvoljeniProfesori;
+	}
+
+	public void setDozvoljeniProfesori(ArrayList<Profesor> dozvoljeniProfesori) {
+		this.dozvoljeniProfesori = dozvoljeniProfesori;
 	}
 }

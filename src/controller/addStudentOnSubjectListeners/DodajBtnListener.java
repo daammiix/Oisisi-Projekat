@@ -21,11 +21,6 @@ public class DodajBtnListener implements MouseListener{
 		AppView.getInstance().getAddStudentOnSubjectDialog().setLocationRelativeTo(AppView.getInstance()
 				.getChangeStudentDialog());
 		AppView.getInstance().getAddStudentOnSubjectDialog().setVisible(true);
-		/*int selectedRow = AppCentralPanel.getInstance().getInstance().getIndexStudent();
-		if(selectedRow >= 0) {
-			Student selectedStudent = AppData.getInstance().getStudenti().get(selectedRow);
-			AppView.getInstance().getAddStudentOnSubjectDialog().initTable(selectedStudent);
-		}*/
 	}
 
 	@Override
