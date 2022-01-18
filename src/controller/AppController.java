@@ -27,6 +27,7 @@ import controller.documentsListeners.DocumentListenerPredmet;
 import controller.documentsListeners.DocumentListenerProfesor;
 import controller.documentsListeners.DocumentListenerStudent;
 import controller.dodavanjePredmetaProfesoru.DodajPredmetBtnListener;
+import controller.helpAbout.ZatvoriBtnListener;
 import controller.katedra.BtnIzmeniListener;
 import controller.katedra.BtnMinusSefListener;
 import controller.katedra.BtnPlusSefListener;
@@ -88,6 +89,7 @@ public class AppController {
 		this.addBtnIzmeniKatedruListener();
 		this.addMinusSefBtnListener();
 		this.addPlusSefBtnListener();
+		this.addBtnZatvoriListener();
 	}
 	
 	public void tabChangedListener() {
@@ -249,6 +251,24 @@ public class AppController {
 					dialog.setVisible(true);
 				}
 			});
+			
+			appView.addHelpListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ev) {
+					JDialog dialog = appView.getHelpDialog();
+					dialog.setLocationRelativeTo(appView.getFrame());
+					dialog.setVisible(true);
+				}
+			});
+			
+			appView.addAboutListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ev) {
+					JDialog dialog = appView.getAboutDialog();
+					dialog.setLocationRelativeTo(appView.getFrame());
+					dialog.setVisible(true);
+				}
+			});
 	
 }
 	
@@ -403,5 +423,11 @@ public class AppController {
 	private void addPlusSefBtnListener() {
 		BtnPlusSefListener bml = new BtnPlusSefListener(appView);
 		appView.getTrenutniSefKatedre().addPlusSefBtnListener(bml);
+	}
+	
+	private void addBtnZatvoriListener() {
+		ZatvoriBtnListener zbl = new ZatvoriBtnListener(appView);
+		appView.getAboutDialog().addBtnZatvoriListener(zbl);
+		appView.getHelpDialog().addBtnZatvoriListener(zbl);
 	}
 }
