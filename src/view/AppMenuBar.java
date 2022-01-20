@@ -143,6 +143,10 @@ public class AppMenuBar extends JMenuBar {
 		this.add(mHelp);
 		
 	}
+	
+	public void addSaveActionListener(ActionListener al) {
+		miSave.addActionListener(al);
+	}
 
 	public JMenu getmFile() {
 		return mFile;
