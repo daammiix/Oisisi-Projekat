@@ -17,17 +17,19 @@ public class Util {
 	public static final Color buttonForegroundColor = new Color(236, 240, 241);
 	
 	// Regex
-	public static final String stringPattern = "[a-zA-Z]+";
+	public static final String stringPattern = "[a-zA-ZčćžđšČĆŽĐŠ]+";
 	public static final String textPattern = ".+";
-	public static final String adressPattern = "[a-zA-z\\s]+,\\s*\\d*/?[a-zA-Z]*,\\s*[a-zA-Z\\s]+,\\s*[a-zA-Z]+\\s*";
+	public static final String adressPattern = "[a-zA-z\\sčćžđšČĆŽĐŠ]+,\\s*\\d*/?[a-zA-ZčćžđšČĆŽĐŠ]*,\\s*[a-zA-Z\\sčćžđšČĆŽĐŠ]+,\\s*[a-zA-ZčćžđšČĆŽĐŠ]+\\s*";
 	public static final String numberPattern = "\\d+";
 	public static final String datePattern = "\\d{1,2}\\.\\d{1,2}\\.\\d{4}\\.";
-	public static final String numTelPattern = "\\+?\\d{9,25}";
+	public static final String numTelPattern = "\\+?\\d{3}\\/?\\d{3,5}\\-\\d{3,5}";
 	public static final String emailPattern = ".*@.*";
 	public static final String brLicKartePattern = "\\d{9}";
 	public static final String godUpisaPattern = "(19\\d{2})|(20\\d{2})";
 	public static final String brIndeksaPattern = "[a-zA-Z]{2}-\\d{1,3}-\\d{1,4}";
 	public static final String brGodStazaPattern = "[0-9]|([1-9][0-9])";
+	public static final String searchPattern1 = ".*,,";
+	public static final String searchPattern2 = ".*,.*,";
 	
 	public static JTable createTable(DefaultTableModel model) {
 		JTable ret = new JTable(model);

@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import javax.swing.JDialog;
 import javax.swing.JTextField;
@@ -40,6 +41,8 @@ import model.AppData;
 import model.Katedra;
 import model.Profesor;
 import model.Student;
+import model.TableStudentIndexValue;
+import util.Util;
 import view.AppCentralPanel;
 import view.AppView;
 import view.changeDialogs.ChangePredmetDialog;
@@ -90,6 +93,7 @@ public class AppController {
 		this.addMinusSefBtnListener();
 		this.addPlusSefBtnListener();
 		this.addBtnZatvoriListener();
+		this.addSearchBtnActionListener();
 	}
 	
 	public void tabChangedListener() {
@@ -149,7 +153,10 @@ public class AppController {
 							ChangeStudentDialog dialog1 =appView.getChangeStudentDialog();
 							NotSelectedDialog dialog2 = appView.getNotSelectedDialog();
 							if(selectedRow >= 0) {
-								Student selectedStudent = appData.getStudenti().get(selectedRow);
+								TableStudentIndexValue selectedValue = (TableStudentIndexValue) appView.getCentralPanel().gettStudenti().
+										getValueAt(selectedRow, 0);
+								String selectedStudentIndeks = selectedValue.getIndeks();
+								Student selectedStudent = appData.getStudentByIndeks(selectedStudentIndeks);
 								dialog1.setLocationRelativeTo(appView.getFrame());
 								appView.getChangeStudentDialog().getPanelInformacije().fillInStudent(selectedStudent);
 								dialog1.getPanelPolozeni().refreshInfo(selectedStudent);
@@ -169,7 +176,9 @@ public class AppController {
 							ChangeProfesorDialog dialog1 =appView.getChangeProfesorDialog();
 							NotSelectedDialog dialog2 = appView.getNotSelectedDialog();
 							if(selectedRow >= 0) {
-								Profesor selectedProfesor = appData.getProfesori().get(selectedRow);
+								String selectedProfesorEmail = (String) appView.getCentralPanel().gettProfesori().
+										getValueAt(selectedRow, 3);
+								Profesor selectedProfesor = appData.getProfesorByEmail(selectedProfesorEmail);
 								dialog1.setLocationRelativeTo(appView.getFrame());
 								appView.getChangeProfesorDialog().fillInProfesor(selectedProfesor);
 								dialog1.getPredmeti().refreshInfo(selectedProfesor);
@@ -189,8 +198,10 @@ public class AppController {
 							ArrayList<JTextField> textFields = AppView.getInstance().getChangePredmetDialog().getTextFields();
 							textFields = appView.getChangePredmetDialog().getTextFields();
 							if(selectedRow >= 0) {
+								String selectedPredmetSifra = (String) appView.getCentralPanel().gettPredmeti().
+										getValueAt(selectedRow, 0);
 								dialog1.setLocationRelativeTo(appView.getFrame());
-								appView.getChangePredmetDialog().fillInPredmet(appData.getPredmeti().get(selectedRow));
+								appView.getChangePredmetDialog().fillInPredmet(appData.getPredmetBySifra(selectedPredmetSifra));
 								String textF = textFields.get(3).getText();
 								String text = textF.trim();
 								if(text.equals("")) {
@@ -429,5 +440,30 @@ public class AppController {
 		ZatvoriBtnListener zbl = new ZatvoriBtnListener(appView);
 		appView.getAboutDialog().addBtnZatvoriListener(zbl);
 		appView.getHelpDialog().addBtnZatvoriListener(zbl);
+	}
+	
+	private void addSearchBtnActionListener() {
+		appView.getToolBar().addBtnSearchActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String text = appView.getToolBar().getTfSearch().getText();
+				String[] parts = text.split(",");
+				// zato sto split brise prazne stringove sa kraja.
+				Pattern p1 = Pattern.compile(Util.searchPattern1);
+				Pattern p2 = Pattern.compile(Util.searchPattern2);
+				if(p1.matcher(text).matches()) {
+					String[] expandedParts = {parts[0], "", ""};
+					AppView.getInstance().getCentralPanel().filterTables(expandedParts);
+					return;
+				}
+				if(p2.matcher(text).matches()) {
+					String[] expandedParts = {parts[0], parts[1], ""};
+					AppView.getInstance().getCentralPanel().filterTables(expandedParts);
+					return;
+				}
+				AppView.getInstance().getCentralPanel().filterTables(parts);
+			}
+		});
 	}
 }

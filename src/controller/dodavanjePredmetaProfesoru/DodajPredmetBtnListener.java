@@ -11,7 +11,10 @@ public class DodajPredmetBtnListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		AppView.getInstance().getDodavanjePredmetaProfesoruDialog().setLocationRelativeTo(
 				AppView.getInstance().getChangeProfesorDialog());
-		int selectedProfesor = AppView.getInstance().getCentralPanel().gettProfesori().getSelectedRow();
+		int selectedRow = AppView.getInstance().getCentralPanel().gettProfesori().getSelectedRow();
+		String selectedProfesorEmail = (String) AppView.getInstance().getCentralPanel().gettProfesori().
+				getValueAt(selectedRow, 3);
+		int selectedProfesor = AppData.getInstance().getProfesorIdxByEmail(selectedProfesorEmail);
 		AppView.getInstance().getDodavanjePredmetaProfesoruDialog().fillListInformation(AppData.getInstance().
 				getProfesori().get(selectedProfesor));
 		AppView.getInstance().getDodavanjePredmetaProfesoruDialog().setVisible(true);

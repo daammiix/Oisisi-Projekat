@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class AppToolBar extends JToolBar{
 	private static AppToolBar instance = null;
@@ -53,9 +55,20 @@ public class AppToolBar extends JToolBar{
 		btnSearch.setToolTipText("Search");
 		btnSearch.setIcon(new ImageIcon("image/image_search.png"));
 		this.add(btnSearch);
-
+		
+		btnOpen.setMnemonic(KeyEvent.VK_N);
+		btnEdit.setMnemonic(KeyEvent.VK_T);
+		btnDelete.setMnemonic(KeyEvent.VK_D);
+		tfSearch.setFocusAccelerator('p');
+		btnSearch.setMnemonic(KeyEvent.VK_S);
 	}
-
+	
+	public void addBtnSearchActionListener(ActionListener al) {
+		btnSearch.addActionListener(al);
+	}
+	
+	// getters and setters
+	
 	public JButton getBtnOpen() {
 		return btnOpen;
 	}

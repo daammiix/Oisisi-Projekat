@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import model.AppData;
 import model.Student;
+import model.TableStudentIndexValue;
 import util.Util;
 import view.*;
 
@@ -18,9 +19,12 @@ private AppView view;
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int selectedStudent = view.getCentralPanel().gettStudenti().getSelectedRow();
+		int selectedRow = view.getCentralPanel().gettStudenti().getSelectedRow();
+		TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
+				getValueAt(selectedRow, 0); 
+		String selectedStudentIndeks = selectedValue.getIndeks();
+		Student student = AppData.getInstance().getStudentByIndeks(selectedStudentIndeks);
 		int selectedPredmet = view.getChangeStudentDialog().getPanelNepolozeni().getTable().getSelectedRow();
-		Student student = AppData.getInstance().getStudenti().get(selectedStudent);
 		student.removePredmetFromNepolozeni(selectedPredmet);
 		AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().refreshInfo(student);
 		view.getDeleteStudentFromSubject().setVisible(false);
