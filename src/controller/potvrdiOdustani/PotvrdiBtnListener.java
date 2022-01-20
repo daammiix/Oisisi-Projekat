@@ -253,7 +253,7 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 			
 			Predmet prZaDodavanje = null;
 			for(Predmet pr : data.getPredmeti()) {
-				if(pr.getSifraPredmeta().equals(sfrPredmeta) && pr.getNazivPredmeta().equals(nazivPredmeta)) {
+				if(pr.getSifraPredmeta().equalsIgnoreCase(sfrPredmeta) && pr.getNazivPredmeta().equalsIgnoreCase(nazivPredmeta)) {
 					prZaDodavanje = pr;
 					break;
 				}
