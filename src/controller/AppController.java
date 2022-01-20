@@ -95,6 +95,7 @@ public class AppController {
 		this.addBtnZatvoriListener();
 		this.addSearchBtnActionListener();
 		this.addMainFrameWindowListener();
+		this.addSaveMenuItemActionListener();
 	}
 	
 	public void tabChangedListener() {
@@ -470,5 +471,16 @@ public class AppController {
 	
 	private void addMainFrameWindowListener() {
 		appView.getFrame().connectWindowListener(new MainFrameListener());
+	}
+	
+	private void addSaveMenuItemActionListener() {
+		appView.getMenuBar().addSaveActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				appData.saveData();
+			}
+			
+		});
 	}
 }
