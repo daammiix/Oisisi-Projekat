@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Predmet;
 import model.Profesor;
 import util.Util;
+import view.AppFrame;
 
 public class Predmeti extends JPanel {
 	private JButton btnDodaj;
@@ -29,10 +30,8 @@ public class Predmeti extends JPanel {
 		this.setLayout(new BorderLayout(0, 10));
 		
 		btnDodaj = new JButton("Dodaj predmet");
-		this.modifyButton(btnDodaj);
 		
 		btnUkloni = new JButton("Ukloni predmet");
-		this.modifyButton(btnUkloni);
 		
 		String[] columns = {"Šifra", "Naziv", "Godina studija", "Semestar"};
 		tmodel = new DefaultTableModel(columns, 0);
@@ -56,17 +55,21 @@ public class Predmeti extends JPanel {
 		this.setBorder(BorderFactory.createEmptyBorder(15, 15, 30, 15));
 	}
 	
+	public void initComponents() {
+		btnDodaj.setText(AppFrame.getInstance().getResourceBundle().getString("btnDodaj"));
+		btnUkloni.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+		String[] columns = {AppFrame.getInstance().getResourceBundle().getString("Sifra")
+				, AppFrame.getInstance().getResourceBundle().getString("Naziv")
+				, AppFrame.getInstance().getResourceBundle().getString("Godina_studija")
+				, AppFrame.getInstance().getResourceBundle().getString("Semestar")};
+		tmodel.setColumnIdentifiers(columns);
+	}
+	
 	private void setTableColumnsWidth() {
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
 		table.getColumnModel().getColumn(1).setPreferredWidth(400);
 		table.getColumnModel().getColumn(2).setPreferredWidth(200);
 		table.getColumnModel().getColumn(3).setPreferredWidth(200);
-	}
-	
-	private void modifyButton(JButton btn) {
-		btn.setBackground(Util.buttonBackgroundColor);
-		btn.setForeground(Util.buttonForegroundColor);
-		btn.setMargin(new Insets(1, 4, 1, 4));
 	}
 	
 	public void refreshInfo(Profesor p) {

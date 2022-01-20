@@ -93,16 +93,16 @@ public class AppView {
 		uklanjanjePredmetaProfesoruDialog = new DaNeDialog(changeProfesorDialog, "Ukloni predmet", true, 
 				"Da li ste sigurni da želite da uklonite predmet?");
 		
-		addStudentOnSubjectDialog = new AddStudentOnSubjectDialog(frame, "Dodavanje Predmeta", true);
+		addStudentOnSubjectDialog = new AddStudentOnSubjectDialog(frame, "Dodavanje predmeta", true);
 		deleteStudentFromSubject = new DeleteStudentFromSubject(frame, "Uklanjanje predmeta", true);
 		removeProfessorDialog = new RemoveProfessorDialog(frame, "Ukloni Profesora", true);
 		chooseProfessorDialog =  new ChooseProfessorDialog(frame, "Odaberi profesora", true);
-		katedreDialog =  new KatedreDialog(frame, "Katedre", true);
+		katedreDialog =  new KatedreDialog(frame,"Katedre", true);
 		sefKatedreDialog = new SefKatedreDialog(frame, "Profesori", true);
 		trenutniSefKatedre = new TrenutniSefKatedre(frame, "Trenutni sef katedre", true);
 		removeSefKatedreDialog = new RemoveSefKatedreDialog(frame, "Ukloni sefa katedre", true);
 		aboutDialog = new AboutDialog(frame, "About", true);
-		helpDialog = new HelpDialog(frame, "About", true);
+		helpDialog = new HelpDialog(frame, "Help", true);
 		
 		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
 		
@@ -115,6 +115,34 @@ public class AppView {
 		frame.add(statusBar, BorderLayout.SOUTH);
 		
 		frame.setVisible(true);
+	}
+	
+	public void initComponents() {
+		addStudentDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Dodavanje_studenta"));
+		addProfesorDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Dodavanje_profesora"));
+		addPredmetDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Dodavanje_predmeta"));
+		changeStudentDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Izmena_studenta"));
+		changeProfesorDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Izmena_profesora"));
+		changePredmetDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Izmena_predmeta"));
+		deleteStudentDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Brisanje_studenta"));
+		deleteProfesorDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Brisanje_profesora"));
+		deletePredmetDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Brisanje_predmeta"));
+		ponistavanjeOceneDialog = new DaNeDialog(changeStudentDialog, AppFrame.getInstance().getResourceBundle().getString("Ponistavanje_ocene"), true, 
+				AppFrame.getInstance().getResourceBundle().getString("poruka_ponisti"));
+		polaganjeDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Unos_ocene"));
+		dodavanjePredmetaProfesoruDialog = new DodavanjePredmetaProfesoruDailog(changeProfesorDialog, 
+				AppFrame.getInstance().getResourceBundle().getString("Dodavanje_predmeta"), true);
+		uklanjanjePredmetaProfesoruDialog = new DaNeDialog(changeProfesorDialog, AppFrame.getInstance().getResourceBundle().getString("Ukloni_predmet"), true, 
+				AppFrame.getInstance().getResourceBundle().getString("poruka_ukloni"));
+		notSelectedDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Greska_prilikom_selektovanja"));
+		addStudentOnSubjectDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Dodavanje_predmeta"));
+		deleteStudentFromSubject.setTitle(AppFrame.getInstance().getResourceBundle().getString("Ukloni_predmet"));
+		removeProfessorDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Ukloni_Profesora"));
+		chooseProfessorDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Odaberi_profesora"));
+		katedreDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("tKatedre"));
+		sefKatedreDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("tProfesori"));
+		trenutniSefKatedre.setTitle(AppFrame.getInstance().getResourceBundle().getString("Trenutni_sef_katedre"));
+		removeSefKatedreDialog.setTitle(AppFrame.getInstance().getResourceBundle().getString("Ukloni_sefa_katedre"));
 	}
 	
 	public void tabChangedListener(ChangeListener cl) {
@@ -161,6 +189,22 @@ public class AppView {
 	
 	public void addAboutListener(ActionListener dal) {
 		menuBar.getMiAbout().addActionListener(dal);
+	}
+	
+	public void addCloseListener(ActionListener dal) {
+		menuBar.getMiClose().addActionListener(dal);
+	}
+	
+	public void addStudentiOPenListener(ActionListener dal) {
+		menuBar.getMiStudenti().addActionListener(dal);
+	}
+	
+	public void addProfesoriOPenListener(ActionListener dal) {
+		menuBar.getMiProfesori().addActionListener(dal);
+	}
+	
+	public void addPredmetiOPenListener(ActionListener dal) {
+		menuBar.getMiPredmeti().addActionListener(dal);
 	}
 	
 	public boolean isTextFieldValid(JTextField tf, String pattern) {

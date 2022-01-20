@@ -6,6 +6,7 @@ import javax.swing.*;
 import util.Util;
 
 public class DaNeDialog extends JDialog {
+	
 	private JButton btnDa;
 	private JButton btnNe;
 	private static final long serialVersionUID = -3541175690656603765L;
@@ -34,8 +35,14 @@ public class DaNeDialog extends JDialog {
 		this.add(panel);
 	}
 	
+	public void initComponents() {
+		btnDa.setText(AppFrame.getInstance().getResourceBundle().getString("btnDa"));
+		btnNe.setText(AppFrame.getInstance().getResourceBundle().getString("btnNe"));
+	}
 	public void addBtnsActionListener(ActionListener al) {
 		btnDa.addActionListener(al);
 		btnNe.addActionListener(al);
 	}
+	
+	
 }

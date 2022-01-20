@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import model.Adresa;
 import model.Student;
 import util.Util;
+import view.AppFrame;
 import view.panelInformacije.PanelInformacijeWithComboBoxes;
 
 public class Informacije extends PanelInformacijeWithComboBoxes {
@@ -24,18 +25,18 @@ public class Informacije extends PanelInformacijeWithComboBoxes {
 	private void changeStudentInformacije() {
 		centralPanel.setLayout(new GridLayout(10, 2, 0, 20));
 		
-		addPairLabelTextField("Ime*");
-		addPairLabelTextField("Prezime*");
-		addPairLabelTextField("Datum rođenja*");
-		addPairLabelTextField("Adresa stanovanja*");
-		addPairLabelTextField("Broj telefona*");
-		addPairLabelTextField("E-mail adresa*");
-		addPairLabelTextField("Broj indeksa*");
-		addPairLabelTextField("Godina upisa*");
-		String[] godStud = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
-		addPairLabelComboBox("Trenutna godina studija*", godStud);
-		String[] nacFin = {"Budžet", "Samofinansiranje"};
-		addPairLabelComboBox("Način finansiranja*", nacFin);
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Ime") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Prezime") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Datun_rodjenja") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Adresa") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Broj_telefona") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Email") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Indeks") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Godina_upisa") + "*");
+		String[] godStud = {"I", "II", "III", "IV"};
+		addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Trenutna_godina_studija"), godStud);
+		String[] nacFin = {AppFrame.getInstance().getResourceBundle().getString("Budzet"), AppFrame.getInstance().getResourceBundle().getString("Samofinansiranje")};
+		addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Nacin_finansiranja"), nacFin);
 		
 		this.setBorder(BorderFactory.createEmptyBorder(20, 90, 15, 90));
 		this.btnPotvrdi.setActionCommand("Student");
@@ -45,6 +46,11 @@ public class Informacije extends PanelInformacijeWithComboBoxes {
 		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 0));
 		this.add(centralPanel, BorderLayout.CENTER);
 		this.add(btnPanel, BorderLayout.SOUTH);
+	}
+	
+	public void initComponents() {
+		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 	public void fillInStudent(Student s) {

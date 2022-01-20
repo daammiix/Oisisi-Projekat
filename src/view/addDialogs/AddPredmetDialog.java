@@ -15,19 +15,24 @@ public class AddPredmetDialog extends AddDialog {
 		panelInformacije.getCentralPanel().setLayout(new GridLayout(5, 2, 0, 20));
 		this.setSize(parent.getWidth() / 2, parent.getHeight() - 220);
 		
-		panelInformacije.addPairLabelTextField("Sifra*");
-		panelInformacije.addPairLabelTextField("Naziv*");
-		panelInformacije.addPairLabelTextField("Espb*");
-		String[] semestar = {"Letnji", "Zimski"};
-		panelInformacije.addPairLabelComboBox("Semestar*", semestar);
-		String[] godina = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
-		panelInformacije.addPairLabelComboBox("God*", godina);
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Sifra") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Naziv") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Broj_espb") + "*");
+		String[] semestar = {AppFrame.getInstance().getResourceBundle().getString("Letnji"), AppFrame.getInstance().getResourceBundle().getString("Zimski")};
+		panelInformacije.addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Semestar") + "*", semestar);
+		String[] godina = {"I", "II", "III", "IV"};
+		panelInformacije.addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Godina_studija") + "*", godina);
 		
 		panelInformacije.getCentralPanel().setBorder(BorderFactory.createEmptyBorder(50, 80, 50, 80));
 		this.add(panelInformacije.getCentralPanel(), BorderLayout.CENTER);
 		
 		this.panelInformacije.getBtnPotvrdi().setActionCommand("Predmet");
 		this.panelInformacije.getBtnOdustani().setActionCommand("Predmet");
+	}
+	
+	public void initComponents() {
+		this.panelInformacije.getBtnPotvrdi().setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		this.panelInformacije.getBtnOdustani().setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 }

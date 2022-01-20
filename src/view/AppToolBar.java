@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Locale;
+
 
 public class AppToolBar extends JToolBar{
 	private static AppToolBar instance = null;
@@ -19,6 +23,8 @@ public class AppToolBar extends JToolBar{
 	private JButton btnDelete;
 	private JTextField tfSearch;
 	private JButton btnSearch;
+	private JButton btnSrpski;
+	private JButton btnEngleski;
 
 	private static final long serialVersionUID = -7182434949988528780L;
 	
@@ -45,6 +51,35 @@ public class AppToolBar extends JToolBar{
 		btnDelete.setToolTipText("Delete");
 		btnDelete.setIcon(new ImageIcon("image/image_delete.png"));
 		this.add(btnDelete);
+		
+		addSeparator();
+		
+		btnSrpski = new JButton();
+		btnSrpski.setText("SR");
+		btnSrpski.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Locale.setDefault(new Locale("sr", "RS"));
+				AppFrame.getInstance().changeLanguage();
+
+			}
+		});
+		this.add(btnSrpski);
+		
+		addSeparator();
+		
+		btnEngleski = new JButton();
+		btnEngleski.setText("EN");
+		btnEngleski.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Locale.setDefault(new Locale("en", "US"));
+				AppFrame.getInstance().changeLanguage();
+			}
+		});
+		this.add(btnEngleski);
 		this.add(Box.createHorizontalGlue());
 	
 		tfSearch = new JTextField(15);
@@ -69,6 +104,11 @@ public class AppToolBar extends JToolBar{
 	
 	// getters and setters
 	
+	public void initComponents() {
+		btnSrpski.setToolTipText(AppFrame.getInstance().getResourceBundle().getString("Srpski_jezik"));
+		btnEngleski.setToolTipText(AppFrame.getInstance().getResourceBundle().getString("Engleski_jezik"));
+	}
+
 	public JButton getBtnOpen() {
 		return btnOpen;
 	}

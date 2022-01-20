@@ -32,6 +32,12 @@ public class ChangeStudentDialog extends JDialog {
 		tabbedPane.setBorder(BorderFactory.createEmptyBorder(15, 0, 10, 0));
 		this.add(tabbedPane);
 	}
+	
+	public void initComponents() {
+		tabbedPane.setTitleAt(0, AppFrame.getInstance().getResourceBundle().getString("Informacije"));
+		tabbedPane.setTitleAt(1, AppFrame.getInstance().getResourceBundle().getString("Polozeni"));
+		tabbedPane.setTitleAt(2, AppFrame.getInstance().getResourceBundle().getString("Nepolozeni"));
+	}
 
 	public JTabbedPane getTabbedPane() {
 		return this.tabbedPane;

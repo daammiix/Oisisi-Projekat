@@ -23,6 +23,7 @@ public class NotSelectedDialog extends JDialog {
 	protected JPanel panel1;
 	protected JPanel panel2;
 	protected JButton btn;
+	protected String naziv;
 	
 	public NotSelectedDialog(AppFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
@@ -49,6 +50,15 @@ public class NotSelectedDialog extends JDialog {
 		this.add(panel2, BorderLayout.SOUTH);
 		this.setResizable(false);
 		
+	}
+	
+	public String getNaziv() {
+		return naziv;
+	}
+
+	public void initComponents() {
+		btn.setText(AppFrame.getInstance().getResourceBundle().getString("btnOk"));
+		label.setText(AppFrame.getInstance().getResourceBundle().getString("mora_selektovati"));
 	}
 	
 	public void addBtnOkListener(MouseListener ml) {
