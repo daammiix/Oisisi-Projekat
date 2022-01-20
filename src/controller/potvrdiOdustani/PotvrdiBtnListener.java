@@ -7,6 +7,7 @@ import model.AppData;
 import model.Predmet;
 import model.Profesor;
 import model.Student;
+import model.TableStudentIndexValue;
 import util.Util;
 import view.*;
 import view.addDialogs.*;
@@ -178,19 +179,26 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 			{
 				int selectedPredmet = view.getChangeStudentDialog().getPanelNepolozeni().getTable()
 						.getSelectedRow();
-				int selectedStudent = view.getCentralPanel().gettStudenti().getSelectedRow();
+				int selectedStudentRow = view.getCentralPanel().gettStudenti().getSelectedRow();
+				TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
+						getValueAt(selectedStudentRow, 0); 
+				String selectedStudentIndeks = selectedValue.getIndeks();
+				int selectedStudent = data.getStudentIdxByIndeks(selectedStudentIndeks);
 				poloziPredmet(selectedPredmet, selectedStudent);
 				Student s = data.getStudenti().get(selectedStudent);
 				AppView.getInstance().getCentralPanel().gettmodelStudenti().setValueAt(s.getProsecnaOcena(), 
-						selectedStudent, 5);
+						selectedStudentRow, 5);
 				break;
 			}
 			case "Potvrdi dodavanje predmeta":
 			{
 				int[] selectedPredmeti = view.getDodavanjePredmetaProfesoruDialog().getlPredmeti()
 						.getSelectedIndices();
-				int selectedProfesor = view.getCentralPanel().gettProfesori().getSelectedRow();
-				Profesor pSelected = data.getProfesori().get(selectedProfesor);
+				int selectedProfesorRow = view.getCentralPanel().gettProfesori().getSelectedRow();
+				String selectedProfesorEmail = (String) view.getCentralPanel().gettProfesori().
+						getValueAt(selectedProfesorRow, 3);
+				Profesor pSelected = data.getProfesorByEmail(selectedProfesorEmail);
+				int selectedProfesor = data.getProfesorIdxByEmail(selectedProfesorEmail);
 				dodajPredmeteProfesoru(selectedPredmeti, selectedProfesor);
 				view.getChangeProfesorDialog().getPredmeti().refreshInfo(pSelected);
 				view.getDodavanjePredmetaProfesoruDialog().setVisible(false);

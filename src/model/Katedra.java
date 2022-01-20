@@ -23,6 +23,14 @@ public class Katedra {
 		this.profesori = new ArrayList<Profesor>();
 	}
 	
+	public Katedra(String sifraKatedre, String nazivKatedre, Profesor sef) {
+		super();
+		this.sifraKatedre = sifraKatedre;
+		this.nazivKatedre = nazivKatedre;
+		this.sefKatedre = sef;
+		this.profesori = new ArrayList<Profesor>();
+	}
+	
 	public void removeSefFromKatedra() {
 		this.sefKatedre = null; 
 	}

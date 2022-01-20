@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import model.AppData;
 import model.Ocena;
 import model.Student;
+import model.TableStudentIndexValue;
 import view.AppView;
 import view.changeDialogs.Student.Nepolozeni;
 
@@ -14,10 +15,13 @@ public class PolaganjePredmetaBtnListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Nepolozeni nepolozeni = AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni();
-		int idxSelectedStudent = AppView.getInstance().getCentralPanel().gettStudenti().getSelectedRow();
+		int selectedRow = AppView.getInstance().getCentralPanel().gettStudenti().getSelectedRow();
+		TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
+				getValueAt(selectedRow, 0); 
+		String selectedStudentIndeks = selectedValue.getIndeks();
+		Student s = AppData.getInstance().getStudentByIndeks(selectedStudentIndeks);
 		int idxSelectedOcena = AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().getTable()
 				.getSelectedRow();
-		Student s = AppData.getInstance().getStudenti().get(idxSelectedStudent);
 		if(nepolozeni.getTable().getSelectedRow() != -1) {
 			Ocena o = s.getNepolozeniIspiti().get(idxSelectedOcena);
 			AppView.getInstance().getPolaganjeDialog().setLocationRelativeTo(AppView.getInstance()

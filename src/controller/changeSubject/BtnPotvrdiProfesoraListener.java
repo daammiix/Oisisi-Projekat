@@ -64,11 +64,13 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 		case "Remove":
 			{
 				int selectedRowPredmet = AppView.getInstance().getCentralPanel().gettPredmeti().getSelectedRow();
-				Predmet predmet = AppData.getInstance().getPredmeti().get(selectedRowPredmet);
+				String selectedPredmetSifra = (String) AppView.getInstance().getCentralPanel().gettPredmeti().
+						getValueAt(selectedRowPredmet, 0);
+				Predmet predmet = AppData.getInstance().getPredmetBySifra(selectedPredmetSifra);
 				Profesor profesor = predmet.getPredmetniProfesor();
 				predmet.removeProfesorFromPredmet();
 				profesor.removePredmetFromProfesor(predmet);
-				AppView.getInstance().getChangePredmetDialog().fillInPredmet(AppData.getInstance().getPredmeti().get(selectedRowPredmet));
+				AppView.getInstance().getChangePredmetDialog().fillInPredmet(predmet);
 				ChangePredmetDialog dialog = AppView.getInstance().getChangePredmetDialog();
 				ArrayList<JTextField> textFields = dialog.getTextFields();
 				textFields.get(3).setText("");
@@ -76,12 +78,14 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 				AppView.getInstance().getRemoveProfessorDialog().setVisible(false);
 				break;
 			}
-		case "Choose":
+		case "Choose":	
 			{
 				ChooseProfessorDialog cp = AppView.getInstance().getChooseProfessorDialog();
 				int selectedRow = cp.getTable().getSelectedRow();
 				if(selectedRow != -1) {
-					Profesor profesor = AppData.getInstance().getProfesori().get(selectedRow);
+					String selectedProfesorEmail = (String) AppView.getInstance().getCentralPanel().gettProfesori().
+							getValueAt(selectedRow, 3);
+					Profesor profesor = AppData.getInstance().getProfesorByEmail(selectedProfesorEmail);
 					addProfesor(profesor);
 					AppView.getInstance().getChooseProfessorDialog().setVisible(false);
 					ArrayList<JTextField> textFields = AppView.getInstance().getChangePredmetDialog().getTextFields();
@@ -134,8 +138,10 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 		ChangePredmetDialog dialog = AppView.getInstance().getChangePredmetDialog();
 		ArrayList<JTextField> textFields = dialog.getTextFields();
 		textFields.get(3).setText(data[0] + " " + data[1]);
-		int selectedRowPredmet = AppView.getInstance().getCentralPanel().gettPredmeti().getSelectedRow();
-		AppData.getInstance().changePredmet(selectedRowPredmet, dialog.getTextFields(), dialog.getCbGodina(), dialog.getCbSemestar());
+		int selectedRow = AppView.getInstance().getCentralPanel().gettPredmeti().getSelectedRow();
+		String selectedPredmetSifra = (String) AppView.getInstance().getCentralPanel().gettPredmeti().
+				getValueAt(selectedRow, 0);
+		AppData.getInstance().changePredmet(selectedPredmetSifra, dialog.getTextFields(), dialog.getCbGodina(), dialog.getCbSemestar());
 		
 	}
 	

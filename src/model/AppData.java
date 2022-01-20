@@ -1,5 +1,8 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,86 +56,6 @@ public class AppData {
 		predmeti.add(p);
 	}
 	
-	public void makeTestData() throws ParseException {
-		Student s1 = new Student("ra-15-2019", "Damjan", "Dimitrijevic", 3, Student.Status.B , 7.6);
-		Student s2 = new Student("ra-16-2018", "Luka", "Lukic", 4, Student.Status.S, 7.7);
-		Student s3 = new Student("Mina", "Minic", Util.formatter.parse("22.2.1999."), 
-				new Adresa("Bruski Put", "BB", "Krusevac", "Srbija"), "+38167787998", 
-				"minicm100@gmail.com", "sw-2-2019", 2018, 3, Student.Status.B);
-		Student s4 = new Student("Petar", "Petrovic", Util.formatter.parse("10.05.2000."),  
-					new Adresa("Kosovska", "110", "Krusevac", "Srbija"), "+38165559558", 
-					"petrovicp11@gmail.com", "sw-65-2019", 2019, 3, Student.Status.B);
-		Adresa a1 = new Adresa("Šafarikova", "2", "Novi Sad", "Srbija");
-		Student s5 = new Student("ra-2-2020", "Marko", "Milosevic", 1, Util.formatter.parse("12.03.2001."), a1, "021/333-555", "marko.milosevic@mailinator.com", Student.Status.B, 2020);
-		
-		Profesor p1 = new Profesor("Darko", "Darkovic", "Profesor", "darkod25@uns.ac.rs");
-		Profesor p2 = new Profesor("Mirko", "Milutinovic", Util.formatter.parse("1.1.1975."), 
-				new Adresa("Bruski Put", "BB", "Brus", "Srbija"), "+3816625361441", "mirko.milutin@uns.ac.rs", 
-				new Adresa("Dusanovacka", "25", "Novi Sad", "Srbija"), "0101975781022", "redovan profesor", 15);
-		Profesor p3 = new Profesor("Branko", "Stojkovic", "Profesor", "branskos321@uns.ac.rs");
-		
-		Predmet pr1 = new Predmet("MA2", "Matematička Analiza 1", 9, 1, null, "Zimski");
-		Predmet pr2 = new Predmet("SE3", "OISISI", 6, 3, p3,  "Zimski");
-		Predmet pr3 = new Predmet("PR1", "Objektno programiranje", 8, 2, p3, "Letnji");
-		Predmet pr4 = new Predmet("NANS", "Numericki algoritmi i numericki softver", 6, 3, p2, "Zimski");
-		Predmet pr5 = new Predmet("ICR", "Interakcija covek racunar", 6, 3, p1, "Letnji");
-		Predmet pr8 = new Predmet("p8", "osnove elektortehnike", 1, 11, p3,  "Letnji");
-		
-		Ocena o1 = new Ocena(s3, pr1, 9, Util.formatter.parse("17.01.2021."));
-		Ocena o2 = new Ocena(s3, pr2, 8, Util.formatter.parse("11.02.2021."));
-		Ocena o3 = new Ocena(s3, pr3, 8, Util.formatter.parse("27.01.2021."));
-		Ocena nepolozena1 = new Ocena(s3, pr1, 5, new Date(0));
-		Ocena nepolozena2 = new Ocena(s3, pr2, 5, new Date(0));
-		
-		Ocena o4 = new Ocena(s4, pr1, 10, Util.formatter.parse("19.05.2021."));
-		Ocena o5 = new Ocena(s4, pr2, 7, Util.formatter.parse("22.07.2021."));
-		Ocena o6 = new Ocena(s4, pr3, 6, Util.formatter.parse("30.11.2021."));
-		
-		Katedra k1 = new Katedra("e42", "Katedra za matematiku");
-		Katedra k2 = new Katedra("e43", "Katedra za fiziku");
-		
-		s3.addPolozenIspit(o3);
-		s3.addNepolozenIspit(nepolozena1);
-		s3.addNepolozenIspit(nepolozena2);
-		s3.setProsecnaOcena(8.0);
-		
-		s4.addPolozenIspit(o4);
-		s4.addPolozenIspit(o5);
-		s4.addPolozenIspit(o6);
-		s4.setProsecnaOcena(7.67);
-		
-		p1.addPredmet(pr1);
-		p1.addPredmet(pr4);
-		p1.addPredmet(pr5);
-		p1.addPredmet(pr2);
-		p2.addPredmet(pr3);
-		
-		studenti.add(s1);
-		studenti.add(s2);
-		studenti.add(s3);
-		studenti.add(s4);
-		studenti.add(s5);
-		
-		profesori.add(p1);
-		profesori.add(p2);
-		profesori.add(p3);
-		
-		predmeti.add(pr1);
-		predmeti.add(pr2);
-		predmeti.add(pr3);
-		predmeti.add(pr4);
-		predmeti.add(pr5);
-		predmeti.add(pr8);
-		
-		k1.addProfesor(p1);
-		k1.addProfesor(p2);
-		k2.addProfesor(p3);
-		k1.setSefKatedre(p1);
-		
-		katedra.add(k1);
-		katedra.add(k2);
-	}
-	
 	public void createStudentAndAddToStudents(ArrayList<JTextField> textFields, ArrayList<JComboBox<String>> comboBoxes) {
 		String ime = unpackStringTextField(textFields.get(0));
 		String prezime = unpackStringTextField(textFields.get(1));
@@ -177,7 +100,14 @@ public class AppData {
 		predmeti.add(p);
 	}
 	
-	public void changeStudent(int idx, ArrayList<JTextField> textFields, ArrayList<JComboBox<String>> comboBoxes) {
+	public void changeStudent(String indeks, ArrayList<JTextField> textFields, ArrayList<JComboBox<String>> comboBoxes) {
+		int idx = -1;
+		for(int i = 0; i < studenti.size(); i++) {
+			if(studenti.get(i).getBrojIndeksa().equals(indeks)) {
+				idx = i;
+				break;
+			}
+		}
 		Student student = studenti.get(idx);
 		String ime = unpackStringTextField(textFields.get(0));
 		String prezime = unpackStringTextField(textFields.get(1));
@@ -208,7 +138,14 @@ public class AppData {
 
 	}
 	
-	public void changeProfesor(int idx, ArrayList<JTextField> textFields) {
+	public void changeProfesor(String pEmail, ArrayList<JTextField> textFields) {
+		int idx = -1;
+		for(int i = 0; i < profesori.size(); i++)
+			if(profesori.get(i).getEmail().equals(pEmail)) {
+				idx = i;
+				break;
+			}
+		
 		Profesor profesor = profesori.get(idx);
 		
 		String ime = unpackStringTextField(textFields.get(0));
@@ -234,7 +171,14 @@ public class AppData {
 		profesor.setGodineStaza(godStaza);
 	}
 	
-	public void changePredmet(int idx, ArrayList<JTextField> textFields, JComboBox<Integer> cbGodine, JComboBox<String> cbSemestar) {
+	public void changePredmet(String pSifra, ArrayList<JTextField> textFields, JComboBox<Integer> cbGodine, JComboBox<String> cbSemestar) {
+		int idx = -1;
+		for(int i = 0; i < predmeti.size(); i++)
+			if(predmeti.get(i).getSifraPredmeta().equals(pSifra)) {
+				idx = i;
+				break;
+			}
+		
 		Predmet predmet = predmeti.get(idx);
 		
 		String sifra = unpackStringTextField(textFields.get(0));
@@ -337,21 +281,6 @@ public class AppData {
 		
 	}
 	
-	/*public void refreshNepolozeniPredmeti() {
-		AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().clearTable();
-		boolean nema = true;
-		for(Student s : studenti) {
-			for(Ocena o : s.getNepolozeniIspiti()) {
-				for(Predmet p: predmeti) {
-					if(o.getPredmet().equals(p)) {
-						
-					}
-				}
-			}
-
-		}
-	}*/
-	
 	public boolean isNazivPredmetaUnique(String naziv) {
 		for(Predmet p : predmeti) {
 			if(naziv.equals(p.getNazivPredmeta()))
@@ -435,6 +364,231 @@ public class AppData {
 	public void ukloniPredmetProfesoru(Predmet pr, Profesor p) {
 		p.removePredmet(pr);
 	}
+	
+	public ArrayList<Student> getSearchedStudents(String[] parts) {
+		ArrayList<Student> ret = new ArrayList<Student>();
+		switch(parts.length) {
+			case 1:
+			{
+				for(Student s : studenti) {
+					if(s.getPrezime().toLowerCase().contains(parts[0]))
+						ret.add(s);
+				}
+				break;
+			}
+			case 2:
+			{
+				String prezime = parts[0];
+				String ime = parts[1];
+				
+				for(Student s : studenti) {
+					if(s.getPrezime().toLowerCase().contains(prezime) && s.getIme().toLowerCase().contains(ime))
+						ret.add(s);
+				}
+				break;
+				}
+			case 3:
+			{
+				String prezime = parts[2];
+				String ime = parts[1];
+				String brIndeksa = parts[0];
+				
+				for(Student s : studenti) {
+					if(s.getPrezime().toLowerCase().contains(prezime) && s.getIme().toLowerCase().contains(ime)
+				       && s.getBrojIndeksa().toLowerCase().contains(brIndeksa))
+						ret.add(s);
+				}
+				break;
+			}
+		}
+		return ret;
+	}
+	
+	public ArrayList<Profesor> getSearchedProfesors(String[] parts) {
+		ArrayList<Profesor> ret = new ArrayList<Profesor>();
+		switch(parts.length) {
+			case 1:
+			{
+				for(Profesor p : profesori)
+					if(p.getPrezime().toLowerCase().contains(parts[0]))
+						ret.add(p);
+				break;
+			}
+			case 2:
+			{
+				for(Profesor p : profesori)
+					if(p.getPrezime().toLowerCase().contains(parts[0]) && p.getIme().toLowerCase().contains(parts[1]))
+						ret.add(p);
+			}
+		}
+		return ret;
+	}
+	
+	public ArrayList<Predmet> getSearchedPredmets(String[] parts) {
+		ArrayList<Predmet> ret = new ArrayList<Predmet>();
+		switch(parts.length) {
+			case 1:
+			{
+				for(Predmet p : predmeti)
+					if(p.getNazivPredmeta().toLowerCase().contains(parts[0]))
+						ret.add(p);
+				break;
+			}
+			case 2:
+			{
+				for(Predmet p : predmeti)
+					if(p.getNazivPredmeta().toLowerCase().contains(parts[0]) &&
+					   p.getSifraPredmeta().toLowerCase().contains(parts[1]))
+						ret.add(p);
+				break;
+			}
+		}
+		return ret;
+	}
+	
+	public Student getStudentByIndeks(String indeks) {
+		Student ret = null;
+		for(Student s : studenti)
+			if(s.getBrojIndeksa().equals(indeks)) {
+				ret = s;
+				break;
+			}
+		return ret;
+	}
+	
+	public Profesor getProfesorByEmail(String email) {
+		Profesor ret = null;
+		for(Profesor p : profesori)
+			if(p.getEmail().equals(email)) {
+				ret = p;
+				break;
+			}
+		return ret;
+	}
+	
+	public Predmet getPredmetBySifra(String sifra) {
+		Predmet ret = null;
+		for(Predmet p : predmeti)
+			if(p.getSifraPredmeta().equals(sifra)) {
+				ret = p;
+				break;
+			}
+		return ret;
+	}
+	
+	public int getStudentIdxByIndeks(String indeks) {
+		int ret = -1;
+		for(int i = 0; i < studenti.size(); i++)
+			if(studenti.get(i).getBrojIndeksa().equals(indeks)) {
+				ret = i;
+				break;
+			}
+		return ret;
+	}
+	
+	public int getProfesorIdxByEmail(String email) {
+		int ret = -1;
+		for(int i = 0; i < profesori.size(); i++)
+			if(profesori.get(i).getEmail().equals(email)) {
+				ret = i;
+				break;
+			}
+		return ret;
+	}
+	
+	public int getPredmetIdxBySifra(String sifra) {
+		int ret = -1;
+		for(int i = 0; i < studenti.size(); i++)
+			if(predmeti.get(i).getSifraPredmeta().equals(sifra)) {
+				ret = i;
+				break;
+			}
+		return ret;
+	}
+	
+	public void readDataBase() {
+		try(BufferedReader frAdrese = new BufferedReader(new FileReader("baza" + File.separator + "Adrese.csv"));
+			BufferedReader frStudenti = new BufferedReader(new FileReader("baza" + File.separator + "Studenti.csv"));
+			BufferedReader frProfesori = new BufferedReader(new FileReader("baza" + File.separator + "Profesori.csv"));
+			BufferedReader frPredmeti = new BufferedReader(new FileReader("baza" + File.separator + "Predmeti.csv"));
+			BufferedReader frNepolozeni = new BufferedReader(new FileReader("baza" + File.separator + "Nepoloženi_predmeti.csv"));
+			BufferedReader frOcene = new BufferedReader(new FileReader("baza" + File.separator + "Ocene.csv"));
+			BufferedReader frKatedre = new BufferedReader(new FileReader("baza" + File.separator + "Katedre.csv"))) {
+			
+			ArrayList<Adresa> adrese = new ArrayList<Adresa>();
+			
+			String line = frAdrese.readLine();	// da se skipuje prva
+			
+			while((line = frAdrese.readLine()) != null) {
+				String[] parts = line.split(",");
+				adrese.add(new Adresa(parts[1], parts[2], parts[3], parts[4]));
+			}
+			
+			line = frStudenti.readLine();
+			while((line = frStudenti.readLine()) != null) {
+				String[] parts = line.split(",");
+				String[] indeksParts = parts[1].split(" ");
+				String[] partsOfIndeksParts = indeksParts[1].split("/");
+				String indeks = indeksParts[0] + "-" + partsOfIndeksParts[0] + "-" + partsOfIndeksParts[1];
+				Adresa a = new Adresa();
+				if(!(parts[6].equals("null")))
+					a = adrese.get(Integer.parseInt(parts[6])-1);
+				studenti.add(new Student(parts[2], parts[3], Util.formatter.parse(parts[5]), a, parts[7], parts[8],  indeks, 
+						Integer.parseInt(parts[10]), Integer.parseInt(parts[4]), parts[9]));
+			}
+			
+			line = frProfesori.readLine();
+			while((line = frProfesori.readLine()) != null) {
+				String[] parts = line.split(",");
+				profesori.add(new Profesor(parts[2], parts[3], Util.formatter.parse(parts[4]), 
+						adrese.get(Integer.parseInt(parts[5])-1), parts[6], parts[7], 
+						adrese.get(Integer.parseInt(parts[8])-1), parts[1], parts[10], Integer.parseInt(parts[9])));
+			}
+			
+			line = frPredmeti.readLine();
+			while((line = frPredmeti.readLine()) != null) {
+				String[] parts = line.split(",");
+				Profesor p = null;
+				if(!parts[5].equals("null")) 
+					p = profesori.get(Integer.parseInt(parts[5])-1);
+				Predmet pr = new Predmet(parts[1], parts[2], parts[6], Integer.parseInt(parts[3]), 
+						p, Integer.parseInt(parts[4]));
+				predmeti.add(pr);
+				if(p != null)
+					p.addPredmet(pr);
+			}
+			
+			line = frNepolozeni.readLine();
+			while((line = frNepolozeni.readLine()) != null) {
+				String[] parts = line.split(",");
+				studenti.get(Integer.parseInt(parts[0])-1).addNepolozenIspit(new 
+						Ocena(studenti.get(Integer.parseInt(parts[0])-1), predmeti.get(Integer.parseInt(parts[1])-1),
+						5, new Date(0)));
+			}
+			
+			line = frOcene.readLine();
+			while((line = frOcene.readLine()) != null) {
+				String[] parts = line.split(",");
+				studenti.get(Integer.parseInt(parts[0])-1).addPolozenIspit(new Ocena(
+						studenti.get(Integer.parseInt(parts[0])-1), predmeti.get(Integer.parseInt(parts[1])-1),
+						Integer.parseInt(parts[2]), Util.formatter.parse(parts[3])));
+				for(Student s : studenti) {
+					s.calculateAvgGrade();
+				}
+			}
+			
+			line = frKatedre.readLine();
+			while((line = frKatedre.readLine()) != null) {
+				String[] parts = line.split(",");
+				katedra.add(new Katedra(parts[1], parts[2], profesori.get(Integer.parseInt(parts[3])-1)));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error reading file...");
+			e.printStackTrace();
+		}
+	}
+	
 	
 	// getters and setters
 

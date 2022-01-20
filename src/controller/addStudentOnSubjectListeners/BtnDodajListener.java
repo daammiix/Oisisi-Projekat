@@ -11,6 +11,7 @@ import model.AppData;
 import model.Ocena;
 import model.Predmet;
 import model.Student;
+import model.TableStudentIndexValue;
 import view.AppCentralPanel;
 import view.AppView;
 import view.studentPredmetDialogs.AddStudentOnSubjectDialog;
@@ -22,7 +23,10 @@ public class BtnDodajListener implements ActionListener{
 		AddStudentOnSubjectDialog asos = AppView.getInstance().getAddStudentOnSubjectDialog();
 		int selectedRow = asos.getTable().getSelectedRow();
 		int selectedRowStudent = AppView.getInstance().getCentralPanel().gettStudenti().getSelectedRow();
-		Student student = AppData.getInstance().getStudenti().get(selectedRowStudent);
+		TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
+				getValueAt(selectedRowStudent, 0); 
+		String selectedStudentIndeks = selectedValue.getIndeks();
+		Student student = AppData.getInstance().getStudentByIndeks(selectedStudentIndeks);
 		if(selectedRow != -1) {
 			String selectedId = (String)asos.getTableModel().getValueAt(selectedRow, 0);
 			addPredmet(selectedId);
@@ -38,7 +42,10 @@ public class BtnDodajListener implements ActionListener{
 	
 	public void addPredmet(String selectedId) {
 		int selectedRowStudent = AppView.getInstance().getCentralPanel().gettStudenti().getSelectedRow();
-		Student student = AppData.getInstance().getStudenti().get(selectedRowStudent);
+		TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
+				getValueAt(selectedRowStudent, 0); 
+		String selectedStudentIndeks = selectedValue.getIndeks();
+		Student student = AppData.getInstance().getStudentByIndeks(selectedStudentIndeks);
 		ArrayList<Predmet> predmeti = AppData.getInstance().getPredmeti();
 		String[] newId = selectedId.split("-");
 		String id = newId[0];
