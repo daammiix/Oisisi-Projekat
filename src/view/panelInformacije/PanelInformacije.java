@@ -7,14 +7,25 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 
+import view.AppCentralPanel;
+import view.AppFrame;
+
 public class PanelInformacije extends JPanel{
 	private static final long serialVersionUID = -4852175226460687460L;
+	private static PanelInformacije instance = null;
 	protected ArrayList<JTextField> textFields;
 	protected ArrayList<JLabel> labels;
 	protected JButton btnPotvrdi;
 	protected JButton btnOdustani;
 	protected JPanel centralPanel;
 	protected JPanel btnPanel;
+	
+	public static PanelInformacije getInstance() {
+		if(instance == null)
+			instance = new PanelInformacije();
+		return instance;
+	}
+
 	
 
 	public PanelInformacije() {

@@ -44,6 +44,7 @@ import model.Student;
 import model.TableStudentIndexValue;
 import util.Util;
 import view.AppCentralPanel;
+import view.AppFrame;
 import view.AppView;
 import view.changeDialogs.ChangePredmetDialog;
 import view.changeDialogs.Profesor.ChangeProfesorDialog;
@@ -148,8 +149,11 @@ public class AppController {
 		appView.addChangeEntityListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
-				switch(appView.getCentralPanel().getSelectedTabTitle()) {
-					case "Studenti":
+				String studenti = AppFrame.getInstance().getResourceBundle().getString("tStudenti");
+				String profesori = AppFrame.getInstance().getResourceBundle().getString("tProfesori");
+				String predmeti = AppFrame.getInstance().getResourceBundle().getString("tPredmeti");
+				String naziv = appView.getCentralPanel().getSelectedTabTitle();
+					if(naziv.equals(studenti))
 						{
 							int selectedRow = AppCentralPanel.getInstance().getIndexStudent();
 							ChangeStudentDialog dialog1 =appView.getChangeStudentDialog();
@@ -169,10 +173,9 @@ public class AppController {
 							}else {
 								dialog2.setLocationRelativeTo(appView.getFrame());
 								dialog2.setVisible(true);
-							}
-							break;					
+							}					
 						}
-					case "Profesori":
+					else if(naziv.equals(profesori))
 						{
 							int selectedRow = AppCentralPanel.getInstance().getIndexProfesori();
 							ChangeProfesorDialog dialog1 =appView.getChangeProfesorDialog();
@@ -182,7 +185,8 @@ public class AppController {
 										getValueAt(selectedRow, 3);
 								Profesor selectedProfesor = appData.getProfesorByEmail(selectedProfesorEmail);
 								dialog1.setLocationRelativeTo(appView.getFrame());
-								appView.getChangeProfesorDialog().fillInProfesor(selectedProfesor);
+								appView.getChangeProfesorDialog().getInformacije().fillInProfesor(selectedProfesor);
+								appView.getChangeProfesorDialog().getPredmeti().refreshInfo(selectedProfesor);
 								dialog1.getPredmeti().refreshInfo(selectedProfesor);
 								dialog1.getTabbedPane().setSelectedIndex(0);
 								dialog1.setVisible(true);
@@ -190,9 +194,8 @@ public class AppController {
 								dialog2.setLocationRelativeTo(appView.getFrame());
 								dialog2.setVisible(true);
 							}
-							break;	
 						}
-					case "Predmeti":
+					else if(naziv.equals(predmeti))
 						{
 							int selectedRow = AppCentralPanel.getInstance().getIndexPredmeti();
 							ChangePredmetDialog dialog1 =appView.getChangePredmetDialog();
@@ -222,38 +225,46 @@ public class AppController {
 								dialog2.setVisible(true);
 							}
 						}
+					else 
+					{
+						System.out.println("Ne postoji takav tab");
+					}
 				}
 			}
-		});
+		);
 		
 		appView.addDeleteEntityListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
-				switch(appView.getCentralPanel().getSelectedTabTitle()) {
-					case "Studenti":
+				String studenti = AppFrame.getInstance().getResourceBundle().getString("tStudenti");
+				String profesori = AppFrame.getInstance().getResourceBundle().getString("tProfesori");
+				String predmeti = AppFrame.getInstance().getResourceBundle().getString("tPredmeti");
+				String naziv = appView.getCentralPanel().getSelectedTabTitle();
+					if(naziv.equals(studenti))
 						{
 							JDialog dialog = appView.getDeleteStudentDialogOrNotSelected();
 							dialog.setLocationRelativeTo(appView.getFrame());
-							dialog.setVisible(true);
-							break;					
+							dialog.setVisible(true);					
 						}
-					case "Profesori":
+					else if(naziv.equals(profesori))
 						{
 							JDialog dialog = appView.getDeleteProfesorDialogOrNotSelected();
 							dialog.setLocationRelativeTo(appView.getFrame());
 							dialog.setVisible(true);
-							break;	
 						}
-					case "Predmeti":
+					else if(naziv.equals(predmeti))
 						{
 							JDialog dialog = appView.getDeletePredmetDialogOrNotSelected();
 							dialog.setLocationRelativeTo(appView.getFrame());
 							dialog.setVisible(true);
-							break;
 						}
+					else
+					{
+						System.out.println("Ne postoji tab sa tim nazivom");
+					}
 				}
 			}
-		});
+		);
 	
 			appView.addKatedraListener(new ActionListener() {
 				@Override
@@ -282,6 +293,34 @@ public class AppController {
 					dialog.setVisible(true);
 				}
 			});
+			
+			appView.addCloseListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ev) {
+					AppFrame.getInstance().setVisible(false);
+				}
+			});
+			
+			appView.addStudentiOPenListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ev) {
+					AppCentralPanel.getInstance().setSelectedIndex(0);
+				}
+			});
+			
+			appView.addProfesoriOPenListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ev) {
+					AppCentralPanel.getInstance().setSelectedIndex(1);
+				}
+			});
+			
+			appView.addPredmetiOPenListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ev) {
+					AppCentralPanel.getInstance().setSelectedIndex(2);
+				}
+			});
 	
 }
 	
@@ -300,7 +339,7 @@ public class AppController {
 	private void addBtnOdustaniChangeDialog() {
 		BtnOdustaniChangeDialog bocd = new BtnOdustaniChangeDialog(appView);
 		appView.getChangeStudentDialog().getPanelInformacije().addBtnOdustaniListener(bocd);
-		appView.getChangeProfesorDialog().getPanelInformacije().addBtnOdustaniListener(bocd);
+		appView.getChangeProfesorDialog().getInformacije().addBtnOdustaniListener(bocd);
 		appView.getChangePredmetDialog().addBtnOdustaniDialog(bocd);
 		
 	}
@@ -319,7 +358,7 @@ public class AppController {
 	private void addBtnPotvrdiChangeListener() {
 		BtnPotvrdiChangeDialog bpcd = new BtnPotvrdiChangeDialog(appView, appData);
 		appView.getChangeStudentDialog().getPanelInformacije().addBtnPotvrdiListener(bpcd, bpcd);
-		appView.getChangeProfesorDialog().getPanelInformacije().addBtnPotvrdiListener(bpcd, bpcd);
+		appView.getChangeProfesorDialog().getInformacije().addBtnPotvrdiListener(bpcd, bpcd);
 		appView.getChangePredmetDialog().addBtnPotvrdiListener(bpcd, bpcd);
 		
 	}

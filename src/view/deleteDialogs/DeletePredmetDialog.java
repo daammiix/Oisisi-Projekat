@@ -56,6 +56,12 @@ public class DeletePredmetDialog extends JDialog {
 		
 	}
 	
+	public void initComponents() {
+		btnDa.setText(AppFrame.getInstance().getResourceBundle().getString("btnDa"));
+		btnNe.setText(AppFrame.getInstance().getResourceBundle().getString("btnNe"));
+		label.setText(AppFrame.getInstance().getResourceBundle().getString("obrisi_predmet_dialog"));
+	}
+	
 	public void addBtnDaListener(MouseListener ml) {
 		btnDa.addMouseListener(ml);
 	}

@@ -57,6 +57,12 @@ public class DeleteProfesorDialog extends JDialog {
 		
 	}
 	
+	public void initComponents() {
+		btnDa.setText(AppFrame.getInstance().getResourceBundle().getString("btnDa"));
+		btnNe.setText(AppFrame.getInstance().getResourceBundle().getString("btnNe"));
+		label.setText(AppFrame.getInstance().getResourceBundle().getString("obrisi_profesora_dialog"));
+	}
+	
 	public void addBtnDaListener(MouseListener ml) {
 		btnDa.addMouseListener(ml);
 	}

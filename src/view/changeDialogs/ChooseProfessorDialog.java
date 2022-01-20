@@ -45,7 +45,7 @@ public class ChooseProfessorDialog extends JDialog {
 	}
 	
 	private void init() {
-		String[] cols = {"Ponudjeni profesori"};
+		String[] cols = {AppFrame.getInstance().getResourceBundle().getString("Profesor")};
 		tableModel = new DefaultTableModel(cols,0);
 		table = Util.createTable(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(250);
@@ -71,6 +71,11 @@ public class ChooseProfessorDialog extends JDialog {
 		
 		this.add(panel, BorderLayout.SOUTH);
 		this.add(sp, BorderLayout.CENTER);
+	}
+	
+	public void initComponents() {
+		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 	private void setButton(JButton button) {

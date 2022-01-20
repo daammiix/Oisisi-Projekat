@@ -72,6 +72,11 @@ public class AddStudentOnSubjectDialog extends JDialog {
 		this.add(sp, BorderLayout.CENTER);
 	}
 	
+	public void initComponents() {
+		btnDodaj.setText(AppFrame.getInstance().getResourceBundle().getString("btnDodaj"));
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+	}
+	
 	private void setButton(JButton button) {
 		button.setBackground(Util.buttonBackgroundColor);
 		button.setForeground(Util.buttonForegroundColor);
@@ -87,6 +92,7 @@ public class AddStudentOnSubjectDialog extends JDialog {
 	}
 	
 	public void initTable(Student student) {
+		clearTable();
 		ArrayList<Predmet> predmeti = AppData.getInstance().getPredmeti();
 		ArrayList<Ocena> sviIspiti = new ArrayList<Ocena>();
 		for(Ocena o : student.getPolozeniIspiti()) {

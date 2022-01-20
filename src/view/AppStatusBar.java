@@ -9,26 +9,36 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AppStatusBar extends JPanel {
-
+	private static AppStatusBar instance = null;
 	private static final long serialVersionUID = 2402354191772986941L;
+	
+	public static AppStatusBar getInstance() {
+		if(instance == null) 
+			instance = new AppStatusBar();
+		return instance;
+	}
 
 	JLabel label2;
+	JLabel label1;
+	String formatDateTime;
+	DateFormat dateFormat;
 	
 	public AppStatusBar() {
 		this.setLayout(new BorderLayout());
 		
-		JLabel label1 = new JLabel();
+		label1 = new JLabel();
 		label2 = new JLabel();
 
-	    DateFormat dateFormat = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
+	    dateFormat = new SimpleDateFormat(AppFrame.getInstance().getResourceBundle().getString("dateFormat"));
 
 	    new Timer(1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 	            Calendar now = Calendar.getInstance();
-	            String formatDateTime = dateFormat.format(now.getTime()); 
+	            formatDateTime = dateFormat.format(now.getTime()); 
 	            label1.setText(formatDateTime); 
 				
 			}
@@ -40,7 +50,10 @@ public class AppStatusBar extends JPanel {
 	}
 
 	public void setNaziv(String title, String selectedTabTitle) {
-		label2.setText("Studentska sluzba - " + selectedTabTitle);
+		label2.setText(AppFrame.getInstance().getResourceBundle().getString("naslovAplikacije") + " - " + selectedTabTitle);
 	}
-
+	
+	public void initComponents() {
+		label2.setText(AppFrame.getInstance().getResourceBundle().getString("naslovAplikacije") + " - " + AppCentralPanel.getInstance().getSelectedTabTitle());
+	}
 }

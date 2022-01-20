@@ -31,7 +31,7 @@ public class RemoveProfessorDialog extends JDialog {
 		
 		panel1 =  new JPanel();
 		panel2 = new JPanel();
-		label = new JLabel("<html><p>Da li ste sigurni?", SwingConstants.CENTER);
+		label = new JLabel(AppFrame.getInstance().getResourceBundle().getString("da_li_ste_sigurni"), SwingConstants.CENTER);
 		btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setActionCommand("Remove");
 		btnOdustani = new JButton("Odustani");
@@ -53,6 +53,11 @@ public class RemoveProfessorDialog extends JDialog {
 		this.setResizable(false);
 
 		
+	}
+	
+	public void initComponents() {
+		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 	public void addBtnPotvrdiProfesoraListener(MouseListener ml, ActionListener al) {

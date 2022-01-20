@@ -117,10 +117,12 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 			}
 			case "Profesor":
 			{
-				textFields = view.getChangeProfesorDialog().getPanelInformacije().getTextFields();
+
+				textFields = view.getChangeProfesorDialog().getInformacije().getTextFields();
 				Profesor p = data.getProfesorByEmail((String)view.getCentralPanel().gettProfesori().getValueAt(
 						view.getCentralPanel().gettProfesori().getSelectedRow(), 3));
 				if(!checkProfesorTextFields(textFields, p))
+
 					btn.setEnabled(false);
 				else
 					btn.setEnabled(true);
@@ -239,7 +241,7 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 	
 	private void changeProfesor(String selectedProfesorEmail) {
 		ChangeProfesorDialog dialog = view.getChangeProfesorDialog();
-		PanelInformacijeWithComboBoxes panel = view.getChangeProfesorDialog().getPanelInformacije();
+		PanelInformacijeWithComboBoxes panel = view.getChangeProfesorDialog().getInformacije();
 		data.changeProfesor(selectedProfesorEmail, panel.getTextFields());
 		view.initTableProfesori();
 		dialog.setVisible(false);

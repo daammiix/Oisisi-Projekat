@@ -12,24 +12,29 @@ public class AddStudentDialog extends AddDialog{
 		super(parent, title, modal);
 		panelInformacije.getCentralPanel().setLayout(new GridLayout(10, 2, 0, 20));
 		
-		panelInformacije.addPairLabelTextField("Ime*");
-		panelInformacije.addPairLabelTextField("Prezime*");
-		panelInformacije.addPairLabelTextField("Datum rođenja*");
-		panelInformacije.addPairLabelTextField("Adresa stanovanja*");
-		panelInformacije.addPairLabelTextField("Broj telefona*");
-		panelInformacije.addPairLabelTextField("E-mail adresa*");
-		panelInformacije.addPairLabelTextField("Broj indeksa*");
-		panelInformacije.addPairLabelTextField("Godina upisa*");
-		String[] godStud = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
-		panelInformacije.addPairLabelComboBox("Trenutna godina studija*", godStud);
-		String[] nacFin = {"Budžet", "Samofinansiranje"};
-		panelInformacije.addPairLabelComboBox("Način finansiranja*", nacFin);
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Ime") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Prezime") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Datun_rodjenja") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Adresa") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Broj_telefona") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Email") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Indeks") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Godina_upisa") + "*");
+		String[] godStud = {"I", "II", "III", "IV"};
+		panelInformacije.addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Trenutna_godina_studija"), godStud);
+		String[] nacFin = {AppFrame.getInstance().getResourceBundle().getString("Budzet"), AppFrame.getInstance().getResourceBundle().getString("Samofinansiranje")};
+		panelInformacije.addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Nacin_finansiranja"), nacFin);
 		
 		panelInformacije.getCentralPanel().setBorder(BorderFactory.createEmptyBorder(20, 90, 15, 90));
 		this.add(panelInformacije.getCentralPanel(), BorderLayout.CENTER);
 		
 		panelInformacije.getBtnPotvrdi().setActionCommand("Student");
 		panelInformacije.getBtnOdustani().setActionCommand("Student");
+	}
+	
+	public void initComponents() {
+		this.panelInformacije.getBtnPotvrdi().setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		this.panelInformacije.getBtnOdustani().setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 }
