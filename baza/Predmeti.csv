@@ -1,0 +1,31 @@
+id,sifra,naziv,godina,espb,id_profesora,semestar
+1,p1,osnove programiranja,1,7,2,ZIMSKI
+2,p2,statistika,3,8,2,LETNJI
+3,p3,algoritmi i strukture podataka,2,9,2,LETNJI
+4,p4,LPRS,3,7,2,ZIMSKI
+5,p5,matematika,1,11,null,LETNJI
+6,p6,xml i web servisi,4,6,null,LETNJI
+7,p7,Metode optimizacije,3,6,null,ZIMSKI
+8,p8,osnove elektortehnike,1,11,5,LETNJI
+9,p9,Sociologija,1,10,5,ZIMSKI
+10,p10,Filozofija,1,4,5,ZIMSKI
+11,p11,ORT,2,7,null,LETNJI
+12,p12,NANS,2,5,6,LETNJI
+13,p13,Organizacija podataka,2,7,6,ZIMSKI
+14,p14,Baze podataka,2,6,6,ZIMSKI
+15,p15,paralelno programiranje,2,8,7,ZIMSKI
+16,p16,konkurentno programiranje,2,9,7,LETNJI
+17,p17,Operativni sistemi,2,8,null,LETNJI
+18,p18,Algebra,1,15,null,ZIMSKI
+19,p19,Diskretna matematika,3,14,null,LETNJI
+20,ps20,Upravljacki sistemi,3,8,null,LETNJI
+21,ps21,Osnovi elektronike,2,7,null,ZIMSKI
+22,ps22,Slucajni procesi,4,9,null,LETNJI
+23,ps23,Racunarstvo visokih performansi,4,10,null,LETNJI
+24,p24,Analiza 1,1,20,null,ZIMSKI
+25,it25,Informaciona bezbednost,4,9,17,LETNJI
+26,it26,Elektronsko placanje,3,8,18,ZIMSKI
+27,it27,Distribuirani sistemi,4,6,19,LETNJI
+28,p28,Projektovanje softvera,3,5,18,ZIMSKI
+29,p29,Informacioni sistemi,4,6,17,ZIMSKI
+30,p30,Masinsko ucenje,4,7,null,LETNJI

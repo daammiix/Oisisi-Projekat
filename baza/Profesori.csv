@@ -1,0 +1,20 @@
+id,licna_karta,ime,prezime,datum rodjenja,id_adrese_stanovanja,kontakt telefon,email adresa,id_adrese_kancelarije,godine staža,zvanje,id_katedre
+1,123123123,Milos,Nikolic,12.12.1965.,1,021/356-785,milos.nikolic@mailinator.com,10,30,REDOVNI_PROFESOR,1
+2,321321321,Nikola,Mirkovic,01.01.1978.,2,021/368-456,nikola.mirkovic@mailinator.com,10,22,REDOVNI_PROFESOR,2
+3,456456456,Ilija,Petkovic,03.09.1988.,3,021/215-314,ilija.petkovic@mailinator.com,10,22,VANREDNI_PROFESOR,3
+4,789789789,Mitar,Petrovic,25.07.1976.,4,021/884-640,mitar.petrovic@mailinator.com,10,27,VANREDNI_PROFESOR,4
+5,100100144,Vasa,Micic,14.02.1970.,5,021/212-114,vasa.micic@mailinator.com,10,24,DOCENT,5
+6,200020244,Srdjan,Miletic,20.04.1966.,6,021/978-225,srdjan.miletic@mailinator.com,10,31,DOCENT,6
+7,559585632,Branislav,Mihajlovic,28.06.1980.,7,021/778-323,branislav.mihajlovic@mailinator.com,10,13,REDOVNI_PROFESOR,1
+8,334968855,Marko,Marković,31.01.1985.,8,021/899-659,marko.markovic@mailinator.com,10,17,REDOVNI_PROFESOR,2
+9,730703654,Miloš,Milaković,21.09.1975.,9,021/122-326,milos.milakovic@mailinator.com,10,12,VANREDNI_PROFESOR,3
+10,600378644,Lazar,Bratić,13.11.1973.,10,021/156-326,lazar.bratic@mailinator.com,10,3,VANREDNI_PROFESOR,4
+11,158496152,Ljeposava,Dražić,11.08.1964.,11,021/888-156,ljeposava.drazic@mailinator.com,10,31,DOCENT,5
+12,777348595,Miroljub,Dragić,02.03.1959.,12,021/456-125,miroljub.dragic@mailinator.com,10,42,DOCENT,6
+13,721254363,Bogdan,Rekavić,23.06.1977.,6,021/886-455,bogdan.rekavic@mailinator.com,10,18,VANREDNI_PROFESOR,1
+14,225533448,Stanka,Milić,03.03.1991.,3,021/945-155,stanka.milic@mailinator.com,10,7,DOCENT,2
+15,111555888,Milica,Vuković,18.10.1967.,8,021/746-659,milica.vukovic@mailinator.com,10,14,VANREDNI_PROFESOR,3
+16,300300344,Miša,Mišić,20.10.1969.,1,021/489-326,misa.misic@mailinator.com,10,19,DOCENT,4
+17,400400444,Branko,Maricić,18.01.1973.,2,021/487-265,branko.maricic@mailinator.com,10,22,DOCENT,5
+18,500500544,Branislav,Lukovic,08.04.1982.,3,021/159-478,branislav.lukovic@mailinator.com,10,9,REDOVNI_PROFESOR,6
+19,600600644,Branimir,Obradović,07.01.1979.,1,021/922-333,branimir.obradovic@mailinator.com,10,17,DOCENT,1

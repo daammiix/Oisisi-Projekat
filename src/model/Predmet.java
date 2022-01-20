@@ -40,7 +40,7 @@ public class Predmet {
 		this.studentiPali = studentiPali;
 	}
 	
-	public Predmet(String sifra, String naziv, int god, int espb, Profesor predmetniProfesor, String semestar) {
+	public Predmet(String sifra, String naziv, String semestar, int god, Profesor predmetniProfesor, int espb) {
 		this.sifraPredmeta = sifra;
 		this.nazivPredmeta = naziv;
 		this.godinaStudija = god;

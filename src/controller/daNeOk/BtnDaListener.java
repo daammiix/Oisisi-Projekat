@@ -10,6 +10,7 @@ import model.Ocena;
 import model.Predmet;
 import model.Profesor;
 import model.Student;
+import model.TableStudentIndexValue;
 import util.Util;
 import view.*;
 import view.addDialogs.AddProfesorDialog;
@@ -79,7 +80,10 @@ public class BtnDaListener implements MouseListener {
 	private void deleteStudent() {
 		DeleteStudentDialog dialog = view.getDeleteStudentDialog();
 		int index = AppCentralPanel.getInstance().getIndexStudent();
-		Student student = AppData.getInstance().getStudenti().get(index);
+		TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
+				getValueAt(index, 0); 
+		String selectedStudentIndeks = selectedValue.getIndeks();
+		Student student = AppData.getInstance().getStudentByIndeks(selectedStudentIndeks);
 		AppData.getInstance().deleteStudent(student);
 		view.initTableStudenti();
 		dialog.setVisible(false);
@@ -88,6 +92,9 @@ public class BtnDaListener implements MouseListener {
 	private void deleteProfesor() {
 		DeleteProfesorDialog dialog = view.getDeleteProfesorDialog();
 		int index = AppCentralPanel.getInstance().getIndexProfesori();
+		String selectedProfesorEmail = (String) AppView.getInstance().getCentralPanel().gettProfesori().
+				getValueAt(index, 3);
+		Profesor p = AppData.getInstance().getProfesorByEmail(selectedProfesorEmail);
 		Profesor profesor = AppData.getInstance().getProfesori().get(index);
 		AppData.getInstance().deleteProfesor(profesor);
 		view.initTableProfesori();
@@ -97,7 +104,9 @@ public class BtnDaListener implements MouseListener {
 	private void deletePredmet() {
 		DeletePredmetDialog dialog = view.getDeletePredmetDialog();
 		int index = AppCentralPanel.getInstance().getIndexPredmeti();
-		Predmet predmet = AppData.getInstance().getPredmeti().get(index);
+		String selectedPredmetSifra = (String) AppView.getInstance().getCentralPanel().gettPredmeti().
+				getValueAt(index, 0);
+		Predmet predmet = AppData.getInstance().getPredmetBySifra(selectedPredmetSifra);
 		ArrayList<Student> studenti = AppData.getInstance().getStudenti();
 		for(Student s : studenti) {
 			for (Iterator<Ocena> iterator = s.getNepolozeniIspiti().iterator(); iterator.hasNext(); ) {
@@ -113,6 +122,8 @@ public class BtnDaListener implements MouseListener {
 			AppView.getInstance().getAddStudentOnSubjectDialog().clearTable();
 			AppView.getInstance().getAddStudentOnSubjectDialog().initTable(s);
 		}
+		for(Profesor p : AppData.getInstance().getProfesori())
+			p.getPredmeti().remove(predmet);
 		view.initTablePredmeti();
 		dialog.setVisible(false);
 	}

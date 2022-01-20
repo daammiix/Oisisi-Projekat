@@ -11,6 +11,7 @@ import model.AppData;
 import model.Predmet;
 import model.Profesor;
 import model.Student;
+import model.TableStudentIndexValue;
 import util.Util;
 import view.*;
 import view.changeDialogs.*;
@@ -149,20 +150,27 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		switch(btn.getActionCommand()) {
 			case "Student":
 				{
-					int selectedStudent = view.getCentralPanel().gettStudenti().getSelectedRow();
-					changeStudent(selectedStudent);
+					int selectedRow = view.getCentralPanel().gettStudenti().getSelectedRow();
+					TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
+							getValueAt(selectedRow, 0); 
+					String selectedStudentIndeks = selectedValue.getIndeks();
+					changeStudent(selectedStudentIndeks);
 					break;
 				}
 			case "Profesor":
 				{
 					int selectedProfesor = view.getCentralPanel().gettProfesori().getSelectedRow();
-					changeProfesor(selectedProfesor);
+					String selectedProfesorEmail = (String) view.getCentralPanel().gettProfesori().getValueAt(
+							selectedProfesor, 3);
+					changeProfesor(selectedProfesorEmail);
 					break;
 				}
 			case "Predmet":
 				{
 					int selectedPredmet = view.getCentralPanel().gettPredmeti().getSelectedRow();
-					changePredmet(selectedPredmet);
+					String selectedPredmetSifra = (String) view.getCentralPanel().gettPredmeti().getValueAt(
+							selectedPredmet, 0);
+					changePredmet(selectedPredmetSifra);
 					break;
 				}
 		}
@@ -192,7 +200,7 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		   !view.isTextFieldValid(textFields.get(5), Util.emailPattern) ||
 		   !view.isTextFieldValid(textFields.get(6), Util.adressPattern) ||
 		   !view.isTextFieldValid(textFields.get(7), Util.brLicKartePattern) ||
-		   !view.isTextFieldValid(textFields.get(8), Util.stringPattern) || 
+		   !view.isTextFieldValid(textFields.get(8), Util.textPattern) || 
 		   !view.isTextFieldValid(textFields.get(9), Util.brGodStazaPattern) ||
 		   !data.isBrLicKarProfesoraChanged(textFields.get(7).getText()))
 			return false;
@@ -215,25 +223,25 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 			
 	}
 	
-	private void changeStudent(int selectedStudent) {
+	private void changeStudent(String selectedStudentIndex) {
 		ChangeStudentDialog dialog = view.getChangeStudentDialog();
 		PanelInformacijeWithComboBoxes panel = view.getChangeStudentDialog().getPanelInformacije();
-		data.changeStudent(selectedStudent,panel.getTextFields(),panel.getComboBoxes());
+		data.changeStudent(selectedStudentIndex,panel.getTextFields(),panel.getComboBoxes());
 		view.initTableStudenti();
 		dialog.setVisible(false);
 	}
 	
-	private void changeProfesor(int selectedProfesor) {
+	private void changeProfesor(String selectedProfesorEmail) {
 		ChangeProfesorDialog dialog = view.getChangeProfesorDialog();
 		PanelInformacijeWithComboBoxes panel = view.getChangeProfesorDialog().getPanelInformacije();
-		data.changeProfesor(selectedProfesor, panel.getTextFields());
+		data.changeProfesor(selectedProfesorEmail, panel.getTextFields());
 		view.initTableProfesori();
 		dialog.setVisible(false);
 	}
 	
-	private void changePredmet(int selectedPredmet) {
+	private void changePredmet(String selectedPredmetSifra) {
 		ChangePredmetDialog dialog = view.getChangePredmetDialog();
-		data.changePredmet(selectedPredmet, dialog.getTextFields(), dialog.getCbGodina(), dialog.getCbSemestar());
+		data.changePredmet(selectedPredmetSifra, dialog.getTextFields(), dialog.getCbGodina(), dialog.getCbSemestar());
 		view.initTablePredmeti();
 		dialog.setVisible(false);
 	}

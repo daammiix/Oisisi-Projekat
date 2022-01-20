@@ -68,6 +68,7 @@ public class AppCentralPanel extends JTabbedPane {
 			switch(name) {
 				case "Studenti" : 
 					{
+					
 						tmodelStudenti = new DefaultTableModel(columnNames, 0) 
 						{
 							@Override
@@ -85,6 +86,7 @@ public class AppCentralPanel extends JTabbedPane {
 									  return String.class;
 								}
 				            }
+							
 						}; 
 						tStudenti = new JTable(tmodelStudenti); 
 						tStudenti.setName("Studenti");
@@ -111,6 +113,34 @@ public class AppCentralPanel extends JTabbedPane {
 						break;
 					}
 				default : System.out.println("Invalid table name");
+			}
+		}
+		
+		public void filterTables(String[] parts) {
+			for(int i = 0; i < parts.length; i++) 
+				parts[i] = parts[i].trim().toLowerCase();
+			switch(this.getSelectedIndex()) {
+				case 0:
+				{
+					clearTableStudenti();
+					for(Student s : AppData.getInstance().getSearchedStudents(parts)) 
+						addStudent(s);
+					
+					break;
+				}
+				case 1:
+				{
+					clearTableProfesori();
+					for(Profesor p : AppData.getInstance().getSearchedProfesors(parts))
+						addProfesor(p);
+					break;
+				}
+				case 2:
+				{
+					clearTablePredmeti();
+					for(Predmet p : AppData.getInstance().getSearchedPredmets(parts))
+						addPredmet(p);
+				}
 			}
 		}
 		

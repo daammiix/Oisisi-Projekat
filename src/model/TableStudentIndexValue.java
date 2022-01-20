@@ -44,4 +44,8 @@ public class TableStudentIndexValue implements Comparable<TableStudentIndexValue
         	}
     	}
     }
+    
+    public String getIndeks() {
+    	return this.indexStudent;
+    }
 }

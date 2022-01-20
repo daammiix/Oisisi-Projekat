@@ -44,6 +44,25 @@ public class Student {
 		this.nepolozeniIspiti = new ArrayList<Ocena>();
 	}
 
+	public Student(String ime, String prezime, Date datumRodjenja, Adresa a, String br, String email, String brInd, int godUpisa, int trenutnaGod, String status) {
+		this.ime = ime;
+		this.prezime = prezime;
+		this.datumRodjenja = datumRodjenja;
+		this.adresaStanovanja = a;
+		this.kontaktTelefon = br;
+		this.email = email;
+		this.brojIndeksa = brInd;
+		this.godinaUpisa = godUpisa;
+		this.trenutnaGodinaStudija = trenutnaGod;
+		if(status.equals("S"))
+			this.status = Student.Status.S;
+		else
+			this.status = Student.Status.B;
+		this.prosecnaOcena = 0;
+		polozeniIspiti = new ArrayList<Ocena>();
+		nepolozeniIspiti = new ArrayList<Ocena>();
+	}
+	
 	public Student(String ime, String prezime, Date datumRodjenja, Adresa a, String br, String email, String brInd, int godUpisa, int trenutnaGod, Status status) {
 		this.ime = ime;
 		this.prezime = prezime;
@@ -106,6 +125,18 @@ public class Student {
 	
 	public void removePredmetFromNepolozeni(int idx) {
 		this.nepolozeniIspiti.remove(idx);
+	}
+	
+	public void calculateAvgGrade() {
+		double sum = 0;
+		if(polozeniIspiti.size() != 0) {
+			for(Ocena o : polozeniIspiti) {
+				sum += o.getOcena();
+			}
+			this.setProsecnaOcena(sum/polozeniIspiti.size());
+			return;
+		}
+		this.setProsecnaOcena(0.0);
 	}
 	
 	// getters and setters

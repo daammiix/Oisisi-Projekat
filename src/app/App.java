@@ -28,11 +28,8 @@ public class App {
 	}
 	
 	private void initState() {
-		try{
-			data.makeTestData();
-		} catch(ParseException e) {
-			e.printStackTrace();
-		}
+		data.readDataBase();
+		
 		view.initTableStudenti();
 		view.initTableProfesori();
 		view.initTablePredmeti();
