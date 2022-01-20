@@ -1,10 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 enum Semestar{ L, Z; }
 
-public class Predmet {
+public class Predmet implements Serializable {
+	private static final long serialVersionUID = 4098670493344095682L;
+	
 	private String sifraPredmeta;
 	private String nazivPredmeta;
 	private Semestar semestar;

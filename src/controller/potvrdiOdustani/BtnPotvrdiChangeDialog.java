@@ -107,7 +107,9 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 			case "Student":
 			{
 				textFields = view.getChangeStudentDialog().getPanelInformacije().getTextFields();
-				if(!checkStudentTextFields(textFields))
+				Student s = data.getStudentByIndeks(((TableStudentIndexValue)view.getCentralPanel().gettStudenti().getValueAt(
+						view.getCentralPanel().gettStudenti().getSelectedRow(), 0)).getIndeks());
+				if(!checkStudentTextFields(textFields, s))
 					btn.setEnabled(false);
 				else
 					btn.setEnabled(true);
@@ -116,7 +118,9 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 			case "Profesor":
 			{
 				textFields = view.getChangeProfesorDialog().getPanelInformacije().getTextFields();
-				if(!checkProfesorTextFields(textFields))
+				Profesor p = data.getProfesorByEmail((String)view.getCentralPanel().gettProfesori().getValueAt(
+						view.getCentralPanel().gettProfesori().getSelectedRow(), 3));
+				if(!checkProfesorTextFields(textFields, p))
 					btn.setEnabled(false);
 				else
 					btn.setEnabled(true);
@@ -125,7 +129,9 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 			case "Predmet":
 			{
 				textFields = view.getChangePredmetDialog().getTextFields();
-				if(!checkPredmetTextFields(textFields)) {
+				Predmet p = data.getPredmetBySifra((String)view.getCentralPanel().gettPredmeti().getValueAt(
+						view.getCentralPanel().gettPredmeti().getSelectedRow(), 0));
+				if(!checkPredmetTextFields(textFields, p)) {
 					btn.setEnabled(false);
 				}
 				else {
@@ -176,7 +182,7 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		}
 	}
 	
-	private boolean checkStudentTextFields(ArrayList<JTextField> textFields) {
+	private boolean checkStudentTextFields(ArrayList<JTextField> textFields, Student s) {
 		if(!view.isTextFieldValid(textFields.get(0), Util.stringPattern) ||
 		   !view.isTextFieldValid(textFields.get(1), Util.stringPattern) ||
 		   !view.isTextFieldValid(textFields.get(2), Util.datePattern) ||
@@ -185,13 +191,13 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		   !view.isTextFieldValid(textFields.get(5), Util.emailPattern) ||
 		   !view.isTextFieldValid(textFields.get(6), Util.brIndeksaPattern) ||
 		   !view.isTextFieldValid(textFields.get(7), Util.godUpisaPattern) ||
-		   !data.isIndexStudentaChanged(textFields.get(6).getText()))
+		   !data.isIndexStudentaChanged(textFields.get(6).getText(), s))
 			return false;
 		else
 			return true;
 	}
 	
-	private boolean checkProfesorTextFields(ArrayList<JTextField> textFields) {
+	private boolean checkProfesorTextFields(ArrayList<JTextField> textFields, Profesor p) {
 		if(!view.isTextFieldValid(textFields.get(0), Util.stringPattern) ||
 		   !view.isTextFieldValid(textFields.get(1), Util.stringPattern) ||
 		   !view.isTextFieldValid(textFields.get(2), Util.datePattern) ||
@@ -202,18 +208,18 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		   !view.isTextFieldValid(textFields.get(7), Util.brLicKartePattern) ||
 		   !view.isTextFieldValid(textFields.get(8), Util.textPattern) || 
 		   !view.isTextFieldValid(textFields.get(9), Util.brGodStazaPattern) ||
-		   !data.isBrLicKarProfesoraChanged(textFields.get(7).getText()))
+		   !data.isBrLicKarProfesoraChanged(textFields.get(7).getText(), p))
 			return false;
 		else
 			return true;
 	}
 	
-	private boolean checkPredmetTextFields(ArrayList<JTextField> textFields) {
+	private boolean checkPredmetTextFields(ArrayList<JTextField> textFields, Predmet p) {
 		if(!view.isTextFieldValid(textFields.get(0), Util.textPattern) ||
 		   !view.isTextFieldValid(textFields.get(1), Util.textPattern) ||
 		   !view.isTextFieldValid(textFields.get(2), Util.numberPattern) ||
-		   !data.isSifraPredmetaChanged(textFields.get(0).getText()) ||
-		   !data.isNazivPredmetaChanged(textFields.get(1).getText()))
+		   !data.isSifraPredmetaChanged(textFields.get(0).getText(), p) ||
+		   !data.isNazivPredmetaChanged(textFields.get(1).getText(), p))
 			{
 			return false;
 			}

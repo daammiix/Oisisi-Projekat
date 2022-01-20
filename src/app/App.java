@@ -28,7 +28,7 @@ public class App {
 	}
 	
 	private void initState() {
-		data.readDataBase();
+		data.loadData();
 		
 		view.initTableStudenti();
 		view.initTableProfesori();
