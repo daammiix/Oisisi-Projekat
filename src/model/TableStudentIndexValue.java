@@ -1,8 +1,11 @@
 package model;
 
-public class TableStudentIndexValue implements Comparable<TableStudentIndexValue> {
+import java.io.Serializable;
 
-    private String indexStudent;
+public class TableStudentIndexValue implements Comparable<TableStudentIndexValue>, Serializable {
+	private static final long serialVersionUID = 4078078554291015146L;
+	
+	private String indexStudent;
     private String smer;
     private int broj;
     private int godina;

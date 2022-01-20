@@ -2,7 +2,11 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -240,19 +244,20 @@ public class AppData {
 	
 	public boolean isIndexStudentaUnique(String index) {
 		for(Student s : studenti)
-			if(index.equals(s.getBrojIndeksa()))
+			if(index.equalsIgnoreCase(s.getBrojIndeksa()))
 				return false;
 		
 		return true;
 	}
 	
-	public boolean isIndexStudentaChanged(String index) {
-		int idx = AppCentralPanel.getInstance().getIndexStudent();
-		Student student = getStudenti().get(idx);
-		String indexStudenta = student.getBrojIndeksa();
-		if(index.equals(indexStudenta)) {
-			return true;
-		} else return isIndexStudentaUnique(index);
+	public boolean isIndexStudentaChanged(String index, Student s) {
+		for(Student st : studenti) {
+			if(st == s)
+				continue;
+			if(st.getBrojIndeksa().equalsIgnoreCase(index)) 
+				return false;
+		}
+		return true;
 	}
 	
 	public boolean isBrLicKarProfesoraUnique(String brLicKar) {
@@ -263,18 +268,29 @@ public class AppData {
 		return true;
 	}
 	
-	public boolean isBrLicKarProfesoraChanged(String brLicKar) {
-		int index = AppCentralPanel.getInstance().getIndexProfesori();
-		Profesor profesor = getProfesori().get(index);
-		String brLicKarProfesora = profesor.getBrojLicneKarte();
-		if(brLicKar.equals(brLicKarProfesora)) {
-			return true;
-		} else return isBrLicKarProfesoraUnique(brLicKar);
+	public boolean isBrLicKarProfesoraChanged(String brLicKar, Profesor p) {
+		for(Profesor pr : profesori) {
+			if(pr == p)
+				continue;
+			if(pr.getBrojLicneKarte().equals(brLicKar))
+				return false;
+		}
+		return true;
+	}
+	
+	public Profesor getProfesorByLicnaKarta(String brLicKar) {
+		Profesor ret = null;
+		for(Profesor p : profesori)
+			if(p.getBrojLicneKarte().equals(brLicKar)) {
+				ret = p;
+				break;
+			}
+		return ret;
 	}
 	
 	public boolean isSifraPredmetaUnique(String sifra) {
 		for(Predmet p : predmeti)
-			if(sifra.equals(p.getSifraPredmeta()))
+			if(sifra.equalsIgnoreCase(p.getSifraPredmeta()))
 				return false;
 			
 		return true;
@@ -283,31 +299,31 @@ public class AppData {
 	
 	public boolean isNazivPredmetaUnique(String naziv) {
 		for(Predmet p : predmeti) {
-			if(naziv.equals(p.getNazivPredmeta()))
+			if(naziv.equalsIgnoreCase(p.getNazivPredmeta()))
 				return false;
 		}
 		
 		return true;
 	}
 	
-	public boolean isSifraPredmetaChanged(String sifra) {
-		int index = AppCentralPanel.getInstance().getIndexPredmeti();
-		Predmet predmet = getPredmeti().get(index);
-		String sifraPredmeta = predmet.getSifraPredmeta();
-		if(sifra.equals(sifraPredmeta)) {
-			return true;
-		} else return isSifraPredmetaUnique(sifra);
+	public boolean isSifraPredmetaChanged(String sifra, Predmet pr) {
+		for(Predmet p : predmeti) {
+			if(p == pr)
+				continue;
+			if(p.getSifraPredmeta().equalsIgnoreCase(sifra))
+				return false;
+		}
+		return true;
 	}
 	
-	public boolean isNazivPredmetaChanged(String naziv)
-	{	
-		int index = AppCentralPanel.getInstance().getIndexPredmeti();
-		Predmet predmet = getPredmeti().get(index);
-		String nazivPredmeta = predmet.getNazivPredmeta();
-		if(naziv.equals(nazivPredmeta)) {
-			return true;
-		} else return isNazivPredmetaUnique(naziv);
-		
+	public boolean isNazivPredmetaChanged(String naziv, Predmet pr) {	
+		for(Predmet p : predmeti) {
+			if(p == pr)
+				continue;
+			if(p.getNazivPredmeta().equalsIgnoreCase(naziv))
+				return false;
+		}
+		return true;
 	}
 	
 	
@@ -507,13 +523,13 @@ public class AppData {
 	}
 	
 	public void readDataBase() {
-		try(BufferedReader frAdrese = new BufferedReader(new FileReader("baza" + File.separator + "Adrese.csv"));
-			BufferedReader frStudenti = new BufferedReader(new FileReader("baza" + File.separator + "Studenti.csv"));
-			BufferedReader frProfesori = new BufferedReader(new FileReader("baza" + File.separator + "Profesori.csv"));
-			BufferedReader frPredmeti = new BufferedReader(new FileReader("baza" + File.separator + "Predmeti.csv"));
-			BufferedReader frNepolozeni = new BufferedReader(new FileReader("baza" + File.separator + "Nepoloženi_predmeti.csv"));
-			BufferedReader frOcene = new BufferedReader(new FileReader("baza" + File.separator + "Ocene.csv"));
-			BufferedReader frKatedre = new BufferedReader(new FileReader("baza" + File.separator + "Katedre.csv"))) {
+		try(BufferedReader frAdrese = new BufferedReader(new FileReader("initBaza" + File.separator + "Adrese.csv"));
+			BufferedReader frStudenti = new BufferedReader(new FileReader("initBaza" + File.separator + "Studenti.csv"));
+			BufferedReader frProfesori = new BufferedReader(new FileReader("initBaza" + File.separator + "Profesori.csv"));
+			BufferedReader frPredmeti = new BufferedReader(new FileReader("initBaza" + File.separator + "Predmeti.csv"));
+			BufferedReader frNepolozeni = new BufferedReader(new FileReader("initBaza" + File.separator + "Nepoloženi_predmeti.csv"));
+			BufferedReader frOcene = new BufferedReader(new FileReader("initBaza" + File.separator + "Ocene.csv"));
+			BufferedReader frKatedre = new BufferedReader(new FileReader("initBaza" + File.separator + "Katedre.csv"))) {
 			
 			ArrayList<Adresa> adrese = new ArrayList<Adresa>();
 			
@@ -586,6 +602,36 @@ public class AppData {
 		} catch (Exception e) {
 			System.out.println("Error reading file...");
 			e.printStackTrace();
+		}
+	}
+	
+	public void saveData() {
+		new File("baza").mkdir();
+		try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("baza" + File.separator + 
+				"Baza.ser"))) {
+			os.writeObject(studenti);
+			os.writeObject(predmeti);
+			os.writeObject(profesori);
+			os.writeObject(katedra);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadData() {
+		if(!new File("baza").exists())
+			readDataBase();
+		else {
+			try(ObjectInputStream isBaza = new ObjectInputStream(new FileInputStream("baza" + File.separator + 
+					"Baza.ser"))) {
+				studenti = (ArrayList<Student>) isBaza.readObject();
+				predmeti = (ArrayList<Predmet>) isBaza.readObject();
+				profesori = (ArrayList<Profesor>) isBaza.readObject();
+				katedra = (ArrayList<Katedra>) isBaza.readObject();
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 	

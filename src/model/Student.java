@@ -1,9 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Student {
+public class Student implements Serializable {
+	private static final long serialVersionUID = 4358325220616864185L;
+
 	public static enum Status {S, B};
 	
 	private String prezime;

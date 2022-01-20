@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowListener;
 
 public class AppFrame extends JFrame {
 	private static AppFrame instance = null;
@@ -24,5 +25,9 @@ public class AppFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Studentska služba");
+	}
+	
+	public void connectWindowListener(WindowListener wl) {
+		this.addWindowListener(wl);
 	}
 }

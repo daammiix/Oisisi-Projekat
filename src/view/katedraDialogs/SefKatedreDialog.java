@@ -97,7 +97,7 @@ public class SefKatedreDialog extends JDialog {
 		ArrayList<Profesor> profesori = AppData.getInstance().getProfesori();
 		dozvoljeniProfesori = new ArrayList<Profesor>();
 		for(Profesor p : profesori) {
-			if(p.getZvanje().equalsIgnoreCase("redovan profesor") || p.getZvanje().equalsIgnoreCase("vanredan profesor") && p.getGodineStaza()>=5) {
+			if(p.getZvanje().equalsIgnoreCase("redovni_profesor") || p.getZvanje().equalsIgnoreCase("vanredni_profesor") && p.getGodineStaza()>=5) {
 				Object[] data = {p.getIme() + " " + p.getPrezime()};
 				tableModel.addRow(data);
 				dozvoljeniProfesori.add(p);

@@ -94,6 +94,7 @@ public class AppController {
 		this.addPlusSefBtnListener();
 		this.addBtnZatvoriListener();
 		this.addSearchBtnActionListener();
+		this.addMainFrameWindowListener();
 	}
 	
 	public void tabChangedListener() {
@@ -465,5 +466,9 @@ public class AppController {
 				AppView.getInstance().getCentralPanel().filterTables(parts);
 			}
 		});
+	}
+	
+	private void addMainFrameWindowListener() {
+		appView.getFrame().connectWindowListener(new MainFrameListener());
 	}
 }
