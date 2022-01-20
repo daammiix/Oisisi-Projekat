@@ -35,7 +35,7 @@ public class AppCentralPanel extends JTabbedPane {
 	private AppCentralPanel() {
 		this.setBorder(BorderFactory.createEmptyBorder(5, 15, 15, 15));
 		
-		String[] columnNamesStudenti = {"Indeks", "Ime", "Prezime", "Godina Studija", "Status", "Prosek"};
+		String[] columnNamesStudenti = {"Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek"};
 		makeTable("Studenti", columnNamesStudenti);
 		
 		String[] columnNamesProfesori = {"Ime", "Prezime", "Zvanje", "Email"};
@@ -47,20 +47,70 @@ public class AppCentralPanel extends JTabbedPane {
 		modifyAndAddTable(tStudenti, scStudenti, this, "Studenti");
 		modifyAndAddTable(tProfesori, scProfesori, this, "Profesori");
 		modifyAndAddTable(tPredmeti, scPredmeti, this, "Predmeti");
+
 		
+	}
+	
+	public void initComponents() {	
 		// da nazivi tabova budu veci
-		JLabel lStudenti = new JLabel("Studenti");
-		lStudenti.setPreferredSize(new Dimension(50, 20));
+		JLabel lStudenti = new JLabel(AppFrame.getInstance().getResourceBundle().getString("tStudenti"));
+		lStudenti.setPreferredSize(new Dimension(60, 20));
+		this.setTabComponentAt(0, lStudenti);
 		
-		this.setTabComponentAt(0, lStudenti);	// da nazivi tabova budu veci
+		JLabel lProfesori = new JLabel(AppFrame.getInstance().getResourceBundle().getString("tProfesori"));
+		lStudenti.setPreferredSize(new Dimension(60, 20));
+		this.setTabComponentAt(1, lProfesori);
+		
+		JLabel lPredmeti = new JLabel(AppFrame.getInstance().getResourceBundle().getString("tPredmeti"));
+		lStudenti.setPreferredSize(new Dimension(60, 20));
+		this.setTabComponentAt(2, lPredmeti);
 
-
+		String[] columnNamesStudenti = {AppFrame.getInstance().getResourceBundle().getString("Indeks")
+				, AppFrame.getInstance().getResourceBundle().getString("Ime")
+				, AppFrame.getInstance().getResourceBundle().getString("Prezime")
+				, AppFrame.getInstance().getResourceBundle().getString("Godina_studija")
+				, AppFrame.getInstance().getResourceBundle().getString("Status")
+				, AppFrame.getInstance().getResourceBundle().getString("Prosek")};
+		tmodelStudenti.setColumnIdentifiers(columnNamesStudenti);
+		
+		String[] columnNamesProfesori = {AppFrame.getInstance().getResourceBundle().getString("Ime")
+				, AppFrame.getInstance().getResourceBundle().getString("Prezime")
+				, AppFrame.getInstance().getResourceBundle().getString("Zvanje")
+				, AppFrame.getInstance().getResourceBundle().getString("Email")};
+		tmodelProfesori.setColumnIdentifiers(columnNamesProfesori);
+		
+		String[] columnNamesPredmeti = {AppFrame.getInstance().getResourceBundle().getString("Sifra")
+				, AppFrame.getInstance().getResourceBundle().getString("Naziv")
+				, AppFrame.getInstance().getResourceBundle().getString("Broj_espb")
+				, AppFrame.getInstance().getResourceBundle().getString("Godina")
+				, AppFrame.getInstance().getResourceBundle().getString("Semestar")};
+		tmodelPredmeti.setColumnIdentifiers(columnNamesPredmeti);
 	}
 	
 	// vraca naslov selektovanog taba
 		public String getSelectedTabTitle() {
 			int selectedIndex = this.getSelectedIndex();
-			return this.getTitleAt(selectedIndex);
+			String title = this.getTitleAt(selectedIndex);
+			String naziv = new String();
+			switch(title) {
+			case "Studenti" : 
+				{
+					naziv = AppFrame.getInstance().getResourceBundle().getString("tStudenti");
+					return naziv;
+				}
+			case "Profesori" : 
+				{
+					naziv = AppFrame.getInstance().getResourceBundle().getString("tProfesori");
+					return naziv;
+				}
+			case "Predmeti" : 
+				{
+					naziv = AppFrame.getInstance().getResourceBundle().getString("tPredmeti");
+					return naziv;
+				}
+			 default:
+				  return "nema takvog slucaja";
+			}
 		}
 		
 		// pravljenje tabele
@@ -98,7 +148,7 @@ public class AppCentralPanel extends JTabbedPane {
 					{
 						tmodelProfesori = new DefaultTableModel(columnNames, 0); 
 						tProfesori = new JTable(tmodelProfesori); 
-						tProfesori.setName("Profesori");
+						tStudenti.setName("Profesori");
 						tProfesori.setDefaultEditor(Object.class, null);
 						tProfesori.setAutoCreateRowSorter(true);
 						break;
@@ -107,7 +157,7 @@ public class AppCentralPanel extends JTabbedPane {
 					{
 						tmodelPredmeti = new DefaultTableModel(columnNames, 0); 			
 						tPredmeti = new JTable(tmodelPredmeti); 
-						tPredmeti.setName("Predmeti");
+						tStudenti.setName("Predmeti");
 						tPredmeti.setDefaultEditor(Object.class, null);
 						tPredmeti.setAutoCreateRowSorter(true);
 						break;

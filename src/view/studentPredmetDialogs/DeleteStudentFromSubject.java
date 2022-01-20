@@ -55,6 +55,12 @@ public class DeleteStudentFromSubject extends JDialog {
 		
 	}
 	
+	public void initComponents() {
+		btnDa.setText(AppFrame.getInstance().getResourceBundle().getString("btnDa"));
+		btnNe.setText(AppFrame.getInstance().getResourceBundle().getString("btnNe"));
+		label = new JLabel(AppFrame.getInstance().getResourceBundle().getString("brisanje_studenta_dialog"), SwingConstants.CENTER);
+	}
+	
 	public void addDeleteBtnDaListener(MouseListener ml) {
 		btnDa.addMouseListener(ml);
 	}

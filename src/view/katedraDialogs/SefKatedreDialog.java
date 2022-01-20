@@ -71,6 +71,11 @@ public class SefKatedreDialog extends JDialog {
 		this.add(sp, BorderLayout.CENTER);
 	}
 	
+	public void initComponents() {
+		btnIzmeni.setText(AppFrame.getInstance().getResourceBundle().getString("btnIzmeni"));
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+	}
+	
 	public JPanel getPanel() {
 		return panel;
 	}

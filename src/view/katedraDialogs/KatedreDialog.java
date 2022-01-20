@@ -28,7 +28,7 @@ public class KatedreDialog extends JDialog {
 	private JTable table;
 	private DefaultTableModel tableModel;
 	private JButton btnSefKatedre;
-	private JButton btnOdustani;
+	private JButton btnZavrsi;
 	private JPanel panel;
 	
 	public KatedreDialog(AppFrame parent, String title, boolean modal) {
@@ -51,14 +51,14 @@ public class KatedreDialog extends JDialog {
 		setButton(btnSefKatedre);
 		btnSefKatedre.setActionCommand("Katedre");
 		btnSefKatedre.setPreferredSize(new Dimension(25, 25));
-		btnOdustani = new JButton("Zavrsi");
-		btnOdustani.setActionCommand("Katedre");
-		setButton(btnOdustani);
-		btnOdustani.setPreferredSize(new Dimension(25, 25));
+		btnZavrsi = new JButton("Zavrsi");
+		btnZavrsi.setActionCommand("Katedre");
+		setButton(btnZavrsi);
+		btnZavrsi.setPreferredSize(new Dimension(25, 25));
 		
 		panel = new JPanel();
 		panel.add(btnSefKatedre);
-		panel.add(btnOdustani);
+		panel.add(btnZavrsi);
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
 		panel.setLayout(new GridLayout(1, 2, 15, 0));
 		
@@ -66,6 +66,11 @@ public class KatedreDialog extends JDialog {
 		
 		this.add(panel, BorderLayout.SOUTH);
 		this.add(sp, BorderLayout.CENTER);
+	}
+	
+	public void initComponents() {
+		btnSefKatedre.setText(AppFrame.getInstance().getResourceBundle().getString("btnIzmeni"));
+		btnZavrsi.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 	private void setButton(JButton button) {
@@ -78,7 +83,7 @@ public class KatedreDialog extends JDialog {
 	}
 	
 	public void addOdustaniProfesorBtnListener(MouseListener ml) {
-		btnOdustani.addMouseListener(ml);
+		btnZavrsi.addMouseListener(ml);
 	}
 	
 	public void initTable() {

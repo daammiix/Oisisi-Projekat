@@ -55,28 +55,28 @@ public class ChangePredmetDialog extends JDialog {
 		String[] semestar = {"Zimski", "Letnji"};
 		cbSemestar = new JComboBox<String>(semestar);
 		
-		JLabel lSifra = new JLabel("Sifra*");
+		JLabel lSifra = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Sifra") + "*");
 		lSifra.setPreferredSize(new Dimension(100, 25));
 		JTextField tf1 = new JTextField(30);
 		textFields.add(tf1);
 		
-		JLabel lNaziv = new JLabel("Naziv*");
+		JLabel lNaziv = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Naziv") + "*");
 		lNaziv.setPreferredSize(new Dimension(100, 25));
 		JTextField tf2 = new JTextField(30);
 		textFields.add(tf2);
 		
-		JLabel lGodina = new JLabel("Godina*");
+		JLabel lGodina = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Godina_studija") + "*");
 		lGodina.setPreferredSize(new Dimension(100, 25));
 		
-		JLabel lSemestar = new JLabel("Semestar*");
+		JLabel lSemestar = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Semestar") + "*");
 		lSemestar.setPreferredSize(new Dimension(100, 25));
 		
-		JLabel lEspb = new JLabel("ESPB*");
+		JLabel lEspb = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Broj_espb") + "*");
 		lEspb.setPreferredSize(new Dimension(100, 25));
 		JTextField tf3= new JTextField(30);
 		textFields.add(tf3);
 		
-		JLabel lProfesor = new JLabel("Profesor*");
+		JLabel lProfesor = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Profesor") + "*");
 		lProfesor.setPreferredSize(new Dimension(100, 25));
 		JTextField tf4 = new JTextField(20);
 		textFields.add(tf4);
@@ -114,6 +114,11 @@ public class ChangePredmetDialog extends JDialog {
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
 		this.add(BorderLayout.CENTER, mainPanel);
 		this.add(BorderLayout.SOUTH, btnPanel);
+	}
+	
+	public void initComponents() {
+		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 	public void addBtnOdustaniDialog(MouseListener ml) {

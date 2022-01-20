@@ -147,6 +147,13 @@ public class AppMenuBar extends JMenuBar {
 	public void addSaveActionListener(ActionListener al) {
 		miSave.addActionListener(al);
 	}
+	
+	public void initComponents() {
+		miStudenti.setText(AppFrame.getInstance().getResourceBundle().getString("tStudenti"));
+		miPredmeti.setText(AppFrame.getInstance().getResourceBundle().getString("tProfesori"));
+		miProfesori.setText(AppFrame.getInstance().getResourceBundle().getString("tPredmeti"));
+		miKatedre.setText(AppFrame.getInstance().getResourceBundle().getString("tKatedre"));
+	}
 
 	public JMenu getmFile() {
 		return mFile;

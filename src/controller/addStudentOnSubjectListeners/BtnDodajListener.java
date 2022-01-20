@@ -30,8 +30,8 @@ public class BtnDodajListener implements ActionListener{
 		if(selectedRow != -1) {
 			String selectedId = (String)asos.getTableModel().getValueAt(selectedRow, 0);
 			addPredmet(selectedId);
-			AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().refreshInfo(student);
 			AppView.getInstance().getAddStudentOnSubjectDialog().removePredmet(selectedRow);
+			AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().refreshInfo(student);
 			AppView.getInstance().getAddStudentOnSubjectDialog().setVisible(false);
 		} else {
 			JOptionPane.showMessageDialog(asos, "Niste oznacili entitet", "Error", 
