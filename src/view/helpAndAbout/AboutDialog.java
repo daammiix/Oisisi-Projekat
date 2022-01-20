@@ -77,6 +77,10 @@ public class AboutDialog extends JDialog {
 		this.add(BorderLayout.SOUTH, btnPanel);
 	}
 	
+	public void initComponents() {
+		btnZatvori.setText(AppFrame.getInstance().getResourceBundle().getString("btnZatvori"));
+	}
+	
 	public void addBtnZatvoriListener(MouseListener ml) {
 		btnZatvori.addMouseListener(ml);
 	}

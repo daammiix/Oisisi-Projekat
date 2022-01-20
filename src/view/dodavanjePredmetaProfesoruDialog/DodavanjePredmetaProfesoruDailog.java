@@ -12,6 +12,7 @@ import javax.swing.*;
 import model.AppData;
 import model.Predmet;
 import model.Profesor;
+import view.AppFrame;
 
 public class DodavanjePredmetaProfesoruDailog extends JDialog {
 	
@@ -53,6 +54,11 @@ public class DodavanjePredmetaProfesoruDailog extends JDialog {
 		this.add(sp, BorderLayout.CENTER);
 		this.add(btnPanel, BorderLayout.SOUTH);
 		
+	}
+	
+	public void initComponents() {
+		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 	public void fillListInformation(Profesor p) {

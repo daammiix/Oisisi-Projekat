@@ -13,22 +13,27 @@ public class AddProfesorDialog extends AddDialog{
 		super(parent, title, modal);
 		panelInformacije.getCentralPanel().setLayout(new GridLayout(10, 2, 0, 20));
 		
-		panelInformacije.addPairLabelTextField("Ime*");
-		panelInformacije.addPairLabelTextField("Prezime*");
-		panelInformacije.addPairLabelTextField("Datum rođenja*");
-		panelInformacije.addPairLabelTextField("Adresa stanovanja*");
-		panelInformacije.addPairLabelTextField("Broj telefona*");
-		panelInformacije.addPairLabelTextField("E-mail adresa*");
-		panelInformacije.addPairLabelTextField("Adresa kancelarije*");
-		panelInformacije.addPairLabelTextField("Broj licne karte*");
-		panelInformacije.addPairLabelTextField("Zvanje*");
-		panelInformacije.addPairLabelTextField("Broj godina staza*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Ime") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Prezime") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Datun_rodjenja") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Adresa") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Broj_telefona") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Email") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Adresa_kancelarije") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Licna") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Zvanje") + "*");
+		panelInformacije.addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Staz") + "*");
 		
 		panelInformacije.getCentralPanel().setBorder(BorderFactory.createEmptyBorder(20, 90, 15, 90));
 		this.add(panelInformacije.getCentralPanel(), BorderLayout.CENTER);
 		
 		panelInformacije.getBtnPotvrdi().setActionCommand("Profesor");
 		panelInformacije.getBtnOdustani().setActionCommand("Profesor");
+	}
+	
+	public void initComponents() {
+		this.panelInformacije.getBtnPotvrdi().setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		this.panelInformacije.getBtnOdustani().setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
 	}
 	
 }

@@ -68,6 +68,10 @@ public class TrenutniSefKatedre extends JDialog {
 		this.add(BorderLayout.SOUTH, btnPanel);
 	}
 	
+	public void initComponents() {
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+	}
+	
 	public JButton getBtnOdustani() {
 		return btnOdustani;
 	}

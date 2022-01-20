@@ -56,6 +56,12 @@ public class RemoveSefKatedreDialog extends JDialog {
 		
 	}
 	
+	public void initComponents() {
+		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
+		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+		label.setText(AppFrame.getInstance().getResourceBundle().getString("da_li_ste_sigurni"));
+	}
+	
 	public void addBtnPotvrdiProfesoraListener(MouseListener ml, ActionListener al) {
 		btnPotvrdi.addMouseListener(ml);
 		btnPotvrdi.addActionListener(al);

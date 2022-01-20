@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Ocena;
 import model.Student;
 import util.Util;
+import view.AppFrame;
 
 public class Polozeni extends JPanel {
 	private static final long serialVersionUID = 2705682130776803296L;
@@ -43,6 +44,7 @@ public class Polozeni extends JPanel {
 		tableIspiti.getColumnModel().getColumn(2).setPreferredWidth(100);
 		tableIspiti.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tableIspiti.getColumnModel().getColumn(4).setPreferredWidth(200);
+		
 		JScrollPane sp = new JScrollPane(tableIspiti, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		sp.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -62,13 +64,23 @@ public class Polozeni extends JPanel {
 		this.setBorder(BorderFactory.createEmptyBorder(20, 35, 40, 35));
 	}
 	
-	public void setProsecnaOcena(String po, Student s) {
-		prosecnaOcena.setText("Prosečna ocena: " + po);
-		s.setProsecnaOcena(Double.parseDouble(po));
+	public void initComponents() {
+		btnPonisti.setText(AppFrame.getInstance().getResourceBundle().getString("btnPonisti"));
+		String[] columns = {AppFrame.getInstance().getResourceBundle().getString("Sifra")
+				, AppFrame.getInstance().getResourceBundle().getString("Naziv")
+				, AppFrame.getInstance().getResourceBundle().getString("Broj_espb")
+				, AppFrame.getInstance().getResourceBundle().getString("Ocena")
+				, AppFrame.getInstance().getResourceBundle().getString("Datum")};
+		tableModel.setColumnIdentifiers(columns);
+	}
+	
+	public void setProsecnaOcena(Double po, Student s) {
+		prosecnaOcena.setText(AppFrame.getInstance().getResourceBundle().getString("Prosecna_ocena")+ ":" + String.format("%.2f", po));
+		s.setProsecnaOcena(po);
 	}
 	
 	public void setUkupnoEspb(String espb) {
-		uEspb.setText("Ukupno ESPB: " + espb);
+		uEspb.setText(AppFrame.getInstance().getResourceBundle().getString("Ukupno_espb")+ ":" + espb);
 	}
 	
 	public void refreshInfo(Student s) {
@@ -87,14 +99,15 @@ public class Polozeni extends JPanel {
 			uEspb += espb;
 			sum += ocena;
 		}
-		if(s.getPolozeniIspiti().size() == 0) {
-			setProsecnaOcena("0", s);
+		if(sum == 0) {
+			setProsecnaOcena(0.0, s);
 			setUkupnoEspb("0");
 			return;
 		}
-		s.setProsecnaOcena(sum / s.getPolozeniIspiti().size());
+		double ocena = sum / s.getPolozeniIspiti().size();
+		s.setProsecnaOcena(ocena);
 		
-		setProsecnaOcena(String.format("%.2f", sum / s.getPolozeniIspiti().size()), s);
+		setProsecnaOcena( ocena, s);
 		setUkupnoEspb(String.format("%d", uEspb));
 	}
 	

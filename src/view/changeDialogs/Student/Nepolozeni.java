@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import model.*;
 import util.Util;
+import view.AppFrame;
 
 public class Nepolozeni extends JPanel {
 	private static final long serialVersionUID = 3236291496585565620L;
@@ -57,6 +58,18 @@ public class Nepolozeni extends JPanel {
 		this.add(btnBox, BorderLayout.NORTH);
 		this.add(sp, BorderLayout.CENTER);
 		this.setBorder(BorderFactory.createEmptyBorder(25, 40, 60, 40));
+	}
+	
+	public void initComponents() {
+		btnDodaj.setText(AppFrame.getInstance().getResourceBundle().getString("btnDodaj"));
+		btnObrisi.setText(AppFrame.getInstance().getResourceBundle().getString("btnObrisi"));
+		btnPolaganje.setText(AppFrame.getInstance().getResourceBundle().getString("btnPolaganje"));
+		String[] columns = {AppFrame.getInstance().getResourceBundle().getString("Sifra")
+				, AppFrame.getInstance().getResourceBundle().getString("Naziv")
+				, AppFrame.getInstance().getResourceBundle().getString("Broj_espb")
+				, AppFrame.getInstance().getResourceBundle().getString("Godina")
+				, AppFrame.getInstance().getResourceBundle().getString("Semestar")};
+		tableModel.setColumnIdentifiers(columns);
 	}
 	
 	private void modifyButton(JButton btn) {
