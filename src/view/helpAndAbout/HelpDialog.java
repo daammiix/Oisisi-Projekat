@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Label;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
@@ -63,6 +64,7 @@ public class HelpDialog extends JDialog {
 	
 	public void initComponents() {
 		btnZatvori.setText(AppFrame.getInstance().getResourceBundle().getString("btnZatvori"));
+		label1.setText(AppFrame.getInstance().getResourceBundle().getString("Help_poruka"));
 	}
 	
 	public void addBtnZatvoriListener(MouseListener ml) {

@@ -34,6 +34,13 @@ public class ChangePredmetDialog extends JDialog {
 	private JButton btnOdustani;
 	private JButton btnPlus;
 	private JButton btnMinus;
+	private JLabel lSifra;
+	private JLabel lNaziv;
+	private JLabel lGodina;
+	private JLabel lSemestar;
+	private JLabel lEspb;
+	private JLabel lProfesor;
+	
 
 	public ChangePredmetDialog(AppFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
@@ -55,28 +62,28 @@ public class ChangePredmetDialog extends JDialog {
 		String[] semestar = {"Zimski", "Letnji"};
 		cbSemestar = new JComboBox<String>(semestar);
 		
-		JLabel lSifra = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Sifra") + "*");
+		lSifra = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Sifra") + "*");
 		lSifra.setPreferredSize(new Dimension(100, 25));
 		JTextField tf1 = new JTextField(30);
 		textFields.add(tf1);
 		
-		JLabel lNaziv = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Naziv") + "*");
+		lNaziv = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Naziv") + "*");
 		lNaziv.setPreferredSize(new Dimension(100, 25));
 		JTextField tf2 = new JTextField(30);
 		textFields.add(tf2);
 		
-		JLabel lGodina = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Godina_studija") + "*");
+		lGodina = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Godina_studija") + "*");
 		lGodina.setPreferredSize(new Dimension(100, 25));
 		
-		JLabel lSemestar = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Semestar") + "*");
+		lSemestar = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Semestar") + "*");
 		lSemestar.setPreferredSize(new Dimension(100, 25));
 		
-		JLabel lEspb = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Broj_espb") + "*");
+		lEspb = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Broj_espb") + "*");
 		lEspb.setPreferredSize(new Dimension(100, 25));
 		JTextField tf3= new JTextField(30);
 		textFields.add(tf3);
 		
-		JLabel lProfesor = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Profesor") + "*");
+		lProfesor = new JLabel(AppFrame.getInstance().getResourceBundle().getString("Profesor") + "*");
 		lProfesor.setPreferredSize(new Dimension(100, 25));
 		JTextField tf4 = new JTextField(20);
 		textFields.add(tf4);
@@ -119,6 +126,13 @@ public class ChangePredmetDialog extends JDialog {
 	public void initComponents() {
 		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
 		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+		lSifra.setText(AppFrame.getInstance().getResourceBundle().getString("Sifra") + "*");
+		lNaziv.setText(AppFrame.getInstance().getResourceBundle().getString("Naziv") + "*");
+		lGodina.setText(AppFrame.getInstance().getResourceBundle().getString("Godina_studija") + "*");
+		lSemestar.setText(AppFrame.getInstance().getResourceBundle().getString("Semestar") + "*");
+		lEspb.setText(AppFrame.getInstance().getResourceBundle().getString("Broj_espb") + "*");
+		lProfesor.setText(AppFrame.getInstance().getResourceBundle().getString("Profesor") + "*");
+		
 	}
 	
 	public void addBtnOdustaniDialog(MouseListener ml) {

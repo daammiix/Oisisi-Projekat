@@ -74,7 +74,7 @@ public class AppView {
 		centralPanel = AppCentralPanel.getInstance();
 		menuBar = AppMenuBar.getInstance();
 		toolBar = AppToolBar.getInstance();
-		statusBar = new AppStatusBar();
+		statusBar = AppStatusBar.getInstance();
 		addStudentDialog = new AddStudentDialog(frame, "Dodavanje studenta", true);
 		addProfesorDialog = new AddProfesorDialog(frame, "Dodavanje profesora", true);
 		addPredmetDialog = new AddPredmetDialog(frame, "Dodavanje predmeta", true);
@@ -104,7 +104,7 @@ public class AppView {
 		aboutDialog = new AboutDialog(frame, "About", true);
 		helpDialog = new HelpDialog(frame, "Help", true);
 		
-		statusBar.setNaziv(frame.getTitle(), centralPanel.getSelectedTabTitle());
+		statusBar.setNaziv(centralPanel.getSelectedTabTitle());
 		
 		frame.setJMenuBar(menuBar);
 		

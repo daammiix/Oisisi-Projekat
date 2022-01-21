@@ -3,14 +3,18 @@ package view.changeDialogs.Student;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import model.Adresa;
 import model.Student;
 import util.Util;
 import view.AppFrame;
+import view.panelInformacije.PanelInformacije;
 import view.panelInformacije.PanelInformacijeWithComboBoxes;
 
 public class Informacije extends PanelInformacijeWithComboBoxes {
@@ -27,16 +31,16 @@ public class Informacije extends PanelInformacijeWithComboBoxes {
 		
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Ime") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Prezime") + "*");
-		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Datun_rodjenja") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Datum_rodjenja") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Adresa") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Broj_telefona") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Email") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Indeks") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Godina_upisa") + "*");
 		String[] godStud = {"I", "II", "III", "IV"};
-		addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Trenutna_godina_studija"), godStud);
+		addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Trenutna_godina_studija") + "*", godStud);
 		String[] nacFin = {AppFrame.getInstance().getResourceBundle().getString("Budzet"), AppFrame.getInstance().getResourceBundle().getString("Samofinansiranje")};
-		addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Nacin_finansiranja"), nacFin);
+		addPairLabelComboBox(AppFrame.getInstance().getResourceBundle().getString("Nacin_finansiranja") + "*", nacFin);
 		
 		this.setBorder(BorderFactory.createEmptyBorder(20, 90, 15, 90));
 		this.btnPotvrdi.setActionCommand("Student");
@@ -51,6 +55,19 @@ public class Informacije extends PanelInformacijeWithComboBoxes {
 	public void initComponents() {
 		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
 		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+		ArrayList<JLabel> labels = getLabels();
+		labels.get(0).setText(AppFrame.getInstance().getResourceBundle().getString("Ime") + "*");
+		labels.get(1).setText(AppFrame.getInstance().getResourceBundle().getString("Prezime") + "*");
+		labels.get(2).setText(AppFrame.getInstance().getResourceBundle().getString("Datum_rodjenja") + "*");
+		labels.get(3).setText(AppFrame.getInstance().getResourceBundle().getString("Adresa") + "*");
+		labels.get(4).setText(AppFrame.getInstance().getResourceBundle().getString("Broj_telefona") + "*");
+		labels.get(5).setText(AppFrame.getInstance().getResourceBundle().getString("Email") + "*");
+		labels.get(6).setText(AppFrame.getInstance().getResourceBundle().getString("Indeks") + "*");
+		labels.get(7).setText(AppFrame.getInstance().getResourceBundle().getString("Godina_upisa") + "*");
+		String[] godStud = {"I", "II", "III", "IV"};
+		labels.get(8).setText(AppFrame.getInstance().getResourceBundle().getString("Trenutna_godina_studija") + "*");
+		String[] nacFin = {AppFrame.getInstance().getResourceBundle().getString("Budzet"), AppFrame.getInstance().getResourceBundle().getString("Samofinansiranje")};
+		labels.get(9).setText(AppFrame.getInstance().getResourceBundle().getString("Nacin_finansiranja") + "*");
 	}
 	
 	public void fillInStudent(Student s) {
@@ -74,6 +91,7 @@ public class Informacije extends PanelInformacijeWithComboBoxes {
 		textFields.get(5).setText(email);
 		textFields.get(6).setText(brIndeksa);
 		textFields.get(7).setText(Integer.toString(godinaUpisa));
+		
 		switch(trenutnaGod) {
 		case 1: comboBoxes.get(0).setSelectedIndex(0); break;
 		case 2: comboBoxes.get(0).setSelectedIndex(1); break;

@@ -71,6 +71,8 @@ public class KatedreDialog extends JDialog {
 	public void initComponents() {
 		btnSefKatedre.setText(AppFrame.getInstance().getResourceBundle().getString("btnIzmeni"));
 		btnZavrsi.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+		String[] cols = {AppFrame.getInstance().getResourceBundle().getString("Ponudjene_katedre")};
+		tableModel.setColumnIdentifiers(cols);
 	}
 	
 	private void setButton(JButton button) {

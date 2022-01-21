@@ -23,7 +23,6 @@ public class AppStatusBar extends JPanel {
 
 	JLabel label2;
 	JLabel label1;
-	String formatDateTime;
 	DateFormat dateFormat;
 	
 	public AppStatusBar() {
@@ -37,23 +36,27 @@ public class AppStatusBar extends JPanel {
 	    new Timer(1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-	            Calendar now = Calendar.getInstance();
-	            formatDateTime = dateFormat.format(now.getTime()); 
-	            label1.setText(formatDateTime); 
-				
+	            updateDate();
 			}
 	    }).start();
     
 	    this.add(label1, BorderLayout.EAST);
 	    this.add(label2, BorderLayout.WEST);
-  
+	    this.initComponents();
+	}
+	private void updateDate() {
+		Calendar now = Calendar.getInstance();
+        String formatDateTime = dateFormat.format(now.getTime()); 
+        label1.setText(formatDateTime);
 	}
 
-	public void setNaziv(String title, String selectedTabTitle) {
+	public void setNaziv(String selectedTabTitle) {
 		label2.setText(AppFrame.getInstance().getResourceBundle().getString("naslovAplikacije") + " - " + selectedTabTitle);
 	}
 	
 	public void initComponents() {
-		label2.setText(AppFrame.getInstance().getResourceBundle().getString("naslovAplikacije") + " - " + AppCentralPanel.getInstance().getSelectedTabTitle());
+		setNaziv(AppCentralPanel.getInstance().getSelectedTabTitle());
+		dateFormat = new SimpleDateFormat(AppFrame.getInstance().getResourceBundle().getString("dateFormat"));
+	    updateDate();
 	}
 }
