@@ -16,8 +16,6 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import util.Util;
-import view.AppCentralPanel;
-import view.AppView;
 
 public class AppData {
 	
@@ -126,6 +124,7 @@ public class AppData {
 		Student.Status status = Student.Status.B;
 		if(statusIdx == 1)
 			status = Student.Status.S;
+
 		
 		student.setIme(ime);
 		student.setPrezime(prezime);
@@ -200,6 +199,15 @@ public class AppData {
 				predmet.setPredmetniProfesor(profesor);
 			}
 		}
+		
+		for(Student s : studenti) {
+			for(Ocena o : s.getNepolozeniIspiti()) {
+				if(o.getPredmet().getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+					o.setPredmet(predmet);
+				}
+			}
+		}
+
 		
 		predmet.setSifraPredmeta(sifra);
 		predmet.setNazivPredmeta(naziv);

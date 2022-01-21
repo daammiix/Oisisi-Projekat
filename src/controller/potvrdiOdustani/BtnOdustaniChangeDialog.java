@@ -17,7 +17,8 @@ private AppView view;
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		JButton btn = (JButton)e.getSource();
+		btn.setBackground(null);
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import model.Katedra;
 import model.Predmet;
 import model.Profesor;
 import util.Util;
+import view.AppCentralPanel;
 import view.AppView;
 import view.changeDialogs.ChangePredmetDialog;
 import view.changeDialogs.ChooseProfessorDialog;
@@ -81,6 +82,9 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 			}
 		case "Choose":	
 			{
+				int selectedPredmet = AppView.getInstance().getCentralPanel().gettPredmeti().getSelectedRow();
+				String selectedPredmetRow = (String) AppView.getInstance().getCentralPanel().gettPredmeti().getValueAt(selectedPredmet, 0);
+				Predmet prSelected = AppData.getInstance().getPredmetBySifra(selectedPredmetRow);
 				ChooseProfessorDialog cp = AppView.getInstance().getChooseProfessorDialog();
 				int selectedRow = cp.getTable().getSelectedRow();
 				if(selectedRow != -1) {
@@ -88,7 +92,9 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 							getValueAt(selectedRow, 3);
 					Profesor profesor = AppData.getInstance().getProfesorByEmail(selectedProfesorEmail);
 					addProfesor(profesor);
+					profesor.addPredmet(prSelected);
 					AppView.getInstance().getSefKatedreDialog().initTable();
+					AppView.getInstance().getChangeProfesorDialog().getPredmeti().refreshInfo(profesor);
 					ArrayList<JTextField> textFields = AppView.getInstance().getChangePredmetDialog().getTextFields();
 					doesProfessorExists(textFields);
 					AppView.getInstance().getChooseProfessorDialog().setVisible(false);
