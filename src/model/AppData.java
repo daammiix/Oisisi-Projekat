@@ -195,16 +195,6 @@ public class AppData {
 		int godina = (Integer)cbGodine.getSelectedItem();
 		String semestar = (String)cbSemestar.getSelectedItem();
 		int espb = unpackIntTextField(textFields.get(2));
-		String nazivProfesora = unpackStringTextField(textFields.get(3));
-		
-		String[] pr = nazivProfesora.split(" ");
-		String imeProfesora = pr[0];
-		for(Profesor p : profesori) {
-			if(imeProfesora.equals(p.getIme())) {
-				Profesor profesor = new Profesor(p.getIme(), p.getPrezime(), p.getZvanje(), p.getEmail());
-				predmet.setPredmetniProfesor(profesor);
-			}
-		}
 		
 		for(Student s : studenti) {
 			for(Ocena o : s.getNepolozeniIspiti()) {
@@ -347,7 +337,7 @@ public class AppData {
 	{
 		for(Iterator<Student> iterator = studenti.iterator(); iterator.hasNext(); ) {
 			Student value = iterator.next();
-		    if (value.equals(student)) {
+		    if (value.getBrojIndeksa().equals(student.getBrojIndeksa())) {
 		        iterator.remove();
 		    }
 		}
@@ -372,7 +362,7 @@ public class AppData {
 	{
 		for (Iterator<Profesor> iterator = profesori.iterator(); iterator.hasNext(); ) {
 			Profesor value = iterator.next();
-		    if (value.equals(profesor)) {
+		    if (value.getEmail().equals(profesor.getEmail())) {
 		        iterator.remove();
 		    }
 		}
@@ -382,7 +372,7 @@ public class AppData {
 	{
 		for (Iterator<Predmet> iterator = predmeti.iterator(); iterator.hasNext(); ) {
 			Predmet value = iterator.next();
-		    if (value.equals(predmet)) {
+		    if (value.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
 		        iterator.remove();
 		    }
 		}
