@@ -6,6 +6,8 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import model.*;
+import util.Util;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -47,7 +49,6 @@ public class AppCentralPanel extends JTabbedPane {
 		modifyAndAddTable(tStudenti, scStudenti, this, "Studenti");
 		modifyAndAddTable(tProfesori, scProfesori, this, "Profesori");
 		modifyAndAddTable(tPredmeti, scPredmeti, this, "Predmeti");
-
 		
 	}
 	
@@ -198,7 +199,8 @@ public class AppCentralPanel extends JTabbedPane {
 		public void modifyAndAddTable(JTable t, JScrollPane sc, AppCentralPanel acp, String naziv) {
 			t.setRowHeight(25);
 			t.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			t.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
+			t.setBackground(new Color(229, 231, 233));
+			t.setForeground(new Color(23, 32, 42));
 			sc = new JScrollPane(t, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			sc.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(20, 40, 15, 40), BorderFactory.createLineBorder(Color.BLACK, 2)));
 			acp.add(sc, naziv);
