@@ -257,5 +257,4 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		view.initTablePredmeti();
 		dialog.setVisible(false);
 	}
-
 }

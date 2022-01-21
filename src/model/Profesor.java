@@ -81,10 +81,11 @@ public class Profesor implements Serializable {
 	
 	public void removePredmetFromProfesor(Predmet predmet) {
 		for(Iterator<Predmet> iterator = predmeti.iterator(); iterator.hasNext(); ) {
-		      Predmet value = iterator.next();
-			if(value.equals(predmet)) {
-		    	  iterator.remove();
-		      }
+		    Predmet value = iterator.next();
+			if(value.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+				iterator.remove();
+				break;
+		    }
 		}
 	}
 

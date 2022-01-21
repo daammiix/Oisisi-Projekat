@@ -22,6 +22,7 @@ public class BtnPlusListener implements MouseListener{
 		if(!btn.isEnabled()) {
 			JOptionPane.showMessageDialog(view.getChangeStudentDialog(), message, "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
+			btn.setBackground(null);
 			view.getChooseProfessorDialog().setLocationRelativeTo(view.getFrame());
 			view.getChooseProfessorDialog().setVisible(true);
 		}

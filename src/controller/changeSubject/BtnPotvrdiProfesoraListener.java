@@ -33,7 +33,8 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		JButton btn = (JButton)e.getSource();
+		btn.setBackground(null);
 	}
 
 	@Override
@@ -64,13 +65,14 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 		switch(btn.getActionCommand()) {
 		case "Remove":
 			{
+				System.out.println("usao");
 				int selectedRowPredmet = AppView.getInstance().getCentralPanel().gettPredmeti().getSelectedRow();
 				String selectedPredmetSifra = (String) AppView.getInstance().getCentralPanel().gettPredmeti().
 						getValueAt(selectedRowPredmet, 0);
 				Predmet predmet = AppData.getInstance().getPredmetBySifra(selectedPredmetSifra);
 				Profesor profesor = predmet.getPredmetniProfesor();
-				predmet.removeProfesorFromPredmet();
 				profesor.removePredmetFromProfesor(predmet);
+				predmet.removeProfesorFromPredmet();
 				AppView.getInstance().getChangePredmetDialog().fillInPredmet(predmet);
 				ChangePredmetDialog dialog = AppView.getInstance().getChangePredmetDialog();
 				ArrayList<JTextField> textFields = dialog.getTextFields();
@@ -92,9 +94,9 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 							getValueAt(selectedRow, 3);
 					Profesor profesor = AppData.getInstance().getProfesorByEmail(selectedProfesorEmail);
 					addProfesor(profesor);
+					prSelected.setPredmetniProfesor(profesor);
 					profesor.addPredmet(prSelected);
 					AppView.getInstance().getSefKatedreDialog().initTable();
-					AppView.getInstance().getChangeProfesorDialog().getPredmeti().refreshInfo(profesor);
 					ArrayList<JTextField> textFields = AppView.getInstance().getChangePredmetDialog().getTextFields();
 					doesProfessorExists(textFields);
 					AppView.getInstance().getChooseProfessorDialog().setVisible(false);
@@ -153,7 +155,6 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 		String selectedPredmetSifra = (String) AppView.getInstance().getCentralPanel().gettPredmeti().
 				getValueAt(selectedRow, 0);
 		AppData.getInstance().changePredmet(selectedPredmetSifra, dialog.getTextFields(), dialog.getCbGodina(), dialog.getCbSemestar());
-		
 	}
 	
 	public void addSefKatedre(Profesor profesor) {
