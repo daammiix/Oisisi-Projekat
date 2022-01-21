@@ -124,8 +124,12 @@ public class AppData {
 		int trenutnaGodStud = unpackComboBoxGodStud(comboBoxes.get(0));
 		String statusStr = (String)comboBoxes.get(1).getSelectedItem();
 		Student.Status status = Student.Status.B;
-		if(statusStr == "Samofinansiranje")
+		if(statusStr.equals("Samofinansiranje")) {
 			status = Student.Status.S;
+		} else {
+			status = Student.Status.B;
+		}
+
 		
 		student.setIme(ime);
 		student.setPrezime(prezime);
@@ -201,6 +205,15 @@ public class AppData {
 			}
 		}
 		
+		for(Student s : studenti) {
+			for(Ocena o : s.getNepolozeniIspiti()) {
+				if(o.getPredmet().getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+					o.setPredmet(predmet);
+				}
+			}
+		}
+
+		
 		predmet.setSifraPredmeta(sifra);
 		predmet.setNazivPredmeta(naziv);
 		predmet.setGodinaStudija(godina);
@@ -235,9 +248,9 @@ public class AppData {
 	public int unpackComboBoxGodStud(JComboBox<String> cb) {
 		String selectedText1 = (String)cb.getSelectedItem();
 		switch(selectedText1) {
-			case "II (druga)": return 2;
-			case "III (treca)": return 3; 
-			case "IV (cetvrta)": return 4; 
+			case "II": return 2;
+			case "III": return 3; 
+			case "IV": return 4; 
 		}
 		return 1;
 	}

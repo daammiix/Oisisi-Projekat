@@ -30,8 +30,11 @@ public class DaNeBtnListenerUkloniPredmet implements ActionListener {
 						break;
 					}
 				}
-				if(prZaUklanjanje != null)
+				if(prZaUklanjanje != null) {
+					prZaUklanjanje.setPredmetniProfesor(null);
+					AppView.getInstance().getChangePredmetDialog().fillInPredmet(prZaUklanjanje);
 					p.removePredmet(prZaUklanjanje);
+				}
 				else 
 					System.out.println("Predmet ne postoji u predmetima profesora????????");
 			}

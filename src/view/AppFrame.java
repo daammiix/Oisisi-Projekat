@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 
+import controller.AppController;
 import view.panelInformacije.PanelInformacije;
 
 import java.awt.*;

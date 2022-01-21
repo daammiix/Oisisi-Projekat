@@ -2,7 +2,10 @@ package view.addDialogs;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 
 import view.AppFrame;
 
@@ -33,6 +36,14 @@ public class AddPredmetDialog extends AddDialog {
 	public void initComponents() {
 		this.panelInformacije.getBtnPotvrdi().setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
 		this.panelInformacije.getBtnOdustani().setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+		ArrayList<JLabel> labels = panelInformacije.getLabels();
+		labels.get(0).setText(AppFrame.getInstance().getResourceBundle().getString("Sifra") + "*");
+		labels.get(1).setText(AppFrame.getInstance().getResourceBundle().getString("Naziv") + "*");
+		labels.get(2).setText(AppFrame.getInstance().getResourceBundle().getString("Broj_espb") + "*");
+		String[] semestar = {AppFrame.getInstance().getResourceBundle().getString("Letnji"), AppFrame.getInstance().getResourceBundle().getString("Zimski")};
+		labels.get(3).setText(AppFrame.getInstance().getResourceBundle().getString("Semestar") + "*");
+		String[] godStud = {"I", "II", "III", "IV"};
+		labels.get(4).setText(AppFrame.getInstance().getResourceBundle().getString("Godina_studija") + "*");
 	}
 	
 }

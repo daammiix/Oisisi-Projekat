@@ -1,13 +1,19 @@
 package controller.deleteStudentFromSubject;
 
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.*;
 
 import model.AppData;
+import model.Ocena;
+import model.Predmet;
 import model.Student;
 import model.TableStudentIndexValue;
 import util.Util;
 import view.*;
+import view.studentPredmetDialogs.AddStudentOnSubjectDialog;
 
 public class AddBtnDaListener implements MouseListener{
 	
@@ -26,6 +32,7 @@ private AppView view;
 		Student student = AppData.getInstance().getStudentByIndeks(selectedStudentIndeks);
 		int selectedPredmet = view.getChangeStudentDialog().getPanelNepolozeni().getTable().getSelectedRow();
 		student.removePredmetFromNepolozeni(selectedPredmet);
+		AppView.getInstance().getAddStudentOnSubjectDialog().initTable(student);
 		AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().refreshInfo(student);
 		view.getDeleteStudentFromSubject().setVisible(false);
 	}
@@ -53,4 +60,5 @@ private AppView view;
 		btn.setBackground(null);
 		btn.setEnabled(true);
 	}
+	
 }
