@@ -30,8 +30,10 @@ public class Predmeti extends JPanel {
 		this.setLayout(new BorderLayout(0, 10));
 		
 		btnDodaj = new JButton("Dodaj predmet");
+		Util.modifyButton(btnDodaj);
 		
 		btnUkloni = new JButton("Ukloni predmet");
+		Util.modifyButton(btnUkloni);
 		
 		String[] columns = {"Šifra", "Naziv", "Godina studija", "Semestar"};
 		tmodel = new DefaultTableModel(columns, 0);

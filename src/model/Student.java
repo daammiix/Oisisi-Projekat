@@ -126,8 +126,31 @@ public class Student implements Serializable {
 		this.polozeniIspiti.remove(idx);
 	}
 	
+	
 	public void removePredmetFromNepolozeni(int idx) {
 		this.nepolozeniIspiti.remove(idx);
+	}
+	
+	public void removePredmetNepolozeni(Predmet p) {
+		Ocena zaBrisanje = null;
+		for(Ocena o : nepolozeniIspiti) 
+			if(o.getPredmet().getSifraPredmeta().equalsIgnoreCase(p.getSifraPredmeta())) {
+				zaBrisanje = o;
+				break;
+			}
+		if(zaBrisanje != null)
+			nepolozeniIspiti.remove(zaBrisanje);
+	}
+	
+	public void removePredmetPolozeni(Predmet p) {
+		Ocena zaBrisanje = null;
+		for(Ocena o : polozeniIspiti) 
+			if(o.getPredmet().getSifraPredmeta().equalsIgnoreCase(p.getSifraPredmeta())) {
+				zaBrisanje = o;
+				break;
+			}
+		if(zaBrisanje != null)
+			polozeniIspiti.remove(zaBrisanje);
 	}
 	
 	public void calculateAvgGrade() {

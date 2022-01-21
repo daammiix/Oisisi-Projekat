@@ -1,8 +1,10 @@
 package util;
 
 import java.awt.Color;
+import java.awt.Insets;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -38,5 +40,11 @@ public class Util {
 		ret.setRowHeight(25);
 		ret.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		return ret;
+	}
+	
+	public static void modifyButton(JButton btn) {
+		btn.setForeground(buttonForegroundColor);
+		btn.setBackground(buttonBackgroundColor);
+		btn.setMargin(new Insets(1, 4, 1, 4));
 	}
 }

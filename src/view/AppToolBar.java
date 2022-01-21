@@ -1,11 +1,13 @@
 package view;
 
 import javax.swing.*;
+
+import util.Util;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Locale;
 
 
@@ -36,6 +38,7 @@ public class AppToolBar extends JToolBar{
 		btnOpen = new JButton();
 		btnOpen.setToolTipText("Open");
 		btnOpen.setIcon(new ImageIcon("image/image_new.png"));
+		btnOpen.setBackground(new Color(229, 231, 233));
 		this.add(btnOpen);
 		
 		addSeparator();
@@ -43,6 +46,7 @@ public class AppToolBar extends JToolBar{
 		btnEdit = new JButton();
 		btnEdit.setToolTipText("Edit");
 		btnEdit.setIcon(new ImageIcon("image/image_edit2.png"));
+		btnEdit.setBackground(new Color(229, 231, 233));
 		this.add(btnEdit);
 		
 		addSeparator();
@@ -50,12 +54,14 @@ public class AppToolBar extends JToolBar{
 		btnDelete = new JButton();
 		btnDelete.setToolTipText("Delete");
 		btnDelete.setIcon(new ImageIcon("image/image_delete.png"));
+		btnDelete.setBackground(new Color(229, 231, 233));
 		this.add(btnDelete);
 		
 		addSeparator();
 		
 		btnSrpski = new JButton();
 		btnSrpski.setText("SR");
+		btnSrpski.setBackground(new Color(229, 231, 233));
 		btnSrpski.addActionListener(new ActionListener() {
 
 			@Override
@@ -70,6 +76,7 @@ public class AppToolBar extends JToolBar{
 		
 		btnEngleski = new JButton();
 		btnEngleski.setText("EN");
+		btnEngleski.setBackground(new Color(229, 231, 233));
 		btnEngleski.addActionListener(new ActionListener() {
 
 			@Override
@@ -88,6 +95,7 @@ public class AppToolBar extends JToolBar{
 		btnSearch = new JButton();
 		btnSearch.setToolTipText("Search");
 		btnSearch.setIcon(new ImageIcon("image/image_search.png"));
+		btnSearch.setBackground(new Color(229, 231, 233));
 		this.add(btnSearch);
 		
 		btnOpen.setMnemonic(KeyEvent.VK_N);

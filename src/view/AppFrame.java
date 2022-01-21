@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 
 import controller.AppController;
+import util.Util;
 import view.panelInformacije.PanelInformacije;
 
 import java.awt.*;
@@ -40,7 +41,6 @@ public class AppFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
-
 	}
 	
 	public void inItFrame() {
