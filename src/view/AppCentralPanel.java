@@ -128,11 +128,11 @@ public class AppCentralPanel extends JTabbedPane {
 								  case 0:
 									  	return TableStudentIndexValue.class;
 								  case 3:
-										return int.class;
+										return Integer.class;
 								  case 4:
 									  	return Student.getStatusClass();
 								  case 5:
-									  	return double.class;
+									  	return Double.class;
 								  default:
 									  return String.class;
 								}
@@ -156,7 +156,24 @@ public class AppCentralPanel extends JTabbedPane {
 					}
 				case "Predmeti" : 
 					{
-						tmodelPredmeti = new DefaultTableModel(columnNames, 0); 			
+						tmodelPredmeti = new DefaultTableModel(columnNames, 0){
+							@Override
+				            public Class getColumnClass(int col) {
+								switch(col) {
+								  case 0:
+									  return String.class;
+								  case 3:
+										return Integer.class;
+								  case 4:
+									  	return Predmet.getSemestarClass();
+								  case 2:
+									  return Integer.class;
+								  default:
+									  return String.class;
+								}
+				            }
+							
+						};			
 						tPredmeti = new JTable(tmodelPredmeti); 
 						tStudenti.setName("Predmeti");
 						tPredmeti.setDefaultEditor(Object.class, null);
