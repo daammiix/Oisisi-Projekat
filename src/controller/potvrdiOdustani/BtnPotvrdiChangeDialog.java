@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.swing.*;
 
+import controller.AppController;
 import model.Adresa;
 import model.AppData;
 import model.Predmet;
@@ -235,7 +236,10 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		ChangeStudentDialog dialog = view.getChangeStudentDialog();
 		PanelInformacijeWithComboBoxes panel = view.getChangeStudentDialog().getPanelInformacije();
 		data.changeStudent(selectedStudentIndex,panel.getTextFields(),panel.getComboBoxes());
-		view.initTableStudenti();
+		if(view.getToolBar().getTfSearch().getText().equals(""))
+			view.initTableStudenti();
+		else
+			AppController.getInstance().performSearch();
 		dialog.setVisible(false);
 	}
 	
@@ -243,14 +247,20 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 		ChangeProfesorDialog dialog = view.getChangeProfesorDialog();
 		PanelInformacijeWithComboBoxes panel = view.getChangeProfesorDialog().getInformacije();
 		data.changeProfesor(selectedProfesorEmail, panel.getTextFields());
-		view.initTableProfesori();
+		if(view.getToolBar().getTfSearch().getText().equals(""))
+			view.initTableProfesori();
+		else
+			AppController.getInstance().performSearch();
 		dialog.setVisible(false);
 	}
 	
 	private void changePredmet(String selectedPredmetSifra) {
 		ChangePredmetDialog dialog = view.getChangePredmetDialog();
 		data.changePredmet(selectedPredmetSifra, dialog.getTextFields(), dialog.getCbGodina(), dialog.getCbSemestar());
-		view.initTablePredmeti();
+		if(view.getToolBar().getTfSearch().getText().equals(""))
+			view.initTablePredmeti();
+		else
+			AppController.getInstance().performSearch();
 		dialog.setVisible(false);
 	}
 
