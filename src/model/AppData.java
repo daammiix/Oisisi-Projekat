@@ -124,8 +124,13 @@ public class AppData {
 		int trenutnaGodStud = unpackComboBoxGodStud(comboBoxes.get(0));
 		int statusIdx = comboBoxes.get(1).getSelectedIndex();
 		Student.Status status = Student.Status.B;
-		if(statusIdx == 1)
+
+		if(statusIdx == 1) {
 			status = Student.Status.S;
+		} else {
+			status = Student.Status.B;
+		}
+
 		
 		student.setIme(ime);
 		student.setPrezime(prezime);
@@ -201,6 +206,15 @@ public class AppData {
 			}
 		}
 		
+		for(Student s : studenti) {
+			for(Ocena o : s.getNepolozeniIspiti()) {
+				if(o.getPredmet().getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+					o.setPredmet(predmet);
+				}
+			}
+		}
+
+		
 		predmet.setSifraPredmeta(sifra);
 		predmet.setNazivPredmeta(naziv);
 		predmet.setGodinaStudija(godina);
@@ -233,11 +247,13 @@ public class AppData {
 	}
 	
 	public int unpackComboBoxGodStud(JComboBox<String> cb) {
+
 		int selectedIndeks = cb.getSelectedIndex();
 		switch(selectedIndeks) {
 			case 1: return 2;
 			case 2: return 3; 
 			case 3: return 4; 
+
 		}
 		return 1;
 	}

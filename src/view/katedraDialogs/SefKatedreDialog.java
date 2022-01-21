@@ -75,6 +75,8 @@ public class SefKatedreDialog extends JDialog {
 	public void initComponents() {
 		btnIzmeni.setText(AppFrame.getInstance().getResourceBundle().getString("btnIzmeni"));
 		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+		String[] cols = {AppFrame.getInstance().getResourceBundle().getString("Ponudjeni_profesori")};
+		tableModel.setColumnIdentifiers(cols);
 	}
 	
 	public JPanel getPanel() {

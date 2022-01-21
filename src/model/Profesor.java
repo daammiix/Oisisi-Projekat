@@ -3,6 +3,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 public class Profesor implements Serializable {
 	private static final long serialVersionUID = 1521986090851820246L;
@@ -79,11 +80,12 @@ public class Profesor implements Serializable {
 	}
 	
 	public void removePredmetFromProfesor(Predmet predmet) {
-		for(Predmet p : predmeti) {
-		      if(p.equals(predmet)) {
-		    	  this.predmeti.remove(p);
+		for(Iterator<Predmet> iterator = predmeti.iterator(); iterator.hasNext(); ) {
+		      Predmet value = iterator.next();
+			if(value.equals(predmet)) {
+		    	  iterator.remove();
 		      }
-		    }
+		}
 	}
 
 	

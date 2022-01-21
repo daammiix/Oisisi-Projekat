@@ -62,7 +62,6 @@ public class AppToolBar extends JToolBar{
 			public void actionPerformed(ActionEvent arg0) {
 				Locale.setDefault(new Locale("sr", "RS"));
 				AppFrame.getInstance().changeLanguage();
-
 			}
 		});
 		this.add(btnSrpski);
