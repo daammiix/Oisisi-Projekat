@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -99,9 +100,20 @@ public class SefKatedreDialog extends JDialog {
 	}
 	
 	public void initTable() {
+		clearTable();
 		ArrayList<Profesor> profesori = AppData.getInstance().getProfesori();
 		dozvoljeniProfesori = new ArrayList<Profesor>();
+		ArrayList<Profesor> sefoviKatedri = new ArrayList<Profesor>();
+		ArrayList<Katedra> katedre = AppData.getInstance().getKatedra();
+		for(Katedra k : katedre) {
+			if(k.getSefKatedre() != null) {
+				sefoviKatedri.add(k.getSefKatedre());
+			}
+		}
 		for(Profesor p : profesori) {
+			if(sefoviKatedri.contains(p)) {
+				continue;
+			}
 			if(p.getZvanje().equalsIgnoreCase("redovni_profesor") || p.getZvanje().equalsIgnoreCase("vanredni_profesor") && p.getGodineStaza()>=5) {
 				Object[] data = {p.getIme() + " " + p.getPrezime()};
 				tableModel.addRow(data);

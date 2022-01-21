@@ -99,12 +99,13 @@ public class AddStudentOnSubjectDialog extends JDialog {
 			sviIspiti.add(o);
 		}
 		for(Ocena o : student.getNepolozeniIspiti()) {
+			System.out.println(o.getPredmet().getNazivPredmeta());
 			sviIspiti.add(o);
 		}
 		for(Predmet p : predmeti) {
 			Boolean nasao = false;
 			for(Ocena o : sviIspiti ) {
-				if(p.equals(o.getPredmet())) {
+				if(p.getSifraPredmeta().equals(o.getPredmet().getSifraPredmeta())) {
 					nasao = true;
 				}
 			}

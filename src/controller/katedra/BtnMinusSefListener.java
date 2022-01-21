@@ -24,6 +24,7 @@ public class BtnMinusSefListener implements MouseListener{
 				JOptionPane.showMessageDialog(view.getChangeStudentDialog(), message, "Error", JOptionPane.ERROR_MESSAGE);
 			} else {
 				view.getRemoveSefKatedreDialog().setLocationRelativeTo(view.getFrame());
+				btn.setBackground(null);
 				view.getRemoveSefKatedreDialog().setVisible(true);
 			}
 		}
