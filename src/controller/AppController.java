@@ -488,24 +488,28 @@ public class AppController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = appView.getToolBar().getTfSearch().getText();
-				String[] parts = text.split(",");
-				// zato sto split brise prazne stringove sa kraja.
-				Pattern p1 = Pattern.compile(Util.searchPattern1);
-				Pattern p2 = Pattern.compile(Util.searchPattern2);
-				if(p1.matcher(text).matches()) {
-					String[] expandedParts = {parts[0], "", ""};
-					AppView.getInstance().getCentralPanel().filterTables(expandedParts);
-					return;
-				}
-				if(p2.matcher(text).matches()) {
-					String[] expandedParts = {parts[0], parts[1], ""};
-					AppView.getInstance().getCentralPanel().filterTables(expandedParts);
-					return;
-				}
-				AppView.getInstance().getCentralPanel().filterTables(parts);
+				performSearch();
 			}
 		});
+	}
+	
+	public void performSearch() {
+		String text = appView.getToolBar().getTfSearch().getText();
+		String[] parts = text.split(",");
+		// zato sto split brise prazne stringove sa kraja.
+		Pattern p1 = Pattern.compile(Util.searchPattern1);
+		Pattern p2 = Pattern.compile(Util.searchPattern2);
+		if(p1.matcher(text).matches()) {
+			String[] expandedParts = {parts[0], "", ""};
+			AppView.getInstance().getCentralPanel().filterTables(expandedParts);
+			return;
+		}
+		if(p2.matcher(text).matches()) {
+			String[] expandedParts = {parts[0], parts[1], ""};
+			AppView.getInstance().getCentralPanel().filterTables(expandedParts);
+			return;
+		}
+		AppView.getInstance().getCentralPanel().filterTables(parts);
 	}
 	
 	private void addMainFrameWindowListener() {
