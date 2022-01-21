@@ -87,6 +87,7 @@ public class KatedreDialog extends JDialog {
 	}
 	
 	public void initTable() {
+		clearTable();
 		ArrayList<Katedra> katedre = AppData.getInstance().getKatedra();
 		for(Katedra k : katedre) {
 			Object[] data = {k.getNazivKatedre()};
