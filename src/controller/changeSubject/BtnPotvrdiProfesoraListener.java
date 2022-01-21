@@ -75,6 +75,7 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 				ArrayList<JTextField> textFields = dialog.getTextFields();
 				textFields.get(3).setText("");
 				doesProfessorExists(textFields);
+				AppView.getInstance().getSefKatedreDialog().initTable();
 				AppView.getInstance().getRemoveProfessorDialog().setVisible(false);
 				break;
 			}
@@ -87,9 +88,11 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 							getValueAt(selectedRow, 3);
 					Profesor profesor = AppData.getInstance().getProfesorByEmail(selectedProfesorEmail);
 					addProfesor(profesor);
-					AppView.getInstance().getChooseProfessorDialog().setVisible(false);
+					AppView.getInstance().getSefKatedreDialog().initTable();
 					ArrayList<JTextField> textFields = AppView.getInstance().getChangePredmetDialog().getTextFields();
 					doesProfessorExists(textFields);
+					AppView.getInstance().getChooseProfessorDialog().setVisible(false);
+
 				} else {
 					JOptionPane.showMessageDialog(cp, "Niste oznacili profesora", "Error", 
 							JOptionPane.ERROR_MESSAGE);
@@ -106,6 +109,7 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 				JTextField textField = dialog.getTextField();
 				textField.setText("");
 				doesSefExists(textField);
+				AppView.getInstance().getSefKatedreDialog().initTable();
 				AppView.getInstance().getRemoveSefKatedreDialog().setVisible(false);
 				break;
 			}
@@ -122,6 +126,7 @@ public class BtnPotvrdiProfesoraListener implements MouseListener, ActionListene
 					JTextField textField = AppView.getInstance().getTrenutniSefKatedre().getTextField();
 					doesSefExists(textField);
 					AppView.getInstance().getTrenutniSefKatedre().fillInSefKatedre(katedra);
+					AppView.getInstance().getSefKatedreDialog().initTable();
 					AppView.getInstance().getSefKatedreDialog().setVisible(false);
 				} else {
 					JOptionPane.showMessageDialog(skd, "Niste oznacili sefa katedre", "Error", 
