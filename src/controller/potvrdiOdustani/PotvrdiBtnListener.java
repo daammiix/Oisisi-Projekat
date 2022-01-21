@@ -186,7 +186,7 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 				int selectedStudent = data.getStudentIdxByIndeks(selectedStudentIndeks);
 				poloziPredmet(selectedPredmet, selectedStudent);
 				Student s = data.getStudenti().get(selectedStudent);
-				AppView.getInstance().getCentralPanel().gettmodelStudenti().setValueAt(s.getProsecnaOcena(), 
+				AppView.getInstance().getCentralPanel().gettmodelStudenti().setValueAt(String.format("%.2f", s.getProsecnaOcena()), 
 						selectedStudentRow, 5);
 				break;
 			}
