@@ -70,9 +70,9 @@ public class AppData {
 		String brIndeksa = unpackStringTextField(textFields.get(6));
 		int godUpisa = unpackIntTextField(textFields.get(7));
 		int trenutnaGodStud = unpackComboBoxGodStud(comboBoxes.get(0));
-		String statusStr = (String)comboBoxes.get(1).getSelectedItem();
+		int statusIdx = comboBoxes.get(1).getSelectedIndex();
 		Student.Status status = Student.Status.B;
-		if(statusStr == "Samofinansiranje")
+		if(statusIdx == 1)
 			status = Student.Status.S;
 		Student s = new Student(ime, prezime, datumRodjenja, adresa, kontaktTelefon, email, brIndeksa, godUpisa, trenutnaGodStud, status);
 		studenti.add(s);
@@ -122,9 +122,9 @@ public class AppData {
 		String brIndeksa = unpackStringTextField(textFields.get(6));
 		int godUpisa = unpackIntTextField(textFields.get(7));
 		int trenutnaGodStud = unpackComboBoxGodStud(comboBoxes.get(0));
-		String statusStr = (String)comboBoxes.get(1).getSelectedItem();
+		int statusIdx = comboBoxes.get(1).getSelectedIndex();
 		Student.Status status = Student.Status.B;
-		if(statusStr == "Samofinansiranje")
+		if(statusIdx == 1)
 			status = Student.Status.S;
 		
 		student.setIme(ime);
@@ -233,11 +233,11 @@ public class AppData {
 	}
 	
 	public int unpackComboBoxGodStud(JComboBox<String> cb) {
-		String selectedText1 = (String)cb.getSelectedItem();
-		switch(selectedText1) {
-			case "II (druga)": return 2;
-			case "III (treca)": return 3; 
-			case "IV (cetvrta)": return 4; 
+		int selectedIndeks = cb.getSelectedIndex();
+		switch(selectedIndeks) {
+			case 1: return 2;
+			case 2: return 3; 
+			case 3: return 4; 
 		}
 		return 1;
 	}
