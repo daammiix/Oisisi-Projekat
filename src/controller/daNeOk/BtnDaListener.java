@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import javax.swing.*;
 import model.AppData;
+import model.Katedra;
 import model.Ocena;
 import model.Predmet;
 import model.Profesor;
@@ -95,6 +96,18 @@ public class BtnDaListener implements MouseListener {
 		String selectedProfesorEmail = (String) AppView.getInstance().getCentralPanel().gettProfesori().
 				getValueAt(index, 3);
 		Profesor p = AppData.getInstance().getProfesorByEmail(selectedProfesorEmail);
+		ArrayList<Predmet> predmeti = p.getPredmeti();
+		for(Predmet pr : predmeti) {
+			pr.setPredmetniProfesor(null);
+		}
+		ArrayList<Katedra> katedre = AppData.getInstance().getKatedra();
+		for(Katedra k : katedre) {
+			if(k.getSefKatedre() != null) {
+				if(k.getSefKatedre().getEmail().equals(p.getEmail())) {
+					k.setSefKatedre(null);
+				}
+			}
+		}
 		Profesor profesor = AppData.getInstance().getProfesori().get(index);
 		AppData.getInstance().deleteProfesor(profesor);
 		view.initTableProfesori();
