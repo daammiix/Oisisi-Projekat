@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import model.AppData;
+import model.Ocena;
 import model.Predmet;
 import model.Profesor;
 import model.Student;
@@ -179,6 +180,8 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 			{
 				int selectedPredmet = view.getChangeStudentDialog().getPanelNepolozeni().getTable()
 						.getSelectedRow();
+				String selectedPredmetSifra = (String)view.getChangeStudentDialog().getPanelNepolozeni().getTable()
+						.getValueAt(selectedPredmet, 0);
 				int selectedStudentRow = view.getCentralPanel().gettStudenti().getSelectedRow();
 				TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
 						getValueAt(selectedStudentRow, 0); 
@@ -188,7 +191,8 @@ public class PotvrdiBtnListener implements MouseListener, ActionListener {
 				Student s = data.getStudenti().get(selectedStudent);
 				AppView.getInstance().getCentralPanel().gettmodelStudenti().setValueAt(String.format("%.2f", s.getProsecnaOcena()), 
 						selectedStudentRow, 5);
-				break;
+				Predmet p = data.getPredmetBySifra(selectedPredmetSifra);
+				p.studentPolozio(s);
 			}
 			case "Potvrdi dodavanje predmeta":
 			{

@@ -165,6 +165,16 @@ public class Student implements Serializable {
 		this.setProsecnaOcena(0.0);
 	}
 	
+
+	@Override
+	public String toString() {
+		return "Student [prezime=" + prezime + ", ime=" + ime + ", datumRodjenja=" + datumRodjenja
+				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", email=" + email
+				+ ", brojIndeksa=" + brojIndeksa + ", godinaUpisa=" + godinaUpisa + ", trenutnaGodinaStudija="
+				+ trenutnaGodinaStudija + ", status=" + status + ", prosecnaOcena=" + prosecnaOcena
+				+ ", polozeniIspiti=" + polozeniIspiti + ", nepolozeniIspiti=" + nepolozeniIspiti + "]";
+	}
+	
 	// getters and setters
 
 	public String getPrezime() {

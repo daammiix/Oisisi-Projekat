@@ -49,12 +49,22 @@ public class Predmet implements Serializable {
 		this.godinaStudija = god;
 		this.espb = espb;
 		this.predmetniProfesor = predmetniProfesor;
-		if(semestar.equals("Letnji"))
+		if(semestar.equalsIgnoreCase("Letnji"))
 			this.semestar = Semestar.L;
-		else if(semestar.equals("Zimski"))
+		else if(semestar.equalsIgnoreCase("Zimski"))
 			this.semestar = Semestar.Z;
 		studentiPolozili = new ArrayList<Student>();
 		studentiPali = new ArrayList<Student>();
+	}
+	
+	public void studentPolozio(Student s) {
+		studentiPali.remove(s);
+		studentiPolozili.add(s);
+	}
+	
+	public void studentPao(Student s) {
+		studentiPolozili.remove(s);
+		studentiPali.add(s);
 	}
 	
 	public void removeProfesorFromPredmet() {
