@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import model.Adresa;
@@ -29,7 +30,7 @@ public class Informacije extends PanelInformacijeWithComboBoxes{
 		
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Ime") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Prezime") + "*");
-		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Datun_rodjenja") + "*");
+		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Datum_rodjenja") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Adresa") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Broj_telefona") + "*");
 		addPairLabelTextField(AppFrame.getInstance().getResourceBundle().getString("Email") + "*");
@@ -52,6 +53,17 @@ public class Informacije extends PanelInformacijeWithComboBoxes{
 	public void initComponents() {
 		btnPotvrdi.setText(AppFrame.getInstance().getResourceBundle().getString("btnPotvrdi"));
 		btnOdustani.setText(AppFrame.getInstance().getResourceBundle().getString("btnOdustani"));
+		ArrayList<JLabel> labels = getLabels();
+		labels.get(0).setText(AppFrame.getInstance().getResourceBundle().getString("Ime") + "*");
+		labels.get(1).setText(AppFrame.getInstance().getResourceBundle().getString("Prezime") + "*");
+		labels.get(2).setText(AppFrame.getInstance().getResourceBundle().getString("Datum_rodjenja") + "*");
+		labels.get(3).setText(AppFrame.getInstance().getResourceBundle().getString("Adresa") + "*");
+		labels.get(4).setText(AppFrame.getInstance().getResourceBundle().getString("Broj_telefona") + "*");
+		labels.get(5).setText(AppFrame.getInstance().getResourceBundle().getString("Email") + "*");
+		labels.get(6).setText(AppFrame.getInstance().getResourceBundle().getString("Adresa_kancelarije") + "*");
+		labels.get(7).setText(AppFrame.getInstance().getResourceBundle().getString("Licna") + "*");
+		labels.get(8).setText(AppFrame.getInstance().getResourceBundle().getString("Zvanje") + "*");
+		labels.get(9).setText(AppFrame.getInstance().getResourceBundle().getString("Staz") + "*");
 	}
 	
 	public void fillInProfesor(Profesor profesor) {

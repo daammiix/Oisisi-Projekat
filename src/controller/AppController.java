@@ -103,7 +103,7 @@ public class AppController {
 		appView.tabChangedListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				appView.getStatusBar().setNaziv(appView.getFrame().getTitle(), appView.getCentralPanel().getSelectedTabTitle());
+				appView.getStatusBar().setNaziv(appView.getCentralPanel().getSelectedTabTitle());
 			}
 		});
 	}
@@ -112,8 +112,11 @@ public class AppController {
 		appView.addAddEntityListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
-				switch(appView.getCentralPanel().getSelectedTabTitle()) {
-					case "Studenti":
+				String studenti = AppFrame.getInstance().getResourceBundle().getString("tStudenti");
+				String profesori = AppFrame.getInstance().getResourceBundle().getString("tProfesori");
+				String predmeti = AppFrame.getInstance().getResourceBundle().getString("tPredmeti");
+				String naziv = appView.getCentralPanel().getSelectedTabTitle();
+					if(naziv.equals(studenti))
 						{
 							appView.getAddStudentDialog().setLocationRelativeTo(appView.getFrame());
 							appView.getAddStudentDialog().getPanelInformacije().getBtnPotvrdi().setEnabled(false);
@@ -121,18 +124,16 @@ public class AppController {
 							appView.getAddStudentDialog().getPanelInformacije().refreshComboBoxes();
 							appView.getAddStudentDialog().getPanelInformacije().getTextFields().get(0).requestFocus();
 							appView.getAddStudentDialog().setVisible(true);
-							break;
 						}
-					case "Profesori":
+					else if(naziv.equals(profesori))
 						{
 							appView.getAddProfesorDialog().setLocationRelativeTo(appView.getFrame());
 							appView.getAddProfesorDialog().getPanelInformacije().getBtnPotvrdi().setEnabled(false);
 							appView.getAddProfesorDialog().getPanelInformacije().clearTextFields();
 							appView.getAddProfesorDialog().getPanelInformacije().getTextFields().get(0).requestFocus();
 							appView.getAddProfesorDialog().setVisible(true);
-							break;
 						}
-					case "Predmeti":
+					else if(naziv.equals(predmeti))
 						{
 							appView.getAddPredmetDialog().setLocationRelativeTo(appView.getFrame());
 							appView.getAddPredmetDialog().getPanelInformacije().getBtnPotvrdi().setEnabled(false);
@@ -140,11 +141,14 @@ public class AppController {
 							appView.getAddPredmetDialog().getPanelInformacije().refreshComboBoxes();
 							appView.getAddPredmetDialog().getPanelInformacije().getTextFields().get(0).requestFocus();
 							appView.getAddPredmetDialog().setVisible(true);
-							break;
 						}
+					else 
+					{
+						System.out.println("Ne postoji takav tab");
+					}
 				}
 			}
-		});
+		);
 		
 		appView.addChangeEntityListener(new ActionListener() {
 			@Override

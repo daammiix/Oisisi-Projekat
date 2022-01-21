@@ -162,7 +162,11 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 					TableStudentIndexValue selectedValue = (TableStudentIndexValue) AppView.getInstance().getCentralPanel().gettStudenti().
 							getValueAt(selectedRow, 0); 
 					String selectedStudentIndeks = selectedValue.getIndeks();
-					changeStudent(selectedStudentIndeks);
+					changeStudent(selectedStudentIndeks);					
+					/*String selectedStudent = (String) AppView.getInstance().getCentralPanel().gettStudenti().
+							getValueAt(selectedRow, 0);
+					Student student = AppData.getInstance().getStudentByIndeks(selectedStudent);
+					AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().refreshInfo(student);*/
 					break;
 				}
 			case "Profesor":
