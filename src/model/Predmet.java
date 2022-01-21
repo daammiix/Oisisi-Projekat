@@ -17,6 +17,10 @@ public class Predmet implements Serializable {
 	private ArrayList<Student> studentiPolozili;
 	private ArrayList<Student> studentiPali;
 	
+	public static Class<Semestar> getSemestarClass() {
+		return Semestar.class; 
+	}
+	
 	public Predmet(String sifra, String naziv, int espb, int god, String semestar) {
 		this.sifraPredmeta = sifra;
 		this.nazivPredmeta = naziv;
