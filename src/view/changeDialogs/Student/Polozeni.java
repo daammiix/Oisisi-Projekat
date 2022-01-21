@@ -75,12 +75,12 @@ public class Polozeni extends JPanel {
 	}
 	
 	public void setProsecnaOcena(Double po, Student s) {
-		prosecnaOcena.setText(AppFrame.getInstance().getResourceBundle().getString("Prosecna_ocena")+ ":" + String.format("%.2f", po));
+		prosecnaOcena.setText(AppFrame.getInstance().getResourceBundle().getString("Prosecna_ocena")+ ": " + String.format("%.2f", po));
 		s.setProsecnaOcena(po);
 	}
 	
 	public void setUkupnoEspb(String espb) {
-		uEspb.setText(AppFrame.getInstance().getResourceBundle().getString("Ukupno_espb")+ ":" + espb);
+		uEspb.setText(AppFrame.getInstance().getResourceBundle().getString("Ukupno_espb")+ ": " + espb);
 	}
 	
 	public void refreshInfo(Student s) {
