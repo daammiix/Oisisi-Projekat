@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -76,7 +77,9 @@ public class Predmeti extends JPanel {
 	
 	public void refreshInfo(Profesor p) {
 		tmodel.setRowCount(0);
-		for(Predmet pr : p.getPredmeti()) {
+		ArrayList<Predmet> predmeti = p.getPredmeti();
+		System.out.println(predmeti.size());
+		for(Predmet pr : predmeti) {
 			Object[] data = {pr.getSifraPredmeta(), pr.getNazivPredmeta(), pr.getGodinaStudija(), 
 					pr.getSemestar()};
 			tmodel.addRow(data);

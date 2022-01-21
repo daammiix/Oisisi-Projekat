@@ -24,6 +24,7 @@ private String message;
 		if(!btn.isEnabled()) {
 			JOptionPane.showMessageDialog(view.getChangeStudentDialog(), message, "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
+			btn.setBackground(null);
 			view.getRemoveProfessorDialog().setLocationRelativeTo(view.getFrame());
 			view.getRemoveProfessorDialog().setVisible(true);
 		}

@@ -122,8 +122,14 @@ public class BtnDaListener implements MouseListener {
 		Predmet predmet = AppData.getInstance().getPredmetBySifra(selectedPredmetSifra);
 		ArrayList<Student> studenti = AppData.getInstance().getStudenti();
 		for(Student s : studenti) {
-			s.removePredmetNepolozeni(predmet);
-			s.removePredmetPolozeni(predmet);
+			for (Iterator<Ocena> iterator = s.getNepolozeniIspiti().iterator(); iterator.hasNext(); ) {
+				Ocena value = iterator.next();
+				if(value.getPredmet().getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+					iterator.remove();
+				}
+
+			}
+
 		}
 		AppData.getInstance().deletePredmet(predmet);
 		for(Student s : studenti) {

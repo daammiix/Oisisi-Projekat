@@ -189,8 +189,7 @@ public class AppController {
 										getValueAt(selectedRow, 3);
 								Profesor selectedProfesor = appData.getProfesorByEmail(selectedProfesorEmail);
 								dialog1.setLocationRelativeTo(appView.getFrame());
-								appView.getChangeProfesorDialog().getInformacije().fillInProfesor(selectedProfesor);
-								appView.getChangeProfesorDialog().getPredmeti().refreshInfo(selectedProfesor);
+								dialog1.getInformacije().fillInProfesor(selectedProfesor);
 								dialog1.getPredmeti().refreshInfo(selectedProfesor);
 								dialog1.getTabbedPane().setSelectedIndex(0);
 								dialog1.setVisible(true);
