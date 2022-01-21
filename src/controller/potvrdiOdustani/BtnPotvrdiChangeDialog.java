@@ -267,5 +267,4 @@ public class BtnPotvrdiChangeDialog implements MouseListener, ActionListener{
 			AppController.getInstance().performSearch();
 		dialog.setVisible(false);
 	}
-
 }
