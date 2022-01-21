@@ -23,7 +23,7 @@ public class DaNeBtnListenerPonistiOcenu implements ActionListener {
 			AppView.getInstance().getChangeStudentDialog().getPanelPolozeni().refreshInfo(s);
 			s.addNepolozenIspit(o);
 			AppView.getInstance().getChangeStudentDialog().getPanelNepolozeni().refreshInfo(s);
-			AppView.getInstance().getCentralPanel().gettmodelStudenti().setValueAt(String.format("%.2f", s.getProsecnaOcena()), 
+			AppView.getInstance().getCentralPanel().gettmodelStudenti().setValueAt(s.getProsecnaOcena(), 
 					selectedRow, 5);
 			Predmet p = o.getPredmet();
 			p.studentPao(s);
